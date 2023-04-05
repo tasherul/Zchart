@@ -1,0 +1,1 @@
+[{'root':'Protfolio 1','node':['AAA','A','AA','AAC','AAC.U','AAC.W','AAI-B','AAI-C','AAIC','AAIN','AAN','AAP','AAQ.U','AAQ.W','AAQC','AAT','AB','ABB','ABBV','AAPL']},{'root':'Protfolio 2','node':['AACG','AACI','AACIU','AACIW','AADI','AADR','AAL','AAME','AAOI','GOOG']},]

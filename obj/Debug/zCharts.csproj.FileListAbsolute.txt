@@ -1,0 +1,195 @@
+F:\zCharts\ProtoType\zCharts\bin\Debug\zCharts.exe.config
+F:\zCharts\ProtoType\zCharts\bin\Debug\zCharts.exe
+F:\zCharts\ProtoType\zCharts\bin\Debug\zCharts.pdb
+F:\zCharts\ProtoType\zCharts\obj\Debug\zCharts.MainForm.resources
+F:\zCharts\ProtoType\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+F:\zCharts\ProtoType\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+F:\zCharts\ProtoType\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+F:\zCharts\ProtoType\zCharts\obj\Debug\zCharts.exe
+F:\zCharts\ProtoType\zCharts\obj\Debug\zCharts.pdb
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\zCharts.exe.config
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\zCharts.exe
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\zCharts.pdb
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.MainForm.resources
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.exe
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.pdb
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\Newtonsoft.Json.dll
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\Newtonsoft.Json.xml
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\ZedGraph.dll
+I:\XPS-15_Bkup\zCharts\ProtoType\zCharts\bin\Debug\ZedGraph.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\zCharts.exe.config
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\zCharts.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\ZedGraph.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\ZedGraph.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.MainForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.importForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.importForm2.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.renamePortflio.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\System.CodeDom.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\System.CodeDom.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\obj\Debug\zCharts.csproj.AssemblyReference.cache
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\zCharts.exe.config
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\zCharts.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\System.CodeDom.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\ZedGraph.dll
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\System.CodeDom.xml
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\bin\Debug\ZedGraph.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.csproj.AssemblyReference.cache
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.importForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.importForm2.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.MainForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.renamePortflio.resources
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts\zCharts\zCharts\obj\Debug\zCharts.pdb
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\zCharts.exe.config
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\zCharts.exe
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\Newtonsoft.Json.dll
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\System.CodeDom.dll
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\ZedGraph.dll
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\Newtonsoft.Json.xml
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\System.CodeDom.xml
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\bin\Debug\ZedGraph.pdb
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.importForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.importForm2.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.MainForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.renamePortflio.resources
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+I:\XPS-15_Bkup\zCharts\MileStone2\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\zCharts.exe.config
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\System.CodeDom.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\ZedGraph.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\System.CodeDom.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\bin\Debug\ZedGraph.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.csproj.AssemblyReference.cache
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.importForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.importForm2.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.MainForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.renamePortflio.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+C:\Users\Tasherul Islam\Downloads\zCharts (1)\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\zCharts.exe.config
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\System.CodeDom.dll
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\ZedGraph.dll
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\System.CodeDom.xml
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\bin\Debug\ZedGraph.pdb
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.importForm.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.importForm2.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.MainForm.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.renamePortflio.resources
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\Upwork\zCharts\obj\Debug\zCharts.csproj.AssemblyReference.cache
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\zCharts.exe.config
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\zCharts.exe
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\Newtonsoft.Json.dll
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\System.CodeDom.dll
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\ZedGraph.dll
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\Newtonsoft.Json.xml
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\System.CodeDom.xml
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\bin\Debug\ZedGraph.pdb
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.importForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.importForm2.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.MainForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.renamePortflio.resources
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+I:\XPS-15_Bkup\zCharts\MileStone3\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\zCharts.exe.config
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\Newtonsoft.Json.Schema.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\Skender.Stock.Indicators.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\System.CodeDom.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\ZedGraph.dll
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\Newtonsoft.Json.Schema.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\Skender.Stock.Indicators.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\System.CodeDom.xml
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\bin\Debug\ZedGraph.pdb
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.addSymbolForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.importForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.importForm2.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.MainForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.newPortfolioForm.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.Properties.Resources.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.renamePortflio.resources
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.csproj.GenerateResource.cache
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.csproj.CoreCompileInputs.cache
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.csproj.CopyComplete
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.exe
+C:\Users\Tasherul Islam\Downloads\zCharts (2)\zCharts\obj\Debug\zCharts.csproj.AssemblyReference.cache
