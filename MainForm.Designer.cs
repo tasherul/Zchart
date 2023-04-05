@@ -52,6 +52,11 @@ namespace zCharts
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.splitContainerLeft = new System.Windows.Forms.SplitContainer();
             this.eod_treeView = new System.Windows.Forms.TreeView();
@@ -71,9 +76,11 @@ namespace zCharts
             this.comboBoxDailyChart = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDailyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxDailyPrice = new zCharts.PriceComboBox();
             this.textBoxDailyPrice = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDailyIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxDailyIndicator = new zCharts.IndicatorComboBox();
             this.textBoxDailyIndicator = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonTop2 = new System.Windows.Forms.Button();
@@ -92,9 +99,11 @@ namespace zCharts
             this.comboBoxWeeklyChart = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelWeeklyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxWeeklyPrice = new zCharts.PriceComboBox();
             this.textBoxWeeklyPrice = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelWeeklyIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxWeeklyIndicator = new zCharts.IndicatorComboBox();
             this.textBoxWeeklyIndicator = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonTop3 = new System.Windows.Forms.Button();
@@ -113,9 +122,11 @@ namespace zCharts
             this.comboBoxMonthlyChart = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelMonthlyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxMonthlyPrice = new zCharts.PriceComboBox();
             this.textBoxMonthlyPrice = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelMonthlyIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxMonthlyIndicator = new zCharts.IndicatorComboBox();
             this.textBoxMonthlyIndicator = new System.Windows.Forms.TextBox();
             this.panelTop1 = new System.Windows.Forms.Panel();
             this.buttonTop1 = new System.Windows.Forms.Button();
@@ -134,9 +145,11 @@ namespace zCharts
             this.comboBoxMinuteChart = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelMinutePrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxMinutePrice = new zCharts.PriceComboBox();
             this.textBoxMinutePrice = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelMinuteIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxMinuteIndicator = new zCharts.IndicatorComboBox();
             this.textBoxMinuteIndicator = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.buttonTop4 = new System.Windows.Forms.Button();
@@ -157,9 +170,11 @@ namespace zCharts
             this.comboBoxDowDailyChart = new System.Windows.Forms.ComboBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDowDailyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxDowDailyPrice = new zCharts.PriceComboBox();
             this.textBoxDowDailyPrice = new System.Windows.Forms.TextBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDowDailyIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxDowDailyIndicator = new zCharts.IndicatorComboBox();
             this.textBoxDowDailyIndicator = new System.Windows.Forms.TextBox();
             this.buttonTop5 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -174,9 +189,11 @@ namespace zCharts
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDowWeeklyPrice = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxDowWeeklyPrice = new System.Windows.Forms.TextBox();
+            this.priceComboBoxDowWeeklyPrice = new zCharts.PriceComboBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDowWeeklyIndicator = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxDowWeeklyIndicator = new System.Windows.Forms.TextBox();
+            this.indicatorComboBoxDowWeeklyIndicator = new zCharts.IndicatorComboBox();
             this.panel15 = new System.Windows.Forms.Panel();
             this.buttonTop12 = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -193,9 +210,11 @@ namespace zCharts
             this.comboBoxDowMonthlyChart = new System.Windows.Forms.ComboBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDowMonthlyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxDowMonthlyPrice = new zCharts.PriceComboBox();
             this.textBoxDowMonthlyPrice = new System.Windows.Forms.TextBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelDowMonthlyIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxDowMonthlyIndicator = new zCharts.IndicatorComboBox();
             this.textBoxDowMonthlyIndicator = new System.Windows.Forms.TextBox();
             this.panel17 = new System.Windows.Forms.Panel();
             this.buttonTop13 = new System.Windows.Forms.Button();
@@ -216,10 +235,12 @@ namespace zCharts
             this.comboBoxNasdaqDailyChart = new System.Windows.Forms.ComboBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelNasdaqDailyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxNasdaqDailyPrice = new zCharts.PriceComboBox();
             this.textBoxNasdaqDailyPrice = new System.Windows.Forms.TextBox();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelNasdaqDailyIndicator = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxNasdaqDailyIndicator = new System.Windows.Forms.TextBox();
+            this.indicatorComboBoxNasdaqDailyIndicator = new zCharts.IndicatorComboBox();
             this.buttonTop6 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.buttonLeft6 = new System.Windows.Forms.Button();
@@ -233,8 +254,10 @@ namespace zCharts
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelNasdaqWeeklyPrice = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxNasdaqWeeklyPrice = new System.Windows.Forms.TextBox();
+            this.priceComboBoxNasdaqWeeklyPrice = new zCharts.PriceComboBox();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelNasdaqWeeklyIndicator = new System.Windows.Forms.TableLayoutPanel();
+            this.indicatorComboBoxNasdaqWeeklyIndicator = new zCharts.IndicatorComboBox();
             this.textBoxNasdaqWeeklyIndicator = new System.Windows.Forms.TextBox();
             this.panel19 = new System.Windows.Forms.Panel();
             this.buttonTop14 = new System.Windows.Forms.Button();
@@ -252,10 +275,12 @@ namespace zCharts
             this.comboBoxNasdaqMonthlyChart = new System.Windows.Forms.ComboBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelNasdaqMonthlyPrice = new System.Windows.Forms.TableLayoutPanel();
+            this.priceComboBoxNasdaqMonthlyPrice = new zCharts.PriceComboBox();
             this.textBoxNasdaqMonthlyPrice = new System.Windows.Forms.TextBox();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelNasdaqMonthlyIndicator = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxNasdaqMonthlyIndicator = new System.Windows.Forms.TextBox();
+            this.indicatorComboBoxNasdaqMonthlyIndicator = new zCharts.IndicatorComboBox();
             this.panel21 = new System.Windows.Forms.Panel();
             this.buttonTop15 = new System.Windows.Forms.Button();
             this.panel20 = new System.Windows.Forms.Panel();
@@ -265,31 +290,164 @@ namespace zCharts
             this.tabPage22 = new System.Windows.Forms.TabPage();
             this.tabPageRSI = new System.Windows.Forms.TabPage();
             this.splitContainerRSI = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelRSI = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxRSIDaily = new System.Windows.Forms.GroupBox();
+            this.dataGridViewRSIDaily = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripRSIDaily = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToAcsvFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToAPDFFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxRSIWeekly = new System.Windows.Forms.GroupBox();
+            this.dataGridViewRSIWeekly = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripRSIWeekly = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToAcsvFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToAPDFFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.SPanel7 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelRSIRight = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxRSIRightTop = new System.Windows.Forms.GroupBox();
+            this.labelRSIDaily = new System.Windows.Forms.Label();
+            this.buttonRSIScanDaily = new System.Windows.Forms.Button();
+            this.numericUpDownRSIDaily = new System.Windows.Forms.NumericUpDown();
+            this.groupBoxRSIRightBottom = new System.Windows.Forms.GroupBox();
+            this.buttonRSIWeekly = new System.Windows.Forms.Button();
+            this.numericUpDownRSIWeekly = new System.Windows.Forms.NumericUpDown();
+            this.labelRSIWeekly = new System.Windows.Forms.Label();
             this.buttonTop7 = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.buttonLeft7 = new System.Windows.Forms.Button();
-            this.tabPageMacd = new System.Windows.Forms.TabPage();
-            this.splitContainerMACD = new System.Windows.Forms.SplitContainer();
-            this.SPanel8 = new System.Windows.Forms.Panel();
-            this.buttonTop8 = new System.Windows.Forms.Button();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.buttonLeft8 = new System.Windows.Forms.Button();
+            this.tabControlRSIScan = new System.Windows.Forms.TabControl();
+            this.tabPage23 = new System.Windows.Forms.TabPage();
+            this.textBoxRSIDaily = new System.Windows.Forms.TextBox();
+            this.tabPage24 = new System.Windows.Forms.TabPage();
+            this.textBoxRSIWeekly = new System.Windows.Forms.TextBox();
             this.tabPageBoll = new System.Windows.Forms.TabPage();
             this.splitContainerBoll = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelBollinger1Main = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridViewBollinger1Daily = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripBollinger1Daily = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToCsvFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewBollinger1Weekly = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripBollinger1Weekly = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToCsvFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.SPanel9 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelBollinger1Right = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox25 = new System.Windows.Forms.GroupBox();
+            this.buttonBollinger1Daily = new System.Windows.Forms.Button();
+            this.numericUpDownBollinger1Daily = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox26 = new System.Windows.Forms.GroupBox();
+            this.buttonBolinger1Weekly = new System.Windows.Forms.Button();
+            this.numericUpDownBollinger1Weekly = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.buttonTop9 = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
             this.buttonLeft9 = new System.Windows.Forms.Button();
+            this.tabControlBollinger1 = new System.Windows.Forms.TabControl();
+            this.tabPageBoll1Daily = new System.Windows.Forms.TabPage();
+            this.tabPageBoll1Weekly = new System.Windows.Forms.TabPage();
             this.tabPageBoll2 = new System.Windows.Forms.TabPage();
             this.splitContainerBoll2 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelBollinger2Main = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridViewBollinger2Daily = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripBollinger2Daily = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToCsvFileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewBollinger2Weekly = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripBollinger2Weekly = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToCsvFileToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.SPanel10 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelBollinger2Right = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox27 = new System.Windows.Forms.GroupBox();
+            this.buttonBollinger2Daily = new System.Windows.Forms.Button();
+            this.numericUpDownBollinger2Daily = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox28 = new System.Windows.Forms.GroupBox();
+            this.buttonBollinger2Weekly = new System.Windows.Forms.Button();
+            this.numericUpDownBollinger2Weekly = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.buttonTop10 = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.buttonLeft10 = new System.Windows.Forms.Button();
+            this.tabControlBollinger2 = new System.Windows.Forms.TabControl();
+            this.tabPage25 = new System.Windows.Forms.TabPage();
+            this.tabPage26 = new System.Windows.Forms.TabPage();
+            this.tabPageMacd = new System.Windows.Forms.TabPage();
+            this.splitContainerMACD = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelMacdMain = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxMcadDaily = new System.Windows.Forms.GroupBox();
+            this.dataGridViewMacdDaily = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripMacdDaily = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportCSVFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxMacdWeekly = new System.Windows.Forms.GroupBox();
+            this.dataGridViewMacdWeekly = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripMacdWeekly = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportCSVFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.SPanel8 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelMacdRight = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox29 = new System.Windows.Forms.GroupBox();
+            this.buttonMacdDaily = new System.Windows.Forms.Button();
+            this.numericUpDownMacdDaily = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.buttonMacdWeekly = new System.Windows.Forms.Button();
+            this.numericUpDownMacdWeekly = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonTop8 = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.buttonLeft8 = new System.Windows.Forms.Button();
+            this.tabControlMacd = new System.Windows.Forms.TabControl();
+            this.tabPage29 = new System.Windows.Forms.TabPage();
+            this.tabPage30 = new System.Windows.Forms.TabPage();
+            this.tabPageCandle = new System.Windows.Forms.TabPage();
+            this.splitContainerCandleStick = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelCandleMain = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxCandleDaily = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCandleDaily = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripCandleDaily = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportToCSVFileToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxCandleWeekly = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCandleWeekly = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripCandleWeekly = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportCSVFileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPDFFileToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.SPanel16 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelCandleRight = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox31 = new System.Windows.Forms.GroupBox();
+            this.buttonCandleDaily = new System.Windows.Forms.Button();
+            this.numericUpDownCandleDaily = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox32 = new System.Windows.Forms.GroupBox();
+            this.buttonCandleWeekly = new System.Windows.Forms.Button();
+            this.numericUpDownCandleWeekly = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonTop16 = new System.Windows.Forms.Button();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.buttonLeft16 = new System.Windows.Forms.Button();
+            this.tabControlCandleStick = new System.Windows.Forms.TabControl();
+            this.tabPage27 = new System.Windows.Forms.TabPage();
+            this.tabPage28 = new System.Windows.Forms.TabPage();
             this.tabPageZScan = new System.Windows.Forms.TabPage();
             this.splitContainerZScann = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelZscanMain = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBoxZscanDaily = new System.Windows.Forms.GroupBox();
+            this.dataGridViewZscanDaily = new System.Windows.Forms.DataGridView();
+            this.groupBoxZscanWeekly = new System.Windows.Forms.GroupBox();
+            this.dataGridViewZscanWeekly = new System.Windows.Forms.DataGridView();
             this.SPanel11 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelZscanRight = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.buttonZscanDaily = new System.Windows.Forms.Button();
+            this.numericUpDownZScanDaily = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.groupBox34 = new System.Windows.Forms.GroupBox();
+            this.buttonZscanWeekly = new System.Windows.Forms.Button();
+            this.numericUpDownZscanWeekly = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.buttonTop11 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.buttonLeft11 = new System.Windows.Forms.Button();
@@ -317,28 +475,10 @@ namespace zCharts
             this.timerDowMonthly = new System.Windows.Forms.Timer(this.components);
             this.timerNasdaqWeekly = new System.Windows.Forms.Timer(this.components);
             this.timerNasdaqMonthly = new System.Windows.Forms.Timer(this.components);
-            this.priceComboBoxDailyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxDailyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxWeeklyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxWeeklyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxMonthlyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxMonthlyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxMinutePrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxMinuteIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxDowDailyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxDowDailyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxDowWeeklyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxDowWeeklyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxDowMonthlyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxDowMonthlyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxNasdaqDailyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxNasdaqDailyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxNasdaqWeeklyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxNasdaqWeeklyIndicator = new zCharts.IndicatorComboBox();
-            this.priceComboBoxNasdaqMonthlyPrice = new zCharts.PriceComboBox();
-            this.indicatorComboBoxNasdaqMonthlyIndicator = new zCharts.IndicatorComboBox();
+            this.timerCandleStick = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -506,32 +646,116 @@ namespace zCharts
             this.tabPageRSI.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRSI)).BeginInit();
             this.splitContainerRSI.Panel1.SuspendLayout();
+            this.splitContainerRSI.Panel2.SuspendLayout();
             this.splitContainerRSI.SuspendLayout();
+            this.tableLayoutPanelRSI.SuspendLayout();
+            this.groupBoxRSIDaily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRSIDaily)).BeginInit();
+            this.contextMenuStripRSIDaily.SuspendLayout();
+            this.groupBoxRSIWeekly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRSIWeekly)).BeginInit();
+            this.contextMenuStripRSIWeekly.SuspendLayout();
             this.SPanel7.SuspendLayout();
+            this.tableLayoutPanelRSIRight.SuspendLayout();
+            this.groupBoxRSIRightTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRSIDaily)).BeginInit();
+            this.groupBoxRSIRightBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRSIWeekly)).BeginInit();
             this.panel9.SuspendLayout();
-            this.tabPageMacd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMACD)).BeginInit();
-            this.splitContainerMACD.Panel1.SuspendLayout();
-            this.splitContainerMACD.SuspendLayout();
-            this.SPanel8.SuspendLayout();
-            this.panel10.SuspendLayout();
+            this.tabControlRSIScan.SuspendLayout();
+            this.tabPage23.SuspendLayout();
+            this.tabPage24.SuspendLayout();
             this.tabPageBoll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerBoll)).BeginInit();
             this.splitContainerBoll.Panel1.SuspendLayout();
+            this.splitContainerBoll.Panel2.SuspendLayout();
             this.splitContainerBoll.SuspendLayout();
+            this.tableLayoutPanelBollinger1Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger1Daily)).BeginInit();
+            this.contextMenuStripBollinger1Daily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger1Weekly)).BeginInit();
+            this.contextMenuStripBollinger1Weekly.SuspendLayout();
             this.SPanel9.SuspendLayout();
+            this.tableLayoutPanelBollinger1Right.SuspendLayout();
+            this.groupBox25.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger1Daily)).BeginInit();
+            this.groupBox26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger1Weekly)).BeginInit();
             this.panel11.SuspendLayout();
+            this.tabControlBollinger1.SuspendLayout();
             this.tabPageBoll2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerBoll2)).BeginInit();
             this.splitContainerBoll2.Panel1.SuspendLayout();
+            this.splitContainerBoll2.Panel2.SuspendLayout();
             this.splitContainerBoll2.SuspendLayout();
+            this.tableLayoutPanelBollinger2Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger2Daily)).BeginInit();
+            this.contextMenuStripBollinger2Daily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger2Weekly)).BeginInit();
+            this.contextMenuStripBollinger2Weekly.SuspendLayout();
             this.SPanel10.SuspendLayout();
+            this.tableLayoutPanelBollinger2Right.SuspendLayout();
+            this.groupBox27.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger2Daily)).BeginInit();
+            this.groupBox28.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger2Weekly)).BeginInit();
             this.panel12.SuspendLayout();
+            this.tabControlBollinger2.SuspendLayout();
+            this.tabPageMacd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMACD)).BeginInit();
+            this.splitContainerMACD.Panel1.SuspendLayout();
+            this.splitContainerMACD.Panel2.SuspendLayout();
+            this.splitContainerMACD.SuspendLayout();
+            this.tableLayoutPanelMacdMain.SuspendLayout();
+            this.groupBoxMcadDaily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMacdDaily)).BeginInit();
+            this.contextMenuStripMacdDaily.SuspendLayout();
+            this.groupBoxMacdWeekly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMacdWeekly)).BeginInit();
+            this.contextMenuStripMacdWeekly.SuspendLayout();
+            this.SPanel8.SuspendLayout();
+            this.tableLayoutPanelMacdRight.SuspendLayout();
+            this.groupBox29.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMacdDaily)).BeginInit();
+            this.groupBox30.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMacdWeekly)).BeginInit();
+            this.panel10.SuspendLayout();
+            this.tabControlMacd.SuspendLayout();
+            this.tabPageCandle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCandleStick)).BeginInit();
+            this.splitContainerCandleStick.Panel1.SuspendLayout();
+            this.splitContainerCandleStick.Panel2.SuspendLayout();
+            this.splitContainerCandleStick.SuspendLayout();
+            this.tableLayoutPanelCandleMain.SuspendLayout();
+            this.groupBoxCandleDaily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCandleDaily)).BeginInit();
+            this.contextMenuStripCandleDaily.SuspendLayout();
+            this.groupBoxCandleWeekly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCandleWeekly)).BeginInit();
+            this.contextMenuStripCandleWeekly.SuspendLayout();
+            this.SPanel16.SuspendLayout();
+            this.tableLayoutPanelCandleRight.SuspendLayout();
+            this.groupBox31.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCandleDaily)).BeginInit();
+            this.groupBox32.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCandleWeekly)).BeginInit();
+            this.panel22.SuspendLayout();
+            this.tabControlCandleStick.SuspendLayout();
             this.tabPageZScan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerZScann)).BeginInit();
             this.splitContainerZScann.Panel1.SuspendLayout();
             this.splitContainerZScann.SuspendLayout();
+            this.tableLayoutPanelZscanMain.SuspendLayout();
+            this.groupBoxZscanDaily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewZscanDaily)).BeginInit();
+            this.groupBoxZscanWeekly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewZscanWeekly)).BeginInit();
             this.SPanel11.SuspendLayout();
+            this.tableLayoutPanelZscanRight.SuspendLayout();
+            this.groupBox33.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZScanDaily)).BeginInit();
+            this.groupBox34.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZscanWeekly)).BeginInit();
             this.panel13.SuspendLayout();
             this.contextMenuStripTreeview.SuspendLayout();
             this.SuspendLayout();
@@ -545,7 +769,7 @@ namespace zCharts
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1300, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1324, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -669,7 +893,7 @@ namespace zCharts
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1300, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1324, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -693,11 +917,54 @@ namespace zCharts
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 665);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripSplitButton1,
+            this.toolStripStatusLabel2,
+            this.toolStripSplitButton2,
+            this.toolStripStatusLabel3});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 581);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1300, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1324, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            this.toolStripSplitButton1.ButtonClick += new System.EventHandler(this.toolStripSplitButton1_ButtonClick);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            // 
+            // toolStripSplitButton2
+            // 
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
             // 
             // splitContainerMain
             // 
@@ -712,8 +979,8 @@ namespace zCharts
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.tabControlMain);
-            this.splitContainerMain.Size = new System.Drawing.Size(1300, 616);
-            this.splitContainerMain.SplitterDistance = 265;
+            this.splitContainerMain.Size = new System.Drawing.Size(1324, 532);
+            this.splitContainerMain.SplitterDistance = 269;
             this.splitContainerMain.TabIndex = 3;
             // 
             // splitContainerLeft
@@ -730,8 +997,8 @@ namespace zCharts
             // splitContainerLeft.Panel2
             // 
             this.splitContainerLeft.Panel2.Controls.Add(this.tabControlLeft);
-            this.splitContainerLeft.Size = new System.Drawing.Size(265, 616);
-            this.splitContainerLeft.SplitterDistance = 434;
+            this.splitContainerLeft.Size = new System.Drawing.Size(269, 532);
+            this.splitContainerLeft.SplitterDistance = 374;
             this.splitContainerLeft.TabIndex = 0;
             // 
             // eod_treeView
@@ -739,7 +1006,7 @@ namespace zCharts
             this.eod_treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.eod_treeView.Location = new System.Drawing.Point(0, 0);
             this.eod_treeView.Name = "eod_treeView";
-            this.eod_treeView.Size = new System.Drawing.Size(265, 434);
+            this.eod_treeView.Size = new System.Drawing.Size(269, 374);
             this.eod_treeView.TabIndex = 0;
             this.eod_treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.eod_treeView_NodeMouseClick);
             this.eod_treeView.Click += new System.EventHandler(this.eod_treeView_Click);
@@ -753,7 +1020,7 @@ namespace zCharts
             this.tabControlLeft.Location = new System.Drawing.Point(0, 0);
             this.tabControlLeft.Name = "tabControlLeft";
             this.tabControlLeft.SelectedIndex = 0;
-            this.tabControlLeft.Size = new System.Drawing.Size(265, 178);
+            this.tabControlLeft.Size = new System.Drawing.Size(269, 154);
             this.tabControlLeft.TabIndex = 0;
             // 
             // tabPage1
@@ -762,7 +1029,7 @@ namespace zCharts
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(257, 152);
+            this.tabPage1.Size = new System.Drawing.Size(261, 128);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -772,7 +1039,7 @@ namespace zCharts
             this.richTextBoxSummary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxSummary.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxSummary.Name = "richTextBoxSummary";
-            this.richTextBoxSummary.Size = new System.Drawing.Size(251, 146);
+            this.richTextBoxSummary.Size = new System.Drawing.Size(255, 122);
             this.richTextBoxSummary.TabIndex = 1;
             this.richTextBoxSummary.Text = "";
             // 
@@ -782,7 +1049,7 @@ namespace zCharts
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(257, 152);
+            this.tabPage2.Size = new System.Drawing.Size(261, 128);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -792,7 +1059,7 @@ namespace zCharts
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(251, 146);
+            this.richTextBox1.Size = new System.Drawing.Size(255, 122);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
@@ -809,15 +1076,16 @@ namespace zCharts
             this.tabControlMain.Controls.Add(this.tabPageNasdaqWeekly);
             this.tabControlMain.Controls.Add(this.tabPageNasdaqMonthly);
             this.tabControlMain.Controls.Add(this.tabPageRSI);
-            this.tabControlMain.Controls.Add(this.tabPageMacd);
             this.tabControlMain.Controls.Add(this.tabPageBoll);
             this.tabControlMain.Controls.Add(this.tabPageBoll2);
+            this.tabControlMain.Controls.Add(this.tabPageMacd);
+            this.tabControlMain.Controls.Add(this.tabPageCandle);
             this.tabControlMain.Controls.Add(this.tabPageZScan);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1031, 616);
+            this.tabControlMain.Size = new System.Drawing.Size(1051, 532);
             this.tabControlMain.TabIndex = 0;
             this.tabControlMain.Tag = "5";
             // 
@@ -827,7 +1095,7 @@ namespace zCharts
             this.tabPageDaily.Location = new System.Drawing.Point(4, 22);
             this.tabPageDaily.Name = "tabPageDaily";
             this.tabPageDaily.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDaily.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageDaily.Size = new System.Drawing.Size(1043, 506);
             this.tabPageDaily.TabIndex = 0;
             this.tabPageDaily.Text = "Daily Chart";
             this.tabPageDaily.UseVisualStyleBackColor = true;
@@ -848,8 +1116,8 @@ namespace zCharts
             // splitContainerDaily.Panel2
             // 
             this.splitContainerDaily.Panel2.Controls.Add(this.tabControlDaily);
-            this.splitContainerDaily.Size = new System.Drawing.Size(1017, 584);
-            this.splitContainerDaily.SplitterDistance = 439;
+            this.splitContainerDaily.Size = new System.Drawing.Size(1037, 500);
+            this.splitContainerDaily.SplitterDistance = 375;
             this.splitContainerDaily.TabIndex = 0;
             // 
             // tableLayoutPanelDailyMain
@@ -866,10 +1134,10 @@ namespace zCharts
             this.tableLayoutPanelDailyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelDailyMain.Name = "tableLayoutPanelDailyMain";
             this.tableLayoutPanelDailyMain.RowCount = 1;
-            this.tableLayoutPanelDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelDailyMain.Size = new System.Drawing.Size(802, 902);
-            this.tableLayoutPanelDailyMain.TabIndex = 4;
+            this.tableLayoutPanelDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelDailyMain.Size = new System.Drawing.Size(822, 1198);
+            this.tableLayoutPanelDailyMain.TabIndex = 3;
             // 
             // zedGraphDailyTop
             // 
@@ -883,7 +1151,7 @@ namespace zCharts
             this.zedGraphDailyTop.ScrollMinX = 0D;
             this.zedGraphDailyTop.ScrollMinY = 0D;
             this.zedGraphDailyTop.ScrollMinY2 = 0D;
-            this.zedGraphDailyTop.Size = new System.Drawing.Size(792, 892);
+            this.zedGraphDailyTop.Size = new System.Drawing.Size(812, 1188);
             this.zedGraphDailyTop.TabIndex = 0;
             // 
             // SPanel2
@@ -892,9 +1160,9 @@ namespace zCharts
             this.SPanel2.Controls.Add(this.tableLayoutPanelDailyRight);
             this.SPanel2.Controls.Add(this.panel2);
             this.SPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel2.Location = new System.Drawing.Point(802, 0);
+            this.SPanel2.Location = new System.Drawing.Point(822, 0);
             this.SPanel2.Name = "SPanel2";
-            this.SPanel2.Size = new System.Drawing.Size(183, 439);
+            this.SPanel2.Size = new System.Drawing.Size(183, 375);
             this.SPanel2.TabIndex = 1;
             // 
             // tableLayoutPanelDailyRight
@@ -911,10 +1179,10 @@ namespace zCharts
             this.tableLayoutPanelDailyRight.Location = new System.Drawing.Point(0, 29);
             this.tableLayoutPanelDailyRight.Name = "tableLayoutPanelDailyRight";
             this.tableLayoutPanelDailyRight.RowCount = 3;
-            this.tableLayoutPanelDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanelDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanelDailyRight.Size = new System.Drawing.Size(183, 410);
+            this.tableLayoutPanelDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanelDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanelDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanelDailyRight.Size = new System.Drawing.Size(183, 346);
             this.tableLayoutPanelDailyRight.TabIndex = 1;
             // 
             // groupBox1
@@ -925,7 +1193,7 @@ namespace zCharts
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(177, 76);
+            this.groupBox1.Size = new System.Drawing.Size(177, 28);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chart Attributes";
@@ -952,9 +1220,9 @@ namespace zCharts
             this.groupBox2.Controls.Add(this.tableLayoutPanelDailyPrice);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox2.Location = new System.Drawing.Point(3, 85);
+            this.groupBox2.Location = new System.Drawing.Point(3, 37);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(177, 158);
+            this.groupBox2.Size = new System.Drawing.Size(177, 149);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "OverLay onto Price";
@@ -977,6 +1245,17 @@ namespace zCharts
             this.tableLayoutPanelDailyPrice.Size = new System.Drawing.Size(171, 31);
             this.tableLayoutPanelDailyPrice.TabIndex = 0;
             // 
+            // priceComboBoxDailyPrice
+            // 
+            this.priceComboBoxDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxDailyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxDailyPrice.FormattingEnabled = true;
+            this.priceComboBoxDailyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxDailyPrice.Name = "priceComboBoxDailyPrice";
+            this.priceComboBoxDailyPrice.Size = new System.Drawing.Size(109, 21);
+            this.priceComboBoxDailyPrice.TabIndex = 0;
+            this.priceComboBoxDailyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDailyPrice_SelectedIndexChanged);
+            // 
             // textBoxDailyPrice
             // 
             this.textBoxDailyPrice.Location = new System.Drawing.Point(122, 5);
@@ -991,9 +1270,9 @@ namespace zCharts
             this.groupBox3.Controls.Add(this.tableLayoutPanelDailyIndicator);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox3.Location = new System.Drawing.Point(3, 249);
+            this.groupBox3.Location = new System.Drawing.Point(3, 192);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(177, 158);
+            this.groupBox3.Size = new System.Drawing.Size(177, 151);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Indicators";
@@ -1015,6 +1294,17 @@ namespace zCharts
             this.tableLayoutPanelDailyIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelDailyIndicator.Size = new System.Drawing.Size(171, 31);
             this.tableLayoutPanelDailyIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxDailyIndicator
+            // 
+            this.indicatorComboBoxDailyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxDailyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxDailyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxDailyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxDailyIndicator.Name = "indicatorComboBoxDailyIndicator";
+            this.indicatorComboBoxDailyIndicator.Size = new System.Drawing.Size(109, 21);
+            this.indicatorComboBoxDailyIndicator.TabIndex = 0;
+            this.indicatorComboBoxDailyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDailyIndicator_SelectedIndexChanged);
             // 
             // textBoxDailyIndicator
             // 
@@ -1050,9 +1340,9 @@ namespace zCharts
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.Controls.Add(this.buttonLeft2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(985, 0);
+            this.panel1.Location = new System.Drawing.Point(1005, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(32, 439);
+            this.panel1.Size = new System.Drawing.Size(32, 375);
             this.panel1.TabIndex = 0;
             // 
             // buttonLeft2
@@ -1074,7 +1364,7 @@ namespace zCharts
             this.tabControlDaily.Location = new System.Drawing.Point(0, 0);
             this.tabControlDaily.Name = "tabControlDaily";
             this.tabControlDaily.SelectedIndex = 0;
-            this.tabControlDaily.Size = new System.Drawing.Size(1017, 141);
+            this.tabControlDaily.Size = new System.Drawing.Size(1037, 121);
             this.tabControlDaily.TabIndex = 0;
             // 
             // tabPage3
@@ -1082,7 +1372,7 @@ namespace zCharts
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1009, 115);
+            this.tabPage3.Size = new System.Drawing.Size(1029, 95);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1092,7 +1382,7 @@ namespace zCharts
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1009, 115);
+            this.tabPage4.Size = new System.Drawing.Size(1029, 95);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1103,7 +1393,7 @@ namespace zCharts
             this.tabPageWeekly.Location = new System.Drawing.Point(4, 22);
             this.tabPageWeekly.Name = "tabPageWeekly";
             this.tabPageWeekly.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWeekly.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageWeekly.Size = new System.Drawing.Size(1043, 506);
             this.tabPageWeekly.TabIndex = 1;
             this.tabPageWeekly.Text = "Weekly Chart";
             this.tabPageWeekly.UseVisualStyleBackColor = true;
@@ -1124,8 +1414,8 @@ namespace zCharts
             // splitContainerWeekly.Panel2
             // 
             this.splitContainerWeekly.Panel2.Controls.Add(this.tabControlWeekly);
-            this.splitContainerWeekly.Size = new System.Drawing.Size(1017, 584);
-            this.splitContainerWeekly.SplitterDistance = 439;
+            this.splitContainerWeekly.Size = new System.Drawing.Size(1037, 500);
+            this.splitContainerWeekly.SplitterDistance = 375;
             this.splitContainerWeekly.TabIndex = 0;
             // 
             // tableLayoutPanelWeeklyMain
@@ -1142,9 +1432,9 @@ namespace zCharts
             this.tableLayoutPanelWeeklyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelWeeklyMain.Name = "tableLayoutPanelWeeklyMain";
             this.tableLayoutPanelWeeklyMain.RowCount = 1;
-            this.tableLayoutPanelWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelWeeklyMain.Size = new System.Drawing.Size(790, 902);
+            this.tableLayoutPanelWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelWeeklyMain.Size = new System.Drawing.Size(810, 1198);
             this.tableLayoutPanelWeeklyMain.TabIndex = 3;
             // 
             // zedGraphControlWeeklyTop
@@ -1159,7 +1449,7 @@ namespace zCharts
             this.zedGraphControlWeeklyTop.ScrollMinX = 0D;
             this.zedGraphControlWeeklyTop.ScrollMinY = 0D;
             this.zedGraphControlWeeklyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlWeeklyTop.Size = new System.Drawing.Size(780, 892);
+            this.zedGraphControlWeeklyTop.Size = new System.Drawing.Size(800, 1188);
             this.zedGraphControlWeeklyTop.TabIndex = 0;
             // 
             // SPanel3
@@ -1168,9 +1458,9 @@ namespace zCharts
             this.SPanel3.Controls.Add(this.tableLayoutPanelWeeklyRight);
             this.SPanel3.Controls.Add(this.panel4);
             this.SPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel3.Location = new System.Drawing.Point(790, 0);
+            this.SPanel3.Location = new System.Drawing.Point(810, 0);
             this.SPanel3.Name = "SPanel3";
-            this.SPanel3.Size = new System.Drawing.Size(200, 439);
+            this.SPanel3.Size = new System.Drawing.Size(200, 375);
             this.SPanel3.TabIndex = 1;
             // 
             // tableLayoutPanelWeeklyRight
@@ -1189,7 +1479,7 @@ namespace zCharts
             this.tableLayoutPanelWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanelWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanelWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanelWeeklyRight.Size = new System.Drawing.Size(200, 415);
+            this.tableLayoutPanelWeeklyRight.Size = new System.Drawing.Size(200, 351);
             this.tableLayoutPanelWeeklyRight.TabIndex = 1;
             // 
             // groupBox4
@@ -1200,7 +1490,7 @@ namespace zCharts
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(194, 77);
+            this.groupBox4.Size = new System.Drawing.Size(194, 64);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chart Attributes";
@@ -1226,9 +1516,9 @@ namespace zCharts
             this.groupBox5.Controls.Add(this.tableLayoutPanelWeeklyPrice);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox5.Location = new System.Drawing.Point(3, 86);
+            this.groupBox5.Location = new System.Drawing.Point(3, 73);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(194, 160);
+            this.groupBox5.Size = new System.Drawing.Size(194, 134);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Overlay Onto Price";
@@ -1251,6 +1541,17 @@ namespace zCharts
             this.tableLayoutPanelWeeklyPrice.Size = new System.Drawing.Size(188, 31);
             this.tableLayoutPanelWeeklyPrice.TabIndex = 0;
             // 
+            // priceComboBoxWeeklyPrice
+            // 
+            this.priceComboBoxWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxWeeklyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxWeeklyPrice.FormattingEnabled = true;
+            this.priceComboBoxWeeklyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxWeeklyPrice.Name = "priceComboBoxWeeklyPrice";
+            this.priceComboBoxWeeklyPrice.Size = new System.Drawing.Size(121, 21);
+            this.priceComboBoxWeeklyPrice.TabIndex = 0;
+            this.priceComboBoxWeeklyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxWeeklyPrice_SelectedIndexChanged);
+            // 
             // textBoxWeeklyPrice
             // 
             this.textBoxWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1265,9 +1566,9 @@ namespace zCharts
             this.groupBox6.Controls.Add(this.tableLayoutPanelWeeklyIndicator);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox6.Location = new System.Drawing.Point(3, 252);
+            this.groupBox6.Location = new System.Drawing.Point(3, 213);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(194, 160);
+            this.groupBox6.Size = new System.Drawing.Size(194, 135);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Indicators";
@@ -1289,6 +1590,17 @@ namespace zCharts
             this.tableLayoutPanelWeeklyIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelWeeklyIndicator.Size = new System.Drawing.Size(188, 31);
             this.tableLayoutPanelWeeklyIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxWeeklyIndicator
+            // 
+            this.indicatorComboBoxWeeklyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxWeeklyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxWeeklyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxWeeklyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxWeeklyIndicator.Name = "indicatorComboBoxWeeklyIndicator";
+            this.indicatorComboBoxWeeklyIndicator.Size = new System.Drawing.Size(121, 21);
+            this.indicatorComboBoxWeeklyIndicator.TabIndex = 0;
+            this.indicatorComboBoxWeeklyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxWeeklyIndicator_SelectedIndexChanged);
             // 
             // textBoxWeeklyIndicator
             // 
@@ -1324,9 +1636,9 @@ namespace zCharts
             this.panel3.BackColor = System.Drawing.Color.Silver;
             this.panel3.Controls.Add(this.buttonLeft3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(990, 0);
+            this.panel3.Location = new System.Drawing.Point(1010, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(27, 439);
+            this.panel3.Size = new System.Drawing.Size(27, 375);
             this.panel3.TabIndex = 0;
             // 
             // buttonLeft3
@@ -1348,7 +1660,7 @@ namespace zCharts
             this.tabControlWeekly.Location = new System.Drawing.Point(0, 0);
             this.tabControlWeekly.Name = "tabControlWeekly";
             this.tabControlWeekly.SelectedIndex = 0;
-            this.tabControlWeekly.Size = new System.Drawing.Size(1017, 141);
+            this.tabControlWeekly.Size = new System.Drawing.Size(1037, 121);
             this.tabControlWeekly.TabIndex = 0;
             // 
             // tabPage5
@@ -1356,7 +1668,7 @@ namespace zCharts
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1009, 115);
+            this.tabPage5.Size = new System.Drawing.Size(1029, 95);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1366,7 +1678,7 @@ namespace zCharts
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1009, 115);
+            this.tabPage6.Size = new System.Drawing.Size(1029, 95);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1378,7 +1690,7 @@ namespace zCharts
             this.tabPageMonthly.Location = new System.Drawing.Point(4, 22);
             this.tabPageMonthly.Name = "tabPageMonthly";
             this.tabPageMonthly.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMonthly.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageMonthly.Size = new System.Drawing.Size(1043, 506);
             this.tabPageMonthly.TabIndex = 2;
             this.tabPageMonthly.Text = "Monthly Chart";
             this.tabPageMonthly.UseVisualStyleBackColor = true;
@@ -1399,8 +1711,8 @@ namespace zCharts
             // splitContainerMonthly.Panel2
             // 
             this.splitContainerMonthly.Panel2.Controls.Add(this.tabControlMonthly);
-            this.splitContainerMonthly.Size = new System.Drawing.Size(1017, 584);
-            this.splitContainerMonthly.SplitterDistance = 424;
+            this.splitContainerMonthly.Size = new System.Drawing.Size(1037, 500);
+            this.splitContainerMonthly.SplitterDistance = 362;
             this.splitContainerMonthly.SplitterWidth = 10;
             this.splitContainerMonthly.TabIndex = 0;
             // 
@@ -1418,9 +1730,9 @@ namespace zCharts
             this.tableLayoutPanelMonthlyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelMonthlyMain.Name = "tableLayoutPanelMonthlyMain";
             this.tableLayoutPanelMonthlyMain.RowCount = 1;
-            this.tableLayoutPanelMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelMonthlyMain.Size = new System.Drawing.Size(811, 902);
+            this.tableLayoutPanelMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelMonthlyMain.Size = new System.Drawing.Size(831, 1198);
             this.tableLayoutPanelMonthlyMain.TabIndex = 2;
             // 
             // zedGraphControlMonthlyTop
@@ -1435,7 +1747,7 @@ namespace zCharts
             this.zedGraphControlMonthlyTop.ScrollMinX = 0D;
             this.zedGraphControlMonthlyTop.ScrollMinY = 0D;
             this.zedGraphControlMonthlyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlMonthlyTop.Size = new System.Drawing.Size(801, 892);
+            this.zedGraphControlMonthlyTop.Size = new System.Drawing.Size(821, 1188);
             this.zedGraphControlMonthlyTop.TabIndex = 0;
             // 
             // SPanel1
@@ -1444,9 +1756,9 @@ namespace zCharts
             this.SPanel1.Controls.Add(this.tableLayoutPanelMonthlyRight);
             this.SPanel1.Controls.Add(this.panelTop1);
             this.SPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel1.Location = new System.Drawing.Point(811, 0);
+            this.SPanel1.Location = new System.Drawing.Point(831, 0);
             this.SPanel1.Name = "SPanel1";
-            this.SPanel1.Size = new System.Drawing.Size(182, 424);
+            this.SPanel1.Size = new System.Drawing.Size(182, 362);
             this.SPanel1.TabIndex = 1;
             // 
             // tableLayoutPanelMonthlyRight
@@ -1467,7 +1779,7 @@ namespace zCharts
             this.tableLayoutPanelMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanelMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanelMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanelMonthlyRight.Size = new System.Drawing.Size(182, 403);
+            this.tableLayoutPanelMonthlyRight.Size = new System.Drawing.Size(182, 341);
             this.tableLayoutPanelMonthlyRight.TabIndex = 1;
             // 
             // groupBox7
@@ -1476,7 +1788,7 @@ namespace zCharts
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(176, 74);
+            this.groupBox7.Size = new System.Drawing.Size(176, 62);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Chart Attributes";
@@ -1501,9 +1813,9 @@ namespace zCharts
             this.groupBox8.Controls.Add(this.tableLayoutPanelMonthlyPrice);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox8.Location = new System.Drawing.Point(3, 83);
+            this.groupBox8.Location = new System.Drawing.Point(3, 71);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(176, 155);
+            this.groupBox8.Size = new System.Drawing.Size(176, 130);
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Overlay Onto Price";
@@ -1526,6 +1838,17 @@ namespace zCharts
             this.tableLayoutPanelMonthlyPrice.Size = new System.Drawing.Size(170, 31);
             this.tableLayoutPanelMonthlyPrice.TabIndex = 0;
             // 
+            // priceComboBoxMonthlyPrice
+            // 
+            this.priceComboBoxMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxMonthlyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxMonthlyPrice.FormattingEnabled = true;
+            this.priceComboBoxMonthlyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxMonthlyPrice.Name = "priceComboBoxMonthlyPrice";
+            this.priceComboBoxMonthlyPrice.Size = new System.Drawing.Size(108, 21);
+            this.priceComboBoxMonthlyPrice.TabIndex = 0;
+            this.priceComboBoxMonthlyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxMonthlyPrice_SelectedIndexChanged);
+            // 
             // textBoxMonthlyPrice
             // 
             this.textBoxMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1538,9 +1861,9 @@ namespace zCharts
             // 
             this.groupBox9.Controls.Add(this.tableLayoutPanelMonthlyIndicator);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox9.Location = new System.Drawing.Point(3, 244);
+            this.groupBox9.Location = new System.Drawing.Point(3, 207);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(176, 156);
+            this.groupBox9.Size = new System.Drawing.Size(176, 131);
             this.groupBox9.TabIndex = 2;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Indicators";
@@ -1562,6 +1885,17 @@ namespace zCharts
             this.tableLayoutPanelMonthlyIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelMonthlyIndicator.Size = new System.Drawing.Size(170, 31);
             this.tableLayoutPanelMonthlyIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxMonthlyIndicator
+            // 
+            this.indicatorComboBoxMonthlyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxMonthlyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxMonthlyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxMonthlyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxMonthlyIndicator.Name = "indicatorComboBoxMonthlyIndicator";
+            this.indicatorComboBoxMonthlyIndicator.Size = new System.Drawing.Size(108, 21);
+            this.indicatorComboBoxMonthlyIndicator.TabIndex = 0;
+            this.indicatorComboBoxMonthlyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxMonthlyIndicator_SelectedIndexChanged);
             // 
             // textBoxMonthlyIndicator
             // 
@@ -1596,9 +1930,9 @@ namespace zCharts
             this.panelRight1.BackColor = System.Drawing.Color.Silver;
             this.panelRight1.Controls.Add(this.buttonLeft1);
             this.panelRight1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelRight1.Location = new System.Drawing.Point(993, 0);
+            this.panelRight1.Location = new System.Drawing.Point(1013, 0);
             this.panelRight1.Name = "panelRight1";
-            this.panelRight1.Size = new System.Drawing.Size(24, 424);
+            this.panelRight1.Size = new System.Drawing.Size(24, 362);
             this.panelRight1.TabIndex = 0;
             // 
             // buttonLeft1
@@ -1620,7 +1954,7 @@ namespace zCharts
             this.tabControlMonthly.Location = new System.Drawing.Point(0, 0);
             this.tabControlMonthly.Name = "tabControlMonthly";
             this.tabControlMonthly.SelectedIndex = 0;
-            this.tabControlMonthly.Size = new System.Drawing.Size(1017, 150);
+            this.tabControlMonthly.Size = new System.Drawing.Size(1037, 128);
             this.tabControlMonthly.TabIndex = 0;
             // 
             // tabPage7
@@ -1628,7 +1962,7 @@ namespace zCharts
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1009, 124);
+            this.tabPage7.Size = new System.Drawing.Size(1029, 102);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1638,7 +1972,7 @@ namespace zCharts
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1009, 124);
+            this.tabPage8.Size = new System.Drawing.Size(1029, 102);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1649,7 +1983,7 @@ namespace zCharts
             this.tabPageMinutes.Controls.Add(this.splitContainer2);
             this.tabPageMinutes.Location = new System.Drawing.Point(4, 22);
             this.tabPageMinutes.Name = "tabPageMinutes";
-            this.tabPageMinutes.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageMinutes.Size = new System.Drawing.Size(1043, 506);
             this.tabPageMinutes.TabIndex = 6;
             this.tabPageMinutes.Text = "Minutes & Hourly Charts";
             this.tabPageMinutes.UseVisualStyleBackColor = true;
@@ -1671,8 +2005,8 @@ namespace zCharts
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControlMinutes);
-            this.splitContainer2.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainer2.SplitterDistance = 445;
+            this.splitContainer2.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainer2.SplitterDistance = 381;
             this.splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanelMinuteMain
@@ -1688,7 +2022,7 @@ namespace zCharts
             this.tableLayoutPanelMinuteMain.Name = "tableLayoutPanelMinuteMain";
             this.tableLayoutPanelMinuteMain.RowCount = 1;
             this.tableLayoutPanelMinuteMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 600F));
-            this.tableLayoutPanelMinuteMain.Size = new System.Drawing.Size(792, 600);
+            this.tableLayoutPanelMinuteMain.Size = new System.Drawing.Size(812, 600);
             this.tableLayoutPanelMinuteMain.TabIndex = 2;
             // 
             // zedGraphControlMinuteTop
@@ -1703,7 +2037,7 @@ namespace zCharts
             this.zedGraphControlMinuteTop.ScrollMinX = 0D;
             this.zedGraphControlMinuteTop.ScrollMinY = 0D;
             this.zedGraphControlMinuteTop.ScrollMinY2 = 0D;
-            this.zedGraphControlMinuteTop.Size = new System.Drawing.Size(786, 594);
+            this.zedGraphControlMinuteTop.Size = new System.Drawing.Size(806, 594);
             this.zedGraphControlMinuteTop.TabIndex = 0;
             // 
             // SPanel4
@@ -1712,9 +2046,9 @@ namespace zCharts
             this.SPanel4.Controls.Add(this.tableLayoutPanelMinuteRight);
             this.SPanel4.Controls.Add(this.panel6);
             this.SPanel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel4.Location = new System.Drawing.Point(792, 0);
+            this.SPanel4.Location = new System.Drawing.Point(812, 0);
             this.SPanel4.Name = "SPanel4";
-            this.SPanel4.Size = new System.Drawing.Size(200, 445);
+            this.SPanel4.Size = new System.Drawing.Size(200, 381);
             this.SPanel4.TabIndex = 1;
             // 
             // tableLayoutPanelMinuteRight
@@ -1733,7 +2067,7 @@ namespace zCharts
             this.tableLayoutPanelMinuteRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanelMinuteRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanelMinuteRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanelMinuteRight.Size = new System.Drawing.Size(200, 416);
+            this.tableLayoutPanelMinuteRight.Size = new System.Drawing.Size(200, 352);
             this.tableLayoutPanelMinuteRight.TabIndex = 1;
             // 
             // groupBox10
@@ -1744,7 +2078,7 @@ namespace zCharts
             this.groupBox10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox10.Location = new System.Drawing.Point(3, 3);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(194, 77);
+            this.groupBox10.Size = new System.Drawing.Size(194, 64);
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Chart Attributes";
@@ -1770,9 +2104,9 @@ namespace zCharts
             this.groupBox11.Controls.Add(this.tableLayoutPanelMinutePrice);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox11.Location = new System.Drawing.Point(3, 86);
+            this.groupBox11.Location = new System.Drawing.Point(3, 73);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(194, 160);
+            this.groupBox11.Size = new System.Drawing.Size(194, 134);
             this.groupBox11.TabIndex = 1;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "OverLay Onto Price";
@@ -1795,6 +2129,17 @@ namespace zCharts
             this.tableLayoutPanelMinutePrice.Size = new System.Drawing.Size(188, 31);
             this.tableLayoutPanelMinutePrice.TabIndex = 0;
             // 
+            // priceComboBoxMinutePrice
+            // 
+            this.priceComboBoxMinutePrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxMinutePrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxMinutePrice.FormattingEnabled = true;
+            this.priceComboBoxMinutePrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxMinutePrice.Name = "priceComboBoxMinutePrice";
+            this.priceComboBoxMinutePrice.Size = new System.Drawing.Size(121, 21);
+            this.priceComboBoxMinutePrice.TabIndex = 0;
+            this.priceComboBoxMinutePrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxMinutePrice_SelectedIndexChanged);
+            // 
             // textBoxMinutePrice
             // 
             this.textBoxMinutePrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1809,9 +2154,9 @@ namespace zCharts
             this.groupBox12.Controls.Add(this.tableLayoutPanelMinuteIndicator);
             this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox12.Location = new System.Drawing.Point(3, 252);
+            this.groupBox12.Location = new System.Drawing.Point(3, 213);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(194, 161);
+            this.groupBox12.Size = new System.Drawing.Size(194, 136);
             this.groupBox12.TabIndex = 2;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Indicators";
@@ -1833,6 +2178,17 @@ namespace zCharts
             this.tableLayoutPanelMinuteIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelMinuteIndicator.Size = new System.Drawing.Size(188, 31);
             this.tableLayoutPanelMinuteIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxMinuteIndicator
+            // 
+            this.indicatorComboBoxMinuteIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxMinuteIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxMinuteIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxMinuteIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxMinuteIndicator.Name = "indicatorComboBoxMinuteIndicator";
+            this.indicatorComboBoxMinuteIndicator.Size = new System.Drawing.Size(121, 21);
+            this.indicatorComboBoxMinuteIndicator.TabIndex = 0;
+            this.indicatorComboBoxMinuteIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxMinuteIndicator_SelectedIndexChanged);
             // 
             // textBoxMinuteIndicator
             // 
@@ -1868,9 +2224,9 @@ namespace zCharts
             this.panel5.BackColor = System.Drawing.Color.Silver;
             this.panel5.Controls.Add(this.buttonLeft4);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(992, 0);
+            this.panel5.Location = new System.Drawing.Point(1012, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(31, 445);
+            this.panel5.Size = new System.Drawing.Size(31, 381);
             this.panel5.TabIndex = 0;
             // 
             // buttonLeft4
@@ -1892,7 +2248,7 @@ namespace zCharts
             this.tabControlMinutes.Location = new System.Drawing.Point(0, 0);
             this.tabControlMinutes.Name = "tabControlMinutes";
             this.tabControlMinutes.SelectedIndex = 0;
-            this.tabControlMinutes.Size = new System.Drawing.Size(1023, 141);
+            this.tabControlMinutes.Size = new System.Drawing.Size(1043, 121);
             this.tabControlMinutes.TabIndex = 0;
             // 
             // tabPage9
@@ -1900,7 +2256,7 @@ namespace zCharts
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1015, 115);
+            this.tabPage9.Size = new System.Drawing.Size(1035, 95);
             this.tabPage9.TabIndex = 0;
             this.tabPage9.Text = "tabPage9";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -1910,7 +2266,7 @@ namespace zCharts
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(1015, 115);
+            this.tabPage10.Size = new System.Drawing.Size(1035, 95);
             this.tabPage10.TabIndex = 1;
             this.tabPage10.Text = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1923,7 +2279,7 @@ namespace zCharts
             this.tabPageDowDaily.Location = new System.Drawing.Point(4, 22);
             this.tabPageDowDaily.Name = "tabPageDowDaily";
             this.tabPageDowDaily.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDowDaily.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageDowDaily.Size = new System.Drawing.Size(1043, 506);
             this.tabPageDowDaily.TabIndex = 8;
             this.tabPageDowDaily.Text = "Dow Jones- Daily";
             this.tabPageDowDaily.UseVisualStyleBackColor = true;
@@ -1943,8 +2299,8 @@ namespace zCharts
             // splitContainerDow.Panel2
             // 
             this.splitContainerDow.Panel2.Controls.Add(this.tabControlDowDaily);
-            this.splitContainerDow.Size = new System.Drawing.Size(776, 584);
-            this.splitContainerDow.SplitterDistance = 436;
+            this.splitContainerDow.Size = new System.Drawing.Size(796, 500);
+            this.splitContainerDow.SplitterDistance = 372;
             this.splitContainerDow.TabIndex = 2;
             // 
             // tableLayoutPanelDowDailyMain
@@ -1954,15 +2310,13 @@ namespace zCharts
             this.tableLayoutPanelDowDailyMain.BackColor = System.Drawing.Color.Aquamarine;
             this.tableLayoutPanelDowDailyMain.ColumnCount = 1;
             this.tableLayoutPanelDowDailyMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelDowDailyMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelDowDailyMain.Controls.Add(this.zedGraphControlDowDailyTop, 0, 0);
             this.tableLayoutPanelDowDailyMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelDowDailyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelDowDailyMain.Name = "tableLayoutPanelDowDailyMain";
             this.tableLayoutPanelDowDailyMain.RowCount = 1;
             this.tableLayoutPanelDowDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 600F));
-            this.tableLayoutPanelDowDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 600F));
-            this.tableLayoutPanelDowDailyMain.Size = new System.Drawing.Size(759, 600);
+            this.tableLayoutPanelDowDailyMain.Size = new System.Drawing.Size(779, 600);
             this.tableLayoutPanelDowDailyMain.TabIndex = 0;
             // 
             // zedGraphControlDowDailyTop
@@ -1977,7 +2331,7 @@ namespace zCharts
             this.zedGraphControlDowDailyTop.ScrollMinX = 0D;
             this.zedGraphControlDowDailyTop.ScrollMinY = 0D;
             this.zedGraphControlDowDailyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlDowDailyTop.Size = new System.Drawing.Size(753, 594);
+            this.zedGraphControlDowDailyTop.Size = new System.Drawing.Size(773, 594);
             this.zedGraphControlDowDailyTop.TabIndex = 0;
             // 
             // tabControlDowDaily
@@ -1988,7 +2342,7 @@ namespace zCharts
             this.tabControlDowDaily.Location = new System.Drawing.Point(0, 0);
             this.tabControlDowDaily.Name = "tabControlDowDaily";
             this.tabControlDowDaily.SelectedIndex = 0;
-            this.tabControlDowDaily.Size = new System.Drawing.Size(776, 144);
+            this.tabControlDowDaily.Size = new System.Drawing.Size(796, 124);
             this.tabControlDowDaily.TabIndex = 0;
             // 
             // tabPage11
@@ -1996,7 +2350,7 @@ namespace zCharts
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(768, 118);
+            this.tabPage11.Size = new System.Drawing.Size(788, 98);
             this.tabPage11.TabIndex = 0;
             this.tabPage11.Text = "tabPage11";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -2006,7 +2360,7 @@ namespace zCharts
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(768, 118);
+            this.tabPage12.Size = new System.Drawing.Size(788, 98);
             this.tabPage12.TabIndex = 1;
             this.tabPage12.Text = "tabPage12";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -2017,9 +2371,9 @@ namespace zCharts
             this.SPanel5.Controls.Add(this.tableLayoutPanelDowDailyRight);
             this.SPanel5.Controls.Add(this.buttonTop5);
             this.SPanel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel5.Location = new System.Drawing.Point(779, 3);
+            this.SPanel5.Location = new System.Drawing.Point(799, 3);
             this.SPanel5.Name = "SPanel5";
-            this.SPanel5.Size = new System.Drawing.Size(207, 584);
+            this.SPanel5.Size = new System.Drawing.Size(207, 500);
             this.SPanel5.TabIndex = 1;
             // 
             // tableLayoutPanelDowDailyRight
@@ -2039,7 +2393,7 @@ namespace zCharts
             this.tableLayoutPanelDowDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelDowDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanelDowDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanelDowDailyRight.Size = new System.Drawing.Size(207, 550);
+            this.tableLayoutPanelDowDailyRight.Size = new System.Drawing.Size(207, 466);
             this.tableLayoutPanelDowDailyRight.TabIndex = 1;
             // 
             // comboBoxDowDailyChart
@@ -2062,9 +2416,9 @@ namespace zCharts
             this.groupBox13.Controls.Add(this.tableLayoutPanelDowDailyPrice);
             this.groupBox13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox13.Location = new System.Drawing.Point(5, 61);
+            this.groupBox13.Location = new System.Drawing.Point(5, 52);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(197, 237);
+            this.groupBox13.Size = new System.Drawing.Size(197, 200);
             this.groupBox13.TabIndex = 1;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "OverLay Onto Price";
@@ -2087,6 +2441,18 @@ namespace zCharts
             this.tableLayoutPanelDowDailyPrice.Size = new System.Drawing.Size(191, 31);
             this.tableLayoutPanelDowDailyPrice.TabIndex = 0;
             // 
+            // priceComboBoxDowDailyPrice
+            // 
+            this.priceComboBoxDowDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxDowDailyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxDowDailyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.priceComboBoxDowDailyPrice.FormattingEnabled = true;
+            this.priceComboBoxDowDailyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxDowDailyPrice.Name = "priceComboBoxDowDailyPrice";
+            this.priceComboBoxDowDailyPrice.Size = new System.Drawing.Size(123, 21);
+            this.priceComboBoxDowDailyPrice.TabIndex = 0;
+            this.priceComboBoxDowDailyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDowDailyPrice_SelectedIndexChanged);
+            // 
             // textBoxDowDailyPrice
             // 
             this.textBoxDowDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2100,9 +2466,9 @@ namespace zCharts
             this.groupBox14.Controls.Add(this.tableLayoutPanelDowDailyIndicator);
             this.groupBox14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox14.Location = new System.Drawing.Point(5, 306);
+            this.groupBox14.Location = new System.Drawing.Point(5, 260);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(197, 239);
+            this.groupBox14.Size = new System.Drawing.Size(197, 201);
             this.groupBox14.TabIndex = 2;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Indicators";
@@ -2124,6 +2490,17 @@ namespace zCharts
             this.tableLayoutPanelDowDailyIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelDowDailyIndicator.Size = new System.Drawing.Size(191, 31);
             this.tableLayoutPanelDowDailyIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxDowDailyIndicator
+            // 
+            this.indicatorComboBoxDowDailyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxDowDailyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.indicatorComboBoxDowDailyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxDowDailyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxDowDailyIndicator.Name = "indicatorComboBoxDowDailyIndicator";
+            this.indicatorComboBoxDowDailyIndicator.Size = new System.Drawing.Size(123, 21);
+            this.indicatorComboBoxDowDailyIndicator.TabIndex = 0;
+            this.indicatorComboBoxDowDailyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDowDailyIndicator_SelectedIndexChanged);
             // 
             // textBoxDowDailyIndicator
             // 
@@ -2149,9 +2526,9 @@ namespace zCharts
             this.panel7.BackColor = System.Drawing.Color.Silver;
             this.panel7.Controls.Add(this.buttonLeft5);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(986, 3);
+            this.panel7.Location = new System.Drawing.Point(1006, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(34, 584);
+            this.panel7.Size = new System.Drawing.Size(34, 500);
             this.panel7.TabIndex = 0;
             // 
             // buttonLeft5
@@ -2170,7 +2547,7 @@ namespace zCharts
             this.tabPageDowWeekly.Controls.Add(this.splitContainerDowWeekly);
             this.tabPageDowWeekly.Location = new System.Drawing.Point(4, 22);
             this.tabPageDowWeekly.Name = "tabPageDowWeekly";
-            this.tabPageDowWeekly.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageDowWeekly.Size = new System.Drawing.Size(1043, 506);
             this.tabPageDowWeekly.TabIndex = 11;
             this.tabPageDowWeekly.Text = "Dow Jones - Weekly";
             this.tabPageDowWeekly.UseVisualStyleBackColor = true;
@@ -2192,8 +2569,8 @@ namespace zCharts
             // splitContainerDowWeekly.Panel2
             // 
             this.splitContainerDowWeekly.Panel2.Controls.Add(this.tabControlDowWeekly);
-            this.splitContainerDowWeekly.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerDowWeekly.SplitterDistance = 453;
+            this.splitContainerDowWeekly.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerDowWeekly.SplitterDistance = 387;
             this.splitContainerDowWeekly.TabIndex = 0;
             // 
             // tableLayoutPanelDowWeeklyMain
@@ -2204,15 +2581,13 @@ namespace zCharts
             this.tableLayoutPanelDowWeeklyMain.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanelDowWeeklyMain.ColumnCount = 1;
             this.tableLayoutPanelDowWeeklyMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelDowWeeklyMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelDowWeeklyMain.Controls.Add(this.zedGraphControlDowWeeklyTop, 0, 0);
             this.tableLayoutPanelDowWeeklyMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelDowWeeklyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelDowWeeklyMain.Name = "tableLayoutPanelDowWeeklyMain";
             this.tableLayoutPanelDowWeeklyMain.RowCount = 1;
-            this.tableLayoutPanelDowWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelDowWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelDowWeeklyMain.Size = new System.Drawing.Size(770, 902);
+            this.tableLayoutPanelDowWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelDowWeeklyMain.Size = new System.Drawing.Size(790, 1198);
             this.tableLayoutPanelDowWeeklyMain.TabIndex = 5;
             // 
             // zedGraphControlDowWeeklyTop
@@ -2227,7 +2602,7 @@ namespace zCharts
             this.zedGraphControlDowWeeklyTop.ScrollMinX = 0D;
             this.zedGraphControlDowWeeklyTop.ScrollMinY = 0D;
             this.zedGraphControlDowWeeklyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlDowWeeklyTop.Size = new System.Drawing.Size(760, 892);
+            this.zedGraphControlDowWeeklyTop.Size = new System.Drawing.Size(780, 1188);
             this.zedGraphControlDowWeeklyTop.TabIndex = 0;
             // 
             // SPanel12
@@ -2236,9 +2611,9 @@ namespace zCharts
             this.SPanel12.Controls.Add(this.tableLayoutPanelDowWeeklyRight);
             this.SPanel12.Controls.Add(this.panel15);
             this.SPanel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel12.Location = new System.Drawing.Point(770, 0);
+            this.SPanel12.Location = new System.Drawing.Point(790, 0);
             this.SPanel12.Name = "SPanel12";
-            this.SPanel12.Size = new System.Drawing.Size(200, 902);
+            this.SPanel12.Size = new System.Drawing.Size(200, 1198);
             this.SPanel12.TabIndex = 1;
             // 
             // tableLayoutPanelDowWeeklyRight
@@ -2259,7 +2634,7 @@ namespace zCharts
             this.tableLayoutPanelDowWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelDowWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanelDowWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanelDowWeeklyRight.Size = new System.Drawing.Size(200, 870);
+            this.tableLayoutPanelDowWeeklyRight.Size = new System.Drawing.Size(200, 1166);
             this.tableLayoutPanelDowWeeklyRight.TabIndex = 1;
             // 
             // comboBoxDowWeeklyChart
@@ -2282,9 +2657,9 @@ namespace zCharts
             this.groupBox15.Controls.Add(this.tableLayoutPanelDowWeeklyPrice);
             this.groupBox15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox15.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox15.Location = new System.Drawing.Point(5, 93);
+            this.groupBox15.Location = new System.Drawing.Point(5, 122);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(190, 381);
+            this.groupBox15.Size = new System.Drawing.Size(190, 515);
             this.groupBox15.TabIndex = 1;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "OverLay Onto Price";
@@ -2315,14 +2690,26 @@ namespace zCharts
             this.textBoxDowWeeklyPrice.Size = new System.Drawing.Size(48, 20);
             this.textBoxDowWeeklyPrice.TabIndex = 0;
             // 
+            // priceComboBoxDowWeeklyPrice
+            // 
+            this.priceComboBoxDowWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxDowWeeklyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxDowWeeklyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.priceComboBoxDowWeeklyPrice.FormattingEnabled = true;
+            this.priceComboBoxDowWeeklyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxDowWeeklyPrice.Name = "priceComboBoxDowWeeklyPrice";
+            this.priceComboBoxDowWeeklyPrice.Size = new System.Drawing.Size(118, 21);
+            this.priceComboBoxDowWeeklyPrice.TabIndex = 1;
+            this.priceComboBoxDowWeeklyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDowWeeklyPrice_SelectedIndexChanged);
+            // 
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.tableLayoutPanelDowWeeklyIndicator);
             this.groupBox16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox16.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox16.Location = new System.Drawing.Point(5, 482);
+            this.groupBox16.Location = new System.Drawing.Point(5, 645);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(190, 383);
+            this.groupBox16.Size = new System.Drawing.Size(190, 516);
             this.groupBox16.TabIndex = 2;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Indicators";
@@ -2353,6 +2740,17 @@ namespace zCharts
             this.textBoxDowWeeklyIndicator.Size = new System.Drawing.Size(48, 20);
             this.textBoxDowWeeklyIndicator.TabIndex = 0;
             // 
+            // indicatorComboBoxDowWeeklyIndicator
+            // 
+            this.indicatorComboBoxDowWeeklyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxDowWeeklyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.indicatorComboBoxDowWeeklyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxDowWeeklyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxDowWeeklyIndicator.Name = "indicatorComboBoxDowWeeklyIndicator";
+            this.indicatorComboBoxDowWeeklyIndicator.Size = new System.Drawing.Size(118, 21);
+            this.indicatorComboBoxDowWeeklyIndicator.TabIndex = 1;
+            this.indicatorComboBoxDowWeeklyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDowWeeklyIndicator_SelectedIndexChanged);
+            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.buttonTop12);
@@ -2378,9 +2776,9 @@ namespace zCharts
             this.panel14.BackColor = System.Drawing.Color.Silver;
             this.panel14.Controls.Add(this.buttonLeft12);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel14.Location = new System.Drawing.Point(970, 0);
+            this.panel14.Location = new System.Drawing.Point(990, 0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(36, 902);
+            this.panel14.Size = new System.Drawing.Size(36, 1198);
             this.panel14.TabIndex = 0;
             // 
             // buttonLeft12
@@ -2402,7 +2800,7 @@ namespace zCharts
             this.tabControlDowWeekly.Location = new System.Drawing.Point(0, 0);
             this.tabControlDowWeekly.Name = "tabControlDowWeekly";
             this.tabControlDowWeekly.SelectedIndex = 0;
-            this.tabControlDowWeekly.Size = new System.Drawing.Size(1023, 133);
+            this.tabControlDowWeekly.Size = new System.Drawing.Size(1043, 115);
             this.tabControlDowWeekly.TabIndex = 0;
             // 
             // tabPage13
@@ -2410,7 +2808,7 @@ namespace zCharts
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(1015, 107);
+            this.tabPage13.Size = new System.Drawing.Size(1035, 89);
             this.tabPage13.TabIndex = 0;
             this.tabPage13.Text = "tabPage13";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -2420,7 +2818,7 @@ namespace zCharts
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage14.Size = new System.Drawing.Size(1015, 107);
+            this.tabPage14.Size = new System.Drawing.Size(1035, 89);
             this.tabPage14.TabIndex = 1;
             this.tabPage14.Text = "tabPage14";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -2430,7 +2828,7 @@ namespace zCharts
             this.tabPageDowMonthly.Controls.Add(this.splitContainerDowMonthly);
             this.tabPageDowMonthly.Location = new System.Drawing.Point(4, 22);
             this.tabPageDowMonthly.Name = "tabPageDowMonthly";
-            this.tabPageDowMonthly.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageDowMonthly.Size = new System.Drawing.Size(1043, 506);
             this.tabPageDowMonthly.TabIndex = 12;
             this.tabPageDowMonthly.Text = "Dow Jones - Monthly";
             this.tabPageDowMonthly.UseVisualStyleBackColor = true;
@@ -2451,8 +2849,8 @@ namespace zCharts
             // splitContainerDowMonthly.Panel2
             // 
             this.splitContainerDowMonthly.Panel2.Controls.Add(this.tabControlDowMonthly);
-            this.splitContainerDowMonthly.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerDowMonthly.SplitterDistance = 438;
+            this.splitContainerDowMonthly.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerDowMonthly.SplitterDistance = 375;
             this.splitContainerDowMonthly.TabIndex = 0;
             // 
             // tableLayoutPanelDowMonthlyMain
@@ -2463,15 +2861,13 @@ namespace zCharts
             this.tableLayoutPanelDowMonthlyMain.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanelDowMonthlyMain.ColumnCount = 1;
             this.tableLayoutPanelDowMonthlyMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelDowMonthlyMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelDowMonthlyMain.Controls.Add(this.zedGraphControlDowMonthlyTop, 0, 0);
             this.tableLayoutPanelDowMonthlyMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelDowMonthlyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelDowMonthlyMain.Name = "tableLayoutPanelDowMonthlyMain";
             this.tableLayoutPanelDowMonthlyMain.RowCount = 1;
-            this.tableLayoutPanelDowMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelDowMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 898F));
-            this.tableLayoutPanelDowMonthlyMain.Size = new System.Drawing.Size(803, 902);
+            this.tableLayoutPanelDowMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1194F));
+            this.tableLayoutPanelDowMonthlyMain.Size = new System.Drawing.Size(823, 1198);
             this.tableLayoutPanelDowMonthlyMain.TabIndex = 3;
             // 
             // zedGraphControlDowMonthlyTop
@@ -2486,7 +2882,7 @@ namespace zCharts
             this.zedGraphControlDowMonthlyTop.ScrollMinX = 0D;
             this.zedGraphControlDowMonthlyTop.ScrollMinY = 0D;
             this.zedGraphControlDowMonthlyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlDowMonthlyTop.Size = new System.Drawing.Size(793, 892);
+            this.zedGraphControlDowMonthlyTop.Size = new System.Drawing.Size(813, 1188);
             this.zedGraphControlDowMonthlyTop.TabIndex = 0;
             // 
             // SPanel13
@@ -2495,9 +2891,9 @@ namespace zCharts
             this.SPanel13.Controls.Add(this.tableLayoutPanelDowMonthlyRight);
             this.SPanel13.Controls.Add(this.panel17);
             this.SPanel13.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel13.Location = new System.Drawing.Point(803, 0);
+            this.SPanel13.Location = new System.Drawing.Point(823, 0);
             this.SPanel13.Name = "SPanel13";
-            this.SPanel13.Size = new System.Drawing.Size(185, 438);
+            this.SPanel13.Size = new System.Drawing.Size(185, 375);
             this.SPanel13.TabIndex = 1;
             // 
             // tableLayoutPanelDowMonthlyRight
@@ -2518,7 +2914,7 @@ namespace zCharts
             this.tableLayoutPanelDowMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelDowMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanelDowMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanelDowMonthlyRight.Size = new System.Drawing.Size(185, 411);
+            this.tableLayoutPanelDowMonthlyRight.Size = new System.Drawing.Size(185, 348);
             this.tableLayoutPanelDowMonthlyRight.TabIndex = 2;
             // 
             // comboBoxDowMonthlyChart
@@ -2541,9 +2937,9 @@ namespace zCharts
             this.groupBox17.Controls.Add(this.tableLayoutPanelDowMonthlyPrice);
             this.groupBox17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox17.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox17.Location = new System.Drawing.Point(5, 47);
+            this.groupBox17.Location = new System.Drawing.Point(5, 41);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(175, 175);
+            this.groupBox17.Size = new System.Drawing.Size(175, 147);
             this.groupBox17.TabIndex = 1;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "OverLay Onto Price";
@@ -2566,6 +2962,17 @@ namespace zCharts
             this.tableLayoutPanelDowMonthlyPrice.Size = new System.Drawing.Size(169, 31);
             this.tableLayoutPanelDowMonthlyPrice.TabIndex = 0;
             // 
+            // priceComboBoxDowMonthlyPrice
+            // 
+            this.priceComboBoxDowMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxDowMonthlyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxDowMonthlyPrice.FormattingEnabled = true;
+            this.priceComboBoxDowMonthlyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxDowMonthlyPrice.Name = "priceComboBoxDowMonthlyPrice";
+            this.priceComboBoxDowMonthlyPrice.Size = new System.Drawing.Size(108, 21);
+            this.priceComboBoxDowMonthlyPrice.TabIndex = 0;
+            this.priceComboBoxDowMonthlyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDowMonthlyPrice_SelectedIndexChanged);
+            // 
             // textBoxDowMonthlyPrice
             // 
             this.textBoxDowMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2579,9 +2986,9 @@ namespace zCharts
             this.groupBox18.Controls.Add(this.tableLayoutPanelDowMonthlyIndicator);
             this.groupBox18.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox18.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox18.Location = new System.Drawing.Point(5, 230);
+            this.groupBox18.Location = new System.Drawing.Point(5, 196);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(175, 176);
+            this.groupBox18.Size = new System.Drawing.Size(175, 147);
             this.groupBox18.TabIndex = 2;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Indicators";
@@ -2604,6 +3011,17 @@ namespace zCharts
             this.tableLayoutPanelDowMonthlyIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanelDowMonthlyIndicator.Size = new System.Drawing.Size(169, 31);
             this.tableLayoutPanelDowMonthlyIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxDowMonthlyIndicator
+            // 
+            this.indicatorComboBoxDowMonthlyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxDowMonthlyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.indicatorComboBoxDowMonthlyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxDowMonthlyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxDowMonthlyIndicator.Name = "indicatorComboBoxDowMonthlyIndicator";
+            this.indicatorComboBoxDowMonthlyIndicator.Size = new System.Drawing.Size(108, 21);
+            this.indicatorComboBoxDowMonthlyIndicator.TabIndex = 0;
+            this.indicatorComboBoxDowMonthlyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDowMonthlyIndicator_SelectedIndexChanged);
             // 
             // textBoxDowMonthlyIndicator
             // 
@@ -2638,9 +3056,9 @@ namespace zCharts
             this.panel16.BackColor = System.Drawing.Color.Silver;
             this.panel16.Controls.Add(this.buttonLeft13);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel16.Location = new System.Drawing.Point(988, 0);
+            this.panel16.Location = new System.Drawing.Point(1008, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(35, 438);
+            this.panel16.Size = new System.Drawing.Size(35, 375);
             this.panel16.TabIndex = 0;
             // 
             // buttonLeft13
@@ -2662,7 +3080,7 @@ namespace zCharts
             this.tabControlDowMonthly.Location = new System.Drawing.Point(0, 0);
             this.tabControlDowMonthly.Name = "tabControlDowMonthly";
             this.tabControlDowMonthly.SelectedIndex = 0;
-            this.tabControlDowMonthly.Size = new System.Drawing.Size(1023, 148);
+            this.tabControlDowMonthly.Size = new System.Drawing.Size(1043, 127);
             this.tabControlDowMonthly.TabIndex = 0;
             // 
             // tabPage15
@@ -2670,7 +3088,7 @@ namespace zCharts
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage15.Size = new System.Drawing.Size(1015, 122);
+            this.tabPage15.Size = new System.Drawing.Size(1035, 101);
             this.tabPage15.TabIndex = 0;
             this.tabPage15.Text = "tabPage15";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -2680,7 +3098,7 @@ namespace zCharts
             this.tabPage16.Location = new System.Drawing.Point(4, 22);
             this.tabPage16.Name = "tabPage16";
             this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage16.Size = new System.Drawing.Size(1015, 122);
+            this.tabPage16.Size = new System.Drawing.Size(1035, 101);
             this.tabPage16.TabIndex = 1;
             this.tabPage16.Text = "tabPage16";
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -2693,7 +3111,7 @@ namespace zCharts
             this.tabPageNasdaqDaily.Location = new System.Drawing.Point(4, 22);
             this.tabPageNasdaqDaily.Name = "tabPageNasdaqDaily";
             this.tabPageNasdaqDaily.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNasdaqDaily.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageNasdaqDaily.Size = new System.Drawing.Size(1043, 506);
             this.tabPageNasdaqDaily.TabIndex = 9;
             this.tabPageNasdaqDaily.Text = "Nasdaq -Daily";
             this.tabPageNasdaqDaily.UseVisualStyleBackColor = true;
@@ -2716,8 +3134,8 @@ namespace zCharts
             // 
             this.splitContainerNasdaq.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainerNasdaq.Panel2.Controls.Add(this.tabControlNasdaqDaily);
-            this.splitContainerNasdaq.Size = new System.Drawing.Size(787, 584);
-            this.splitContainerNasdaq.SplitterDistance = 448;
+            this.splitContainerNasdaq.Size = new System.Drawing.Size(807, 500);
+            this.splitContainerNasdaq.SplitterDistance = 382;
             this.splitContainerNasdaq.TabIndex = 2;
             // 
             // tableLayoutPanelNasdaqDailyMain
@@ -2734,9 +3152,9 @@ namespace zCharts
             this.tableLayoutPanelNasdaqDailyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelNasdaqDailyMain.Name = "tableLayoutPanelNasdaqDailyMain";
             this.tableLayoutPanelNasdaqDailyMain.RowCount = 1;
-            this.tableLayoutPanelNasdaqDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 756F));
-            this.tableLayoutPanelNasdaqDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 756F));
-            this.tableLayoutPanelNasdaqDailyMain.Size = new System.Drawing.Size(770, 760);
+            this.tableLayoutPanelNasdaqDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1052F));
+            this.tableLayoutPanelNasdaqDailyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1052F));
+            this.tableLayoutPanelNasdaqDailyMain.Size = new System.Drawing.Size(790, 1056);
             this.tableLayoutPanelNasdaqDailyMain.TabIndex = 0;
             // 
             // zedGraphControlNasdaqDailyTop
@@ -2751,7 +3169,7 @@ namespace zCharts
             this.zedGraphControlNasdaqDailyTop.ScrollMinX = 0D;
             this.zedGraphControlNasdaqDailyTop.ScrollMinY = 0D;
             this.zedGraphControlNasdaqDailyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlNasdaqDailyTop.Size = new System.Drawing.Size(760, 750);
+            this.zedGraphControlNasdaqDailyTop.Size = new System.Drawing.Size(780, 1046);
             this.zedGraphControlNasdaqDailyTop.TabIndex = 0;
             // 
             // tabControlNasdaqDaily
@@ -2762,7 +3180,7 @@ namespace zCharts
             this.tabControlNasdaqDaily.Location = new System.Drawing.Point(0, 0);
             this.tabControlNasdaqDaily.Name = "tabControlNasdaqDaily";
             this.tabControlNasdaqDaily.SelectedIndex = 0;
-            this.tabControlNasdaqDaily.Size = new System.Drawing.Size(787, 132);
+            this.tabControlNasdaqDaily.Size = new System.Drawing.Size(807, 114);
             this.tabControlNasdaqDaily.TabIndex = 0;
             // 
             // tabPage17
@@ -2770,7 +3188,7 @@ namespace zCharts
             this.tabPage17.Location = new System.Drawing.Point(4, 22);
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage17.Size = new System.Drawing.Size(779, 106);
+            this.tabPage17.Size = new System.Drawing.Size(799, 88);
             this.tabPage17.TabIndex = 0;
             this.tabPage17.Text = "tabPage17";
             this.tabPage17.UseVisualStyleBackColor = true;
@@ -2780,7 +3198,7 @@ namespace zCharts
             this.tabPage18.Location = new System.Drawing.Point(4, 22);
             this.tabPage18.Name = "tabPage18";
             this.tabPage18.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage18.Size = new System.Drawing.Size(779, 106);
+            this.tabPage18.Size = new System.Drawing.Size(799, 88);
             this.tabPage18.TabIndex = 1;
             this.tabPage18.Text = "tabPage18";
             this.tabPage18.UseVisualStyleBackColor = true;
@@ -2791,9 +3209,9 @@ namespace zCharts
             this.SPanel6.Controls.Add(this.tableLayoutPanelNasdaqDailyRight);
             this.SPanel6.Controls.Add(this.buttonTop6);
             this.SPanel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel6.Location = new System.Drawing.Point(790, 3);
+            this.SPanel6.Location = new System.Drawing.Point(810, 3);
             this.SPanel6.Name = "SPanel6";
-            this.SPanel6.Size = new System.Drawing.Size(200, 584);
+            this.SPanel6.Size = new System.Drawing.Size(200, 500);
             this.SPanel6.TabIndex = 1;
             // 
             // tableLayoutPanelNasdaqDailyRight
@@ -2814,7 +3232,7 @@ namespace zCharts
             this.tableLayoutPanelNasdaqDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelNasdaqDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanelNasdaqDailyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanelNasdaqDailyRight.Size = new System.Drawing.Size(200, 554);
+            this.tableLayoutPanelNasdaqDailyRight.Size = new System.Drawing.Size(200, 470);
             this.tableLayoutPanelNasdaqDailyRight.TabIndex = 1;
             // 
             // comboBoxNasdaqDailyChart
@@ -2837,9 +3255,9 @@ namespace zCharts
             this.groupBox19.Controls.Add(this.tableLayoutPanelNasdaqDailyPrice);
             this.groupBox19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox19.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox19.Location = new System.Drawing.Point(5, 61);
+            this.groupBox19.Location = new System.Drawing.Point(5, 53);
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(190, 239);
+            this.groupBox19.Size = new System.Drawing.Size(190, 201);
             this.groupBox19.TabIndex = 1;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "OverLay Onto Price";
@@ -2862,6 +3280,18 @@ namespace zCharts
             this.tableLayoutPanelNasdaqDailyPrice.Size = new System.Drawing.Size(184, 31);
             this.tableLayoutPanelNasdaqDailyPrice.TabIndex = 0;
             // 
+            // priceComboBoxNasdaqDailyPrice
+            // 
+            this.priceComboBoxNasdaqDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxNasdaqDailyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxNasdaqDailyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.priceComboBoxNasdaqDailyPrice.FormattingEnabled = true;
+            this.priceComboBoxNasdaqDailyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxNasdaqDailyPrice.Name = "priceComboBoxNasdaqDailyPrice";
+            this.priceComboBoxNasdaqDailyPrice.Size = new System.Drawing.Size(118, 21);
+            this.priceComboBoxNasdaqDailyPrice.TabIndex = 0;
+            this.priceComboBoxNasdaqDailyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxNasdaqDailyPrice_SelectedIndexChanged);
+            // 
             // textBoxNasdaqDailyPrice
             // 
             this.textBoxNasdaqDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2875,9 +3305,9 @@ namespace zCharts
             this.groupBox20.Controls.Add(this.tableLayoutPanelNasdaqDailyIndicator);
             this.groupBox20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox20.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox20.Location = new System.Drawing.Point(5, 308);
+            this.groupBox20.Location = new System.Drawing.Point(5, 262);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(190, 241);
+            this.groupBox20.Size = new System.Drawing.Size(190, 203);
             this.groupBox20.TabIndex = 2;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "Indicators";
@@ -2908,6 +3338,18 @@ namespace zCharts
             this.textBoxNasdaqDailyIndicator.Size = new System.Drawing.Size(48, 20);
             this.textBoxNasdaqDailyIndicator.TabIndex = 0;
             // 
+            // indicatorComboBoxNasdaqDailyIndicator
+            // 
+            this.indicatorComboBoxNasdaqDailyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxNasdaqDailyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxNasdaqDailyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.indicatorComboBoxNasdaqDailyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxNasdaqDailyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxNasdaqDailyIndicator.Name = "indicatorComboBoxNasdaqDailyIndicator";
+            this.indicatorComboBoxNasdaqDailyIndicator.Size = new System.Drawing.Size(118, 21);
+            this.indicatorComboBoxNasdaqDailyIndicator.TabIndex = 1;
+            this.indicatorComboBoxNasdaqDailyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxNasdaqDailyIndicator_SelectedIndexChanged);
+            // 
             // buttonTop6
             // 
             this.buttonTop6.Dock = System.Windows.Forms.DockStyle.Top;
@@ -2924,9 +3366,9 @@ namespace zCharts
             this.panel8.BackColor = System.Drawing.Color.Silver;
             this.panel8.Controls.Add(this.buttonLeft6);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(990, 3);
+            this.panel8.Location = new System.Drawing.Point(1010, 3);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(30, 584);
+            this.panel8.Size = new System.Drawing.Size(30, 500);
             this.panel8.TabIndex = 0;
             // 
             // buttonLeft6
@@ -2945,7 +3387,7 @@ namespace zCharts
             this.tabPageNasdaqWeekly.Controls.Add(this.splitContainerNasdaqWeekly);
             this.tabPageNasdaqWeekly.Location = new System.Drawing.Point(4, 22);
             this.tabPageNasdaqWeekly.Name = "tabPageNasdaqWeekly";
-            this.tabPageNasdaqWeekly.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageNasdaqWeekly.Size = new System.Drawing.Size(1043, 506);
             this.tabPageNasdaqWeekly.TabIndex = 13;
             this.tabPageNasdaqWeekly.Text = "Nasdq - Weekly";
             this.tabPageNasdaqWeekly.UseVisualStyleBackColor = true;
@@ -2967,8 +3409,8 @@ namespace zCharts
             // splitContainerNasdaqWeekly.Panel2
             // 
             this.splitContainerNasdaqWeekly.Panel2.Controls.Add(this.tabControlNasdaqWeekly);
-            this.splitContainerNasdaqWeekly.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerNasdaqWeekly.SplitterDistance = 478;
+            this.splitContainerNasdaqWeekly.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerNasdaqWeekly.SplitterDistance = 409;
             this.splitContainerNasdaqWeekly.TabIndex = 0;
             // 
             // tableLayoutPanelNasdaqWeeklyMain
@@ -2985,9 +3427,9 @@ namespace zCharts
             this.tableLayoutPanelNasdaqWeeklyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelNasdaqWeeklyMain.Name = "tableLayoutPanelNasdaqWeeklyMain";
             this.tableLayoutPanelNasdaqWeeklyMain.RowCount = 1;
-            this.tableLayoutPanelNasdaqWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 754F));
-            this.tableLayoutPanelNasdaqWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 754F));
-            this.tableLayoutPanelNasdaqWeeklyMain.Size = new System.Drawing.Size(784, 758);
+            this.tableLayoutPanelNasdaqWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1050F));
+            this.tableLayoutPanelNasdaqWeeklyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1050F));
+            this.tableLayoutPanelNasdaqWeeklyMain.Size = new System.Drawing.Size(804, 1054);
             this.tableLayoutPanelNasdaqWeeklyMain.TabIndex = 2;
             // 
             // zedGraphControlNasdaqWeeklyTop
@@ -3002,7 +3444,7 @@ namespace zCharts
             this.zedGraphControlNasdaqWeeklyTop.ScrollMinX = 0D;
             this.zedGraphControlNasdaqWeeklyTop.ScrollMinY = 0D;
             this.zedGraphControlNasdaqWeeklyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlNasdaqWeeklyTop.Size = new System.Drawing.Size(774, 748);
+            this.zedGraphControlNasdaqWeeklyTop.Size = new System.Drawing.Size(794, 1044);
             this.zedGraphControlNasdaqWeeklyTop.TabIndex = 0;
             // 
             // SPanel14
@@ -3011,9 +3453,9 @@ namespace zCharts
             this.SPanel14.Controls.Add(this.tableLayoutPanelNasdaqWeeklyRight);
             this.SPanel14.Controls.Add(this.panel19);
             this.SPanel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel14.Location = new System.Drawing.Point(784, 0);
+            this.SPanel14.Location = new System.Drawing.Point(804, 0);
             this.SPanel14.Name = "SPanel14";
-            this.SPanel14.Size = new System.Drawing.Size(188, 758);
+            this.SPanel14.Size = new System.Drawing.Size(188, 1054);
             this.SPanel14.TabIndex = 1;
             // 
             // tableLayoutPanelNasdaqWeeklyRight
@@ -3034,7 +3476,7 @@ namespace zCharts
             this.tableLayoutPanelNasdaqWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelNasdaqWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanelNasdaqWeeklyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanelNasdaqWeeklyRight.Size = new System.Drawing.Size(188, 730);
+            this.tableLayoutPanelNasdaqWeeklyRight.Size = new System.Drawing.Size(188, 1026);
             this.tableLayoutPanelNasdaqWeeklyRight.TabIndex = 1;
             // 
             // comboBoxNasdaqWeeklyChart
@@ -3057,9 +3499,9 @@ namespace zCharts
             this.groupBox21.Controls.Add(this.tableLayoutPanelNasdaqWeeklyPrice);
             this.groupBox21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox21.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox21.Location = new System.Drawing.Point(5, 79);
+            this.groupBox21.Location = new System.Drawing.Point(5, 108);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(178, 318);
+            this.groupBox21.Size = new System.Drawing.Size(178, 452);
             this.groupBox21.TabIndex = 1;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "OverLay Onto Price";
@@ -3090,14 +3532,26 @@ namespace zCharts
             this.textBoxNasdaqWeeklyPrice.Size = new System.Drawing.Size(44, 20);
             this.textBoxNasdaqWeeklyPrice.TabIndex = 1;
             // 
+            // priceComboBoxNasdaqWeeklyPrice
+            // 
+            this.priceComboBoxNasdaqWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxNasdaqWeeklyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxNasdaqWeeklyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.priceComboBoxNasdaqWeeklyPrice.FormattingEnabled = true;
+            this.priceComboBoxNasdaqWeeklyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxNasdaqWeeklyPrice.Name = "priceComboBoxNasdaqWeeklyPrice";
+            this.priceComboBoxNasdaqWeeklyPrice.Size = new System.Drawing.Size(110, 21);
+            this.priceComboBoxNasdaqWeeklyPrice.TabIndex = 2;
+            this.priceComboBoxNasdaqWeeklyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxNasdaqWeeklyPrice_SelectedIndexChanged);
+            // 
             // groupBox22
             // 
             this.groupBox22.Controls.Add(this.tableLayoutPanelNasdaqWeeklyIndicator);
             this.groupBox22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox22.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox22.Location = new System.Drawing.Point(5, 405);
+            this.groupBox22.Location = new System.Drawing.Point(5, 568);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(178, 320);
+            this.groupBox22.Size = new System.Drawing.Size(178, 453);
             this.groupBox22.TabIndex = 2;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Indicators";
@@ -3119,6 +3573,18 @@ namespace zCharts
             this.tableLayoutPanelNasdaqWeeklyIndicator.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanelNasdaqWeeklyIndicator.Size = new System.Drawing.Size(172, 31);
             this.tableLayoutPanelNasdaqWeeklyIndicator.TabIndex = 0;
+            // 
+            // indicatorComboBoxNasdaqWeeklyIndicator
+            // 
+            this.indicatorComboBoxNasdaqWeeklyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxNasdaqWeeklyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxNasdaqWeeklyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.indicatorComboBoxNasdaqWeeklyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxNasdaqWeeklyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxNasdaqWeeklyIndicator.Name = "indicatorComboBoxNasdaqWeeklyIndicator";
+            this.indicatorComboBoxNasdaqWeeklyIndicator.Size = new System.Drawing.Size(110, 21);
+            this.indicatorComboBoxNasdaqWeeklyIndicator.TabIndex = 0;
+            this.indicatorComboBoxNasdaqWeeklyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxNasdaqWeeklyIndicator_SelectedIndexChanged);
             // 
             // textBoxNasdaqWeeklyIndicator
             // 
@@ -3153,9 +3619,9 @@ namespace zCharts
             this.panel18.BackColor = System.Drawing.Color.Silver;
             this.panel18.Controls.Add(this.buttonLeft14);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel18.Location = new System.Drawing.Point(972, 0);
+            this.panel18.Location = new System.Drawing.Point(992, 0);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(34, 758);
+            this.panel18.Size = new System.Drawing.Size(34, 1054);
             this.panel18.TabIndex = 0;
             // 
             // buttonLeft14
@@ -3177,7 +3643,7 @@ namespace zCharts
             this.tabControlNasdaqWeekly.Location = new System.Drawing.Point(0, 0);
             this.tabControlNasdaqWeekly.Name = "tabControlNasdaqWeekly";
             this.tabControlNasdaqWeekly.SelectedIndex = 0;
-            this.tabControlNasdaqWeekly.Size = new System.Drawing.Size(1023, 108);
+            this.tabControlNasdaqWeekly.Size = new System.Drawing.Size(1043, 93);
             this.tabControlNasdaqWeekly.TabIndex = 0;
             // 
             // tabPage19
@@ -3185,7 +3651,7 @@ namespace zCharts
             this.tabPage19.Location = new System.Drawing.Point(4, 22);
             this.tabPage19.Name = "tabPage19";
             this.tabPage19.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage19.Size = new System.Drawing.Size(1015, 82);
+            this.tabPage19.Size = new System.Drawing.Size(1035, 67);
             this.tabPage19.TabIndex = 0;
             this.tabPage19.Text = "tabPage19";
             this.tabPage19.UseVisualStyleBackColor = true;
@@ -3195,7 +3661,7 @@ namespace zCharts
             this.tabPage20.Location = new System.Drawing.Point(4, 22);
             this.tabPage20.Name = "tabPage20";
             this.tabPage20.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage20.Size = new System.Drawing.Size(1015, 82);
+            this.tabPage20.Size = new System.Drawing.Size(1035, 67);
             this.tabPage20.TabIndex = 1;
             this.tabPage20.Text = "tabPage20";
             this.tabPage20.UseVisualStyleBackColor = true;
@@ -3205,7 +3671,7 @@ namespace zCharts
             this.tabPageNasdaqMonthly.Controls.Add(this.splitContainerNasdaqMonthly);
             this.tabPageNasdaqMonthly.Location = new System.Drawing.Point(4, 22);
             this.tabPageNasdaqMonthly.Name = "tabPageNasdaqMonthly";
-            this.tabPageNasdaqMonthly.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageNasdaqMonthly.Size = new System.Drawing.Size(1043, 506);
             this.tabPageNasdaqMonthly.TabIndex = 14;
             this.tabPageNasdaqMonthly.Text = "Nasdaq - Monthly";
             this.tabPageNasdaqMonthly.UseVisualStyleBackColor = true;
@@ -3227,8 +3693,8 @@ namespace zCharts
             // splitContainerNasdaqMonthly.Panel2
             // 
             this.splitContainerNasdaqMonthly.Panel2.Controls.Add(this.tabControlNasdaqMonthly);
-            this.splitContainerNasdaqMonthly.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerNasdaqMonthly.SplitterDistance = 496;
+            this.splitContainerNasdaqMonthly.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerNasdaqMonthly.SplitterDistance = 425;
             this.splitContainerNasdaqMonthly.TabIndex = 0;
             // 
             // tableLayoutPanelNasdaqMonthlyMain
@@ -3244,9 +3710,9 @@ namespace zCharts
             this.tableLayoutPanelNasdaqMonthlyMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelNasdaqMonthlyMain.Name = "tableLayoutPanelNasdaqMonthlyMain";
             this.tableLayoutPanelNasdaqMonthlyMain.RowCount = 1;
-            this.tableLayoutPanelNasdaqMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 754F));
-            this.tableLayoutPanelNasdaqMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 754F));
-            this.tableLayoutPanelNasdaqMonthlyMain.Size = new System.Drawing.Size(788, 758);
+            this.tableLayoutPanelNasdaqMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1050F));
+            this.tableLayoutPanelNasdaqMonthlyMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1050F));
+            this.tableLayoutPanelNasdaqMonthlyMain.Size = new System.Drawing.Size(808, 1054);
             this.tableLayoutPanelNasdaqMonthlyMain.TabIndex = 2;
             // 
             // zedGraphControlNasdaqMonthlyTop
@@ -3261,7 +3727,7 @@ namespace zCharts
             this.zedGraphControlNasdaqMonthlyTop.ScrollMinX = 0D;
             this.zedGraphControlNasdaqMonthlyTop.ScrollMinY = 0D;
             this.zedGraphControlNasdaqMonthlyTop.ScrollMinY2 = 0D;
-            this.zedGraphControlNasdaqMonthlyTop.Size = new System.Drawing.Size(778, 748);
+            this.zedGraphControlNasdaqMonthlyTop.Size = new System.Drawing.Size(798, 1044);
             this.zedGraphControlNasdaqMonthlyTop.TabIndex = 0;
             // 
             // SPanel15
@@ -3270,9 +3736,9 @@ namespace zCharts
             this.SPanel15.Controls.Add(this.tableLayoutPanelNasdaqMonthlyRight);
             this.SPanel15.Controls.Add(this.panel21);
             this.SPanel15.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel15.Location = new System.Drawing.Point(788, 0);
+            this.SPanel15.Location = new System.Drawing.Point(808, 0);
             this.SPanel15.Name = "SPanel15";
-            this.SPanel15.Size = new System.Drawing.Size(186, 758);
+            this.SPanel15.Size = new System.Drawing.Size(186, 1054);
             this.SPanel15.TabIndex = 1;
             // 
             // tableLayoutPanelNasdaqMonthlyRight
@@ -3293,7 +3759,7 @@ namespace zCharts
             this.tableLayoutPanelNasdaqMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanelNasdaqMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanelNasdaqMonthlyRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanelNasdaqMonthlyRight.Size = new System.Drawing.Size(186, 728);
+            this.tableLayoutPanelNasdaqMonthlyRight.Size = new System.Drawing.Size(186, 1024);
             this.tableLayoutPanelNasdaqMonthlyRight.TabIndex = 1;
             // 
             // comboBoxNasdaqMonthlyChart
@@ -3316,9 +3782,9 @@ namespace zCharts
             this.groupBox23.Controls.Add(this.tableLayoutPanelNasdaqMonthlyPrice);
             this.groupBox23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox23.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox23.Location = new System.Drawing.Point(5, 79);
+            this.groupBox23.Location = new System.Drawing.Point(5, 108);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(176, 318);
+            this.groupBox23.Size = new System.Drawing.Size(176, 451);
             this.groupBox23.TabIndex = 1;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "OverLay Onto Price";
@@ -3341,6 +3807,18 @@ namespace zCharts
             this.tableLayoutPanelNasdaqMonthlyPrice.Size = new System.Drawing.Size(170, 31);
             this.tableLayoutPanelNasdaqMonthlyPrice.TabIndex = 0;
             // 
+            // priceComboBoxNasdaqMonthlyPrice
+            // 
+            this.priceComboBoxNasdaqMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priceComboBoxNasdaqMonthlyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.priceComboBoxNasdaqMonthlyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.priceComboBoxNasdaqMonthlyPrice.FormattingEnabled = true;
+            this.priceComboBoxNasdaqMonthlyPrice.Location = new System.Drawing.Point(5, 5);
+            this.priceComboBoxNasdaqMonthlyPrice.Name = "priceComboBoxNasdaqMonthlyPrice";
+            this.priceComboBoxNasdaqMonthlyPrice.Size = new System.Drawing.Size(108, 21);
+            this.priceComboBoxNasdaqMonthlyPrice.TabIndex = 0;
+            this.priceComboBoxNasdaqMonthlyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxNasdaqMonthlyPrice_SelectedIndexChanged);
+            // 
             // textBoxNasdaqMonthlyPrice
             // 
             this.textBoxNasdaqMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -3354,9 +3832,9 @@ namespace zCharts
             this.groupBox24.Controls.Add(this.tableLayoutPanelNasdaqMonthlyIndicator);
             this.groupBox24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox24.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox24.Location = new System.Drawing.Point(5, 405);
+            this.groupBox24.Location = new System.Drawing.Point(5, 567);
             this.groupBox24.Name = "groupBox24";
-            this.groupBox24.Size = new System.Drawing.Size(176, 318);
+            this.groupBox24.Size = new System.Drawing.Size(176, 452);
             this.groupBox24.TabIndex = 2;
             this.groupBox24.TabStop = false;
             this.groupBox24.Text = "Indicators";
@@ -3387,6 +3865,18 @@ namespace zCharts
             this.textBoxNasdaqMonthlyIndicator.Size = new System.Drawing.Size(44, 20);
             this.textBoxNasdaqMonthlyIndicator.TabIndex = 0;
             // 
+            // indicatorComboBoxNasdaqMonthlyIndicator
+            // 
+            this.indicatorComboBoxNasdaqMonthlyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorComboBoxNasdaqMonthlyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.indicatorComboBoxNasdaqMonthlyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.indicatorComboBoxNasdaqMonthlyIndicator.FormattingEnabled = true;
+            this.indicatorComboBoxNasdaqMonthlyIndicator.Location = new System.Drawing.Point(5, 5);
+            this.indicatorComboBoxNasdaqMonthlyIndicator.Name = "indicatorComboBoxNasdaqMonthlyIndicator";
+            this.indicatorComboBoxNasdaqMonthlyIndicator.Size = new System.Drawing.Size(108, 21);
+            this.indicatorComboBoxNasdaqMonthlyIndicator.TabIndex = 1;
+            this.indicatorComboBoxNasdaqMonthlyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxNasdaqMonthlyIndicator_SelectedIndexChanged);
+            // 
             // panel21
             // 
             this.panel21.Controls.Add(this.buttonTop15);
@@ -3412,9 +3902,9 @@ namespace zCharts
             this.panel20.BackColor = System.Drawing.Color.Silver;
             this.panel20.Controls.Add(this.buttonLeft15);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel20.Location = new System.Drawing.Point(974, 0);
+            this.panel20.Location = new System.Drawing.Point(994, 0);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(32, 758);
+            this.panel20.Size = new System.Drawing.Size(32, 1054);
             this.panel20.TabIndex = 0;
             // 
             // buttonLeft15
@@ -3436,7 +3926,7 @@ namespace zCharts
             this.tabControlNasdaqMonthly.Location = new System.Drawing.Point(0, 0);
             this.tabControlNasdaqMonthly.Name = "tabControlNasdaqMonthly";
             this.tabControlNasdaqMonthly.SelectedIndex = 0;
-            this.tabControlNasdaqMonthly.Size = new System.Drawing.Size(1023, 90);
+            this.tabControlNasdaqMonthly.Size = new System.Drawing.Size(1043, 77);
             this.tabControlNasdaqMonthly.TabIndex = 0;
             // 
             // tabPage21
@@ -3444,7 +3934,7 @@ namespace zCharts
             this.tabPage21.Location = new System.Drawing.Point(4, 22);
             this.tabPage21.Name = "tabPage21";
             this.tabPage21.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage21.Size = new System.Drawing.Size(1015, 64);
+            this.tabPage21.Size = new System.Drawing.Size(1035, 51);
             this.tabPage21.TabIndex = 0;
             this.tabPage21.Text = "tabPage21";
             this.tabPage21.UseVisualStyleBackColor = true;
@@ -3454,7 +3944,7 @@ namespace zCharts
             this.tabPage22.Location = new System.Drawing.Point(4, 22);
             this.tabPage22.Name = "tabPage22";
             this.tabPage22.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage22.Size = new System.Drawing.Size(1015, 64);
+            this.tabPage22.Size = new System.Drawing.Size(1035, 51);
             this.tabPage22.TabIndex = 1;
             this.tabPage22.Text = "tabPage22";
             this.tabPage22.UseVisualStyleBackColor = true;
@@ -3465,7 +3955,7 @@ namespace zCharts
             this.tabPageRSI.Location = new System.Drawing.Point(4, 22);
             this.tabPageRSI.Name = "tabPageRSI";
             this.tabPageRSI.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageRSI.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageRSI.Size = new System.Drawing.Size(1043, 506);
             this.tabPageRSI.TabIndex = 3;
             this.tabPageRSI.Text = "RSI Scann";
             this.tabPageRSI.UseVisualStyleBackColor = true;
@@ -3480,22 +3970,229 @@ namespace zCharts
             // splitContainerRSI.Panel1
             // 
             this.splitContainerRSI.Panel1.AutoScroll = true;
-            this.splitContainerRSI.Panel1.BackColor = System.Drawing.Color.LightCoral;
+            this.splitContainerRSI.Panel1.BackColor = System.Drawing.Color.Silver;
+            this.splitContainerRSI.Panel1.Controls.Add(this.tableLayoutPanelRSI);
             this.splitContainerRSI.Panel1.Controls.Add(this.SPanel7);
             this.splitContainerRSI.Panel1.Controls.Add(this.panel9);
-            this.splitContainerRSI.Size = new System.Drawing.Size(1017, 584);
-            this.splitContainerRSI.SplitterDistance = 492;
+            // 
+            // splitContainerRSI.Panel2
+            // 
+            this.splitContainerRSI.Panel2.Controls.Add(this.tabControlRSIScan);
+            this.splitContainerRSI.Size = new System.Drawing.Size(1037, 500);
+            this.splitContainerRSI.SplitterDistance = 421;
             this.splitContainerRSI.TabIndex = 0;
+            // 
+            // tableLayoutPanelRSI
+            // 
+            this.tableLayoutPanelRSI.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanelRSI.ColumnCount = 1;
+            this.tableLayoutPanelRSI.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelRSI.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelRSI.Controls.Add(this.groupBoxRSIDaily, 0, 0);
+            this.tableLayoutPanelRSI.Controls.Add(this.groupBoxRSIWeekly, 0, 1);
+            this.tableLayoutPanelRSI.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelRSI.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelRSI.Name = "tableLayoutPanelRSI";
+            this.tableLayoutPanelRSI.RowCount = 2;
+            this.tableLayoutPanelRSI.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelRSI.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelRSI.Size = new System.Drawing.Size(795, 421);
+            this.tableLayoutPanelRSI.TabIndex = 2;
+            // 
+            // groupBoxRSIDaily
+            // 
+            this.groupBoxRSIDaily.Controls.Add(this.dataGridViewRSIDaily);
+            this.groupBoxRSIDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxRSIDaily.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxRSIDaily.Name = "groupBoxRSIDaily";
+            this.groupBoxRSIDaily.Size = new System.Drawing.Size(789, 204);
+            this.groupBoxRSIDaily.TabIndex = 0;
+            this.groupBoxRSIDaily.TabStop = false;
+            this.groupBoxRSIDaily.Text = "RSI Scan Daily";
+            // 
+            // dataGridViewRSIDaily
+            // 
+            this.dataGridViewRSIDaily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRSIDaily.ContextMenuStrip = this.contextMenuStripRSIDaily;
+            this.dataGridViewRSIDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewRSIDaily.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewRSIDaily.Name = "dataGridViewRSIDaily";
+            this.dataGridViewRSIDaily.Size = new System.Drawing.Size(783, 185);
+            this.dataGridViewRSIDaily.TabIndex = 0;
+            // 
+            // contextMenuStripRSIDaily
+            // 
+            this.contextMenuStripRSIDaily.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToAcsvFileToolStripMenuItem,
+            this.exportToAPDFFileToolStripMenuItem});
+            this.contextMenuStripRSIDaily.Name = "contextMenuStripRSIDaily";
+            this.contextMenuStripRSIDaily.Size = new System.Drawing.Size(177, 48);
+            this.contextMenuStripRSIDaily.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripRSIDaily_Opening);
+            // 
+            // exportToAcsvFileToolStripMenuItem
+            // 
+            this.exportToAcsvFileToolStripMenuItem.Name = "exportToAcsvFileToolStripMenuItem";
+            this.exportToAcsvFileToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exportToAcsvFileToolStripMenuItem.Text = "Export to a .csv  file";
+            this.exportToAcsvFileToolStripMenuItem.Click += new System.EventHandler(this.exportToAcsvFileToolStripMenuItem_Click);
+            // 
+            // exportToAPDFFileToolStripMenuItem
+            // 
+            this.exportToAPDFFileToolStripMenuItem.Name = "exportToAPDFFileToolStripMenuItem";
+            this.exportToAPDFFileToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exportToAPDFFileToolStripMenuItem.Text = "Export to a PDF file";
+            this.exportToAPDFFileToolStripMenuItem.Click += new System.EventHandler(this.exportToAPDFFileToolStripMenuItem_Click);
+            // 
+            // groupBoxRSIWeekly
+            // 
+            this.groupBoxRSIWeekly.Controls.Add(this.dataGridViewRSIWeekly);
+            this.groupBoxRSIWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxRSIWeekly.Location = new System.Drawing.Point(3, 213);
+            this.groupBoxRSIWeekly.Name = "groupBoxRSIWeekly";
+            this.groupBoxRSIWeekly.Size = new System.Drawing.Size(789, 205);
+            this.groupBoxRSIWeekly.TabIndex = 1;
+            this.groupBoxRSIWeekly.TabStop = false;
+            this.groupBoxRSIWeekly.Text = "RSI Scan Weekly";
+            // 
+            // dataGridViewRSIWeekly
+            // 
+            this.dataGridViewRSIWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRSIWeekly.ContextMenuStrip = this.contextMenuStripRSIWeekly;
+            this.dataGridViewRSIWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewRSIWeekly.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewRSIWeekly.Name = "dataGridViewRSIWeekly";
+            this.dataGridViewRSIWeekly.Size = new System.Drawing.Size(783, 186);
+            this.dataGridViewRSIWeekly.TabIndex = 0;
+            // 
+            // contextMenuStripRSIWeekly
+            // 
+            this.contextMenuStripRSIWeekly.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToAcsvFileToolStripMenuItem1,
+            this.exportToAPDFFileToolStripMenuItem1});
+            this.contextMenuStripRSIWeekly.Name = "contextMenuStripRSIWeekly";
+            this.contextMenuStripRSIWeekly.Size = new System.Drawing.Size(175, 48);
+            this.contextMenuStripRSIWeekly.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripRSIWeekly_Opening);
+            // 
+            // exportToAcsvFileToolStripMenuItem1
+            // 
+            this.exportToAcsvFileToolStripMenuItem1.Name = "exportToAcsvFileToolStripMenuItem1";
+            this.exportToAcsvFileToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
+            this.exportToAcsvFileToolStripMenuItem1.Text = "export to a .csv file";
+            this.exportToAcsvFileToolStripMenuItem1.Click += new System.EventHandler(this.exportToAcsvFileToolStripMenuItem1_Click);
+            // 
+            // exportToAPDFFileToolStripMenuItem1
+            // 
+            this.exportToAPDFFileToolStripMenuItem1.Name = "exportToAPDFFileToolStripMenuItem1";
+            this.exportToAPDFFileToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
+            this.exportToAPDFFileToolStripMenuItem1.Text = "export to a PDF file";
+            this.exportToAPDFFileToolStripMenuItem1.Click += new System.EventHandler(this.exportToAPDFFileToolStripMenuItem1_Click);
             // 
             // SPanel7
             // 
             this.SPanel7.BackColor = System.Drawing.Color.LightGray;
+            this.SPanel7.Controls.Add(this.tableLayoutPanelRSIRight);
             this.SPanel7.Controls.Add(this.buttonTop7);
             this.SPanel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel7.Location = new System.Drawing.Point(775, 0);
+            this.SPanel7.Location = new System.Drawing.Point(795, 0);
             this.SPanel7.Name = "SPanel7";
-            this.SPanel7.Size = new System.Drawing.Size(209, 492);
+            this.SPanel7.Size = new System.Drawing.Size(209, 421);
             this.SPanel7.TabIndex = 1;
+            // 
+            // tableLayoutPanelRSIRight
+            // 
+            this.tableLayoutPanelRSIRight.ColumnCount = 1;
+            this.tableLayoutPanelRSIRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelRSIRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelRSIRight.Controls.Add(this.groupBoxRSIRightTop, 0, 0);
+            this.tableLayoutPanelRSIRight.Controls.Add(this.groupBoxRSIRightBottom, 0, 1);
+            this.tableLayoutPanelRSIRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelRSIRight.Location = new System.Drawing.Point(0, 31);
+            this.tableLayoutPanelRSIRight.Name = "tableLayoutPanelRSIRight";
+            this.tableLayoutPanelRSIRight.RowCount = 2;
+            this.tableLayoutPanelRSIRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelRSIRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelRSIRight.Size = new System.Drawing.Size(209, 390);
+            this.tableLayoutPanelRSIRight.TabIndex = 1;
+            // 
+            // groupBoxRSIRightTop
+            // 
+            this.groupBoxRSIRightTop.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBoxRSIRightTop.Controls.Add(this.labelRSIDaily);
+            this.groupBoxRSIRightTop.Controls.Add(this.buttonRSIScanDaily);
+            this.groupBoxRSIRightTop.Controls.Add(this.numericUpDownRSIDaily);
+            this.groupBoxRSIRightTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxRSIRightTop.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxRSIRightTop.Name = "groupBoxRSIRightTop";
+            this.groupBoxRSIRightTop.Size = new System.Drawing.Size(203, 189);
+            this.groupBoxRSIRightTop.TabIndex = 0;
+            this.groupBoxRSIRightTop.TabStop = false;
+            this.groupBoxRSIRightTop.Text = "RSI Scan Daily";
+            // 
+            // labelRSIDaily
+            // 
+            this.labelRSIDaily.AutoSize = true;
+            this.labelRSIDaily.Location = new System.Drawing.Point(24, 28);
+            this.labelRSIDaily.Name = "labelRSIDaily";
+            this.labelRSIDaily.Size = new System.Drawing.Size(112, 13);
+            this.labelRSIDaily.TabIndex = 2;
+            this.labelRSIDaily.Text = "Within Last # of Days:";
+            // 
+            // buttonRSIScanDaily
+            // 
+            this.buttonRSIScanDaily.Location = new System.Drawing.Point(23, 114);
+            this.buttonRSIScanDaily.Name = "buttonRSIScanDaily";
+            this.buttonRSIScanDaily.Size = new System.Drawing.Size(150, 23);
+            this.buttonRSIScanDaily.TabIndex = 1;
+            this.buttonRSIScanDaily.Text = "RSI Daily Scann";
+            this.buttonRSIScanDaily.UseVisualStyleBackColor = true;
+            this.buttonRSIScanDaily.Click += new System.EventHandler(this.buttonRSIScanDaily_Click);
+            // 
+            // numericUpDownRSIDaily
+            // 
+            this.numericUpDownRSIDaily.Location = new System.Drawing.Point(23, 58);
+            this.numericUpDownRSIDaily.Name = "numericUpDownRSIDaily";
+            this.numericUpDownRSIDaily.Size = new System.Drawing.Size(150, 20);
+            this.numericUpDownRSIDaily.TabIndex = 0;
+            // 
+            // groupBoxRSIRightBottom
+            // 
+            this.groupBoxRSIRightBottom.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBoxRSIRightBottom.Controls.Add(this.buttonRSIWeekly);
+            this.groupBoxRSIRightBottom.Controls.Add(this.numericUpDownRSIWeekly);
+            this.groupBoxRSIRightBottom.Controls.Add(this.labelRSIWeekly);
+            this.groupBoxRSIRightBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxRSIRightBottom.Location = new System.Drawing.Point(3, 198);
+            this.groupBoxRSIRightBottom.Name = "groupBoxRSIRightBottom";
+            this.groupBoxRSIRightBottom.Size = new System.Drawing.Size(203, 189);
+            this.groupBoxRSIRightBottom.TabIndex = 1;
+            this.groupBoxRSIRightBottom.TabStop = false;
+            this.groupBoxRSIRightBottom.Text = "RSI Scan Weekly";
+            // 
+            // buttonRSIWeekly
+            // 
+            this.buttonRSIWeekly.Location = new System.Drawing.Point(27, 149);
+            this.buttonRSIWeekly.Name = "buttonRSIWeekly";
+            this.buttonRSIWeekly.Size = new System.Drawing.Size(146, 23);
+            this.buttonRSIWeekly.TabIndex = 2;
+            this.buttonRSIWeekly.Text = "RSI Weekly Scan";
+            this.buttonRSIWeekly.UseVisualStyleBackColor = true;
+            this.buttonRSIWeekly.Click += new System.EventHandler(this.buttonRSIWeekly_Click);
+            // 
+            // numericUpDownRSIWeekly
+            // 
+            this.numericUpDownRSIWeekly.Location = new System.Drawing.Point(23, 84);
+            this.numericUpDownRSIWeekly.Name = "numericUpDownRSIWeekly";
+            this.numericUpDownRSIWeekly.Size = new System.Drawing.Size(150, 20);
+            this.numericUpDownRSIWeekly.TabIndex = 1;
+            // 
+            // labelRSIWeekly
+            // 
+            this.labelRSIWeekly.AutoSize = true;
+            this.labelRSIWeekly.Location = new System.Drawing.Point(25, 39);
+            this.labelRSIWeekly.Name = "labelRSIWeekly";
+            this.labelRSIWeekly.Size = new System.Drawing.Size(122, 13);
+            this.labelRSIWeekly.TabIndex = 0;
+            this.labelRSIWeekly.Text = "Within Last # of Weeks:";
             // 
             // buttonTop7
             // 
@@ -3513,9 +4210,9 @@ namespace zCharts
             this.panel9.BackColor = System.Drawing.Color.Silver;
             this.panel9.Controls.Add(this.buttonLeft7);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(984, 0);
+            this.panel9.Location = new System.Drawing.Point(1004, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(33, 492);
+            this.panel9.Size = new System.Drawing.Size(33, 421);
             this.panel9.TabIndex = 0;
             // 
             // buttonLeft7
@@ -3529,81 +4226,65 @@ namespace zCharts
             this.buttonLeft7.UseVisualStyleBackColor = true;
             this.buttonLeft7.Click += new System.EventHandler(this.buttonLeft7_Click);
             // 
-            // tabPageMacd
+            // tabControlRSIScan
             // 
-            this.tabPageMacd.Controls.Add(this.splitContainerMACD);
-            this.tabPageMacd.Location = new System.Drawing.Point(4, 22);
-            this.tabPageMacd.Name = "tabPageMacd";
-            this.tabPageMacd.Size = new System.Drawing.Size(1023, 590);
-            this.tabPageMacd.TabIndex = 4;
-            this.tabPageMacd.Text = "MACD Scann";
-            this.tabPageMacd.UseVisualStyleBackColor = true;
+            this.tabControlRSIScan.Controls.Add(this.tabPage23);
+            this.tabControlRSIScan.Controls.Add(this.tabPage24);
+            this.tabControlRSIScan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlRSIScan.Location = new System.Drawing.Point(0, 0);
+            this.tabControlRSIScan.Name = "tabControlRSIScan";
+            this.tabControlRSIScan.SelectedIndex = 0;
+            this.tabControlRSIScan.Size = new System.Drawing.Size(1037, 75);
+            this.tabControlRSIScan.TabIndex = 0;
             // 
-            // splitContainerMACD
+            // tabPage23
             // 
-            this.splitContainerMACD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMACD.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerMACD.Name = "splitContainerMACD";
-            this.splitContainerMACD.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.tabPage23.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage23.Controls.Add(this.textBoxRSIDaily);
+            this.tabPage23.Location = new System.Drawing.Point(4, 22);
+            this.tabPage23.Name = "tabPage23";
+            this.tabPage23.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage23.Size = new System.Drawing.Size(1029, 49);
+            this.tabPage23.TabIndex = 0;
+            this.tabPage23.Text = "RSI Scan Daily Log";
             // 
-            // splitContainerMACD.Panel1
+            // textBoxRSIDaily
             // 
-            this.splitContainerMACD.Panel1.Controls.Add(this.SPanel8);
-            this.splitContainerMACD.Panel1.Controls.Add(this.panel10);
-            this.splitContainerMACD.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerMACD.SplitterDistance = 427;
-            this.splitContainerMACD.TabIndex = 0;
+            this.textBoxRSIDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxRSIDaily.Location = new System.Drawing.Point(3, 3);
+            this.textBoxRSIDaily.Multiline = true;
+            this.textBoxRSIDaily.Name = "textBoxRSIDaily";
+            this.textBoxRSIDaily.Size = new System.Drawing.Size(1023, 43);
+            this.textBoxRSIDaily.TabIndex = 0;
             // 
-            // SPanel8
+            // tabPage24
             // 
-            this.SPanel8.BackColor = System.Drawing.Color.LightGray;
-            this.SPanel8.Controls.Add(this.buttonTop8);
-            this.SPanel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel8.Location = new System.Drawing.Point(790, 0);
-            this.SPanel8.Name = "SPanel8";
-            this.SPanel8.Size = new System.Drawing.Size(200, 427);
-            this.SPanel8.TabIndex = 1;
+            this.tabPage24.Controls.Add(this.textBoxRSIWeekly);
+            this.tabPage24.Location = new System.Drawing.Point(4, 22);
+            this.tabPage24.Name = "tabPage24";
+            this.tabPage24.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage24.Size = new System.Drawing.Size(1029, 49);
+            this.tabPage24.TabIndex = 1;
+            this.tabPage24.Text = "RSI Scan Weekly";
+            this.tabPage24.UseVisualStyleBackColor = true;
             // 
-            // buttonTop8
+            // textBoxRSIWeekly
             // 
-            this.buttonTop8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonTop8.Location = new System.Drawing.Point(0, 0);
-            this.buttonTop8.Name = "buttonTop8";
-            this.buttonTop8.Size = new System.Drawing.Size(200, 32);
-            this.buttonTop8.TabIndex = 0;
-            this.buttonTop8.Text = "MACD Scann";
-            this.buttonTop8.UseVisualStyleBackColor = true;
-            this.buttonTop8.Click += new System.EventHandler(this.buttonTop8_Click);
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.Silver;
-            this.panel10.Controls.Add(this.buttonLeft8);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(990, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(33, 427);
-            this.panel10.TabIndex = 0;
-            // 
-            // buttonLeft8
-            // 
-            this.buttonLeft8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonLeft8.Location = new System.Drawing.Point(0, 0);
-            this.buttonLeft8.Name = "buttonLeft8";
-            this.buttonLeft8.Size = new System.Drawing.Size(33, 260);
-            this.buttonLeft8.TabIndex = 0;
-            this.buttonLeft8.Text = "M\r\nA\r\nC\r\nD\r\n\r\nS\r\nc\r\na\r\nn\r\nn";
-            this.buttonLeft8.UseVisualStyleBackColor = true;
-            this.buttonLeft8.Click += new System.EventHandler(this.buttonLeft8_Click);
+            this.textBoxRSIWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxRSIWeekly.Location = new System.Drawing.Point(3, 3);
+            this.textBoxRSIWeekly.Multiline = true;
+            this.textBoxRSIWeekly.Name = "textBoxRSIWeekly";
+            this.textBoxRSIWeekly.Size = new System.Drawing.Size(1023, 43);
+            this.textBoxRSIWeekly.TabIndex = 0;
             // 
             // tabPageBoll
             // 
             this.tabPageBoll.Controls.Add(this.splitContainerBoll);
             this.tabPageBoll.Location = new System.Drawing.Point(4, 22);
             this.tabPageBoll.Name = "tabPageBoll";
-            this.tabPageBoll.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageBoll.Size = new System.Drawing.Size(1043, 506);
             this.tabPageBoll.TabIndex = 5;
-            this.tabPageBoll.Text = "BollingerBand Scan";
+            this.tabPageBoll.Text = "BollingerBand Scan I";
             this.tabPageBoll.UseVisualStyleBackColor = true;
             // 
             // splitContainerBoll
@@ -3615,21 +4296,218 @@ namespace zCharts
             // 
             // splitContainerBoll.Panel1
             // 
+            this.splitContainerBoll.Panel1.Controls.Add(this.tableLayoutPanelBollinger1Main);
             this.splitContainerBoll.Panel1.Controls.Add(this.SPanel9);
             this.splitContainerBoll.Panel1.Controls.Add(this.panel11);
-            this.splitContainerBoll.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerBoll.SplitterDistance = 436;
+            // 
+            // splitContainerBoll.Panel2
+            // 
+            this.splitContainerBoll.Panel2.Controls.Add(this.tabControlBollinger1);
+            this.splitContainerBoll.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerBoll.SplitterDistance = 373;
             this.splitContainerBoll.TabIndex = 0;
+            // 
+            // tableLayoutPanelBollinger1Main
+            // 
+            this.tableLayoutPanelBollinger1Main.BackColor = System.Drawing.Color.DarkGray;
+            this.tableLayoutPanelBollinger1Main.ColumnCount = 1;
+            this.tableLayoutPanelBollinger1Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelBollinger1Main.Controls.Add(this.dataGridViewBollinger1Daily, 0, 0);
+            this.tableLayoutPanelBollinger1Main.Controls.Add(this.dataGridViewBollinger1Weekly, 0, 1);
+            this.tableLayoutPanelBollinger1Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelBollinger1Main.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelBollinger1Main.Name = "tableLayoutPanelBollinger1Main";
+            this.tableLayoutPanelBollinger1Main.RowCount = 2;
+            this.tableLayoutPanelBollinger1Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger1Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger1Main.Size = new System.Drawing.Size(805, 373);
+            this.tableLayoutPanelBollinger1Main.TabIndex = 2;
+            // 
+            // dataGridViewBollinger1Daily
+            // 
+            this.dataGridViewBollinger1Daily.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridViewBollinger1Daily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBollinger1Daily.ContextMenuStrip = this.contextMenuStripBollinger1Daily;
+            this.dataGridViewBollinger1Daily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewBollinger1Daily.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewBollinger1Daily.Name = "dataGridViewBollinger1Daily";
+            this.dataGridViewBollinger1Daily.Size = new System.Drawing.Size(799, 180);
+            this.dataGridViewBollinger1Daily.TabIndex = 0;
+            // 
+            // contextMenuStripBollinger1Daily
+            // 
+            this.contextMenuStripBollinger1Daily.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToCsvFileToolStripMenuItem,
+            this.exportToPDFFileToolStripMenuItem});
+            this.contextMenuStripBollinger1Daily.Name = "contextMenuStripBollinger1Daily";
+            this.contextMenuStripBollinger1Daily.Size = new System.Drawing.Size(168, 48);
+            this.contextMenuStripBollinger1Daily.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripBollinger1Daily_Opening);
+            // 
+            // exportToCsvFileToolStripMenuItem
+            // 
+            this.exportToCsvFileToolStripMenuItem.Name = "exportToCsvFileToolStripMenuItem";
+            this.exportToCsvFileToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.exportToCsvFileToolStripMenuItem.Text = "Export to csv File";
+            this.exportToCsvFileToolStripMenuItem.Click += new System.EventHandler(this.exportToCsvFileToolStripMenuItem_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem
+            // 
+            this.exportToPDFFileToolStripMenuItem.Name = "exportToPDFFileToolStripMenuItem";
+            this.exportToPDFFileToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem_Click);
+            // 
+            // dataGridViewBollinger1Weekly
+            // 
+            this.dataGridViewBollinger1Weekly.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridViewBollinger1Weekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBollinger1Weekly.ContextMenuStrip = this.contextMenuStripBollinger1Weekly;
+            this.dataGridViewBollinger1Weekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewBollinger1Weekly.Location = new System.Drawing.Point(3, 189);
+            this.dataGridViewBollinger1Weekly.Name = "dataGridViewBollinger1Weekly";
+            this.dataGridViewBollinger1Weekly.Size = new System.Drawing.Size(799, 181);
+            this.dataGridViewBollinger1Weekly.TabIndex = 1;
+            // 
+            // contextMenuStripBollinger1Weekly
+            // 
+            this.contextMenuStripBollinger1Weekly.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToCsvFileToolStripMenuItem1,
+            this.exportToPDFFileToolStripMenuItem1});
+            this.contextMenuStripBollinger1Weekly.Name = "contextMenuStripBollinger1Weekly";
+            this.contextMenuStripBollinger1Weekly.Size = new System.Drawing.Size(168, 48);
+            this.contextMenuStripBollinger1Weekly.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripBollinger1Weekly_Opening);
+            // 
+            // exportToCsvFileToolStripMenuItem1
+            // 
+            this.exportToCsvFileToolStripMenuItem1.Name = "exportToCsvFileToolStripMenuItem1";
+            this.exportToCsvFileToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.exportToCsvFileToolStripMenuItem1.Text = "Export to csv File";
+            this.exportToCsvFileToolStripMenuItem1.Click += new System.EventHandler(this.exportToCsvFileToolStripMenuItem1_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem1
+            // 
+            this.exportToPDFFileToolStripMenuItem1.Name = "exportToPDFFileToolStripMenuItem1";
+            this.exportToPDFFileToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem1.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem1.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem1_Click);
             // 
             // SPanel9
             // 
             this.SPanel9.BackColor = System.Drawing.Color.LightGray;
+            this.SPanel9.Controls.Add(this.tableLayoutPanelBollinger1Right);
             this.SPanel9.Controls.Add(this.buttonTop9);
             this.SPanel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel9.Location = new System.Drawing.Point(785, 0);
+            this.SPanel9.Location = new System.Drawing.Point(805, 0);
             this.SPanel9.Name = "SPanel9";
-            this.SPanel9.Size = new System.Drawing.Size(200, 436);
+            this.SPanel9.Size = new System.Drawing.Size(200, 373);
             this.SPanel9.TabIndex = 1;
+            // 
+            // tableLayoutPanelBollinger1Right
+            // 
+            this.tableLayoutPanelBollinger1Right.ColumnCount = 1;
+            this.tableLayoutPanelBollinger1Right.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelBollinger1Right.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBollinger1Right.Controls.Add(this.groupBox25, 0, 0);
+            this.tableLayoutPanelBollinger1Right.Controls.Add(this.groupBox26, 0, 1);
+            this.tableLayoutPanelBollinger1Right.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelBollinger1Right.Location = new System.Drawing.Point(0, 31);
+            this.tableLayoutPanelBollinger1Right.Name = "tableLayoutPanelBollinger1Right";
+            this.tableLayoutPanelBollinger1Right.RowCount = 2;
+            this.tableLayoutPanelBollinger1Right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger1Right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger1Right.Size = new System.Drawing.Size(200, 342);
+            this.tableLayoutPanelBollinger1Right.TabIndex = 1;
+            // 
+            // groupBox25
+            // 
+            this.groupBox25.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox25.Controls.Add(this.buttonBollinger1Daily);
+            this.groupBox25.Controls.Add(this.numericUpDownBollinger1Daily);
+            this.groupBox25.Controls.Add(this.label1);
+            this.groupBox25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox25.Location = new System.Drawing.Point(3, 3);
+            this.groupBox25.Name = "groupBox25";
+            this.groupBox25.Size = new System.Drawing.Size(194, 165);
+            this.groupBox25.TabIndex = 0;
+            this.groupBox25.TabStop = false;
+            this.groupBox25.Text = "Bollinger Scan 1- Daily";
+            // 
+            // buttonBollinger1Daily
+            // 
+            this.buttonBollinger1Daily.Location = new System.Drawing.Point(19, 142);
+            this.buttonBollinger1Daily.Name = "buttonBollinger1Daily";
+            this.buttonBollinger1Daily.Size = new System.Drawing.Size(160, 23);
+            this.buttonBollinger1Daily.TabIndex = 2;
+            this.buttonBollinger1Daily.Text = "Run Bollinger Scan 1- Daily";
+            this.buttonBollinger1Daily.UseVisualStyleBackColor = true;
+            this.buttonBollinger1Daily.Click += new System.EventHandler(this.buttonBollinger1Daily_Click);
+            // 
+            // numericUpDownBollinger1Daily
+            // 
+            this.numericUpDownBollinger1Daily.Location = new System.Drawing.Point(19, 78);
+            this.numericUpDownBollinger1Daily.Name = "numericUpDownBollinger1Daily";
+            this.numericUpDownBollinger1Daily.Size = new System.Drawing.Size(142, 20);
+            this.numericUpDownBollinger1Daily.TabIndex = 1;
+            this.numericUpDownBollinger1Daily.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Within Last # of Days:";
+            // 
+            // groupBox26
+            // 
+            this.groupBox26.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox26.Controls.Add(this.buttonBolinger1Weekly);
+            this.groupBox26.Controls.Add(this.numericUpDownBollinger1Weekly);
+            this.groupBox26.Controls.Add(this.label2);
+            this.groupBox26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox26.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox26.Location = new System.Drawing.Point(3, 174);
+            this.groupBox26.Name = "groupBox26";
+            this.groupBox26.Size = new System.Drawing.Size(194, 165);
+            this.groupBox26.TabIndex = 1;
+            this.groupBox26.TabStop = false;
+            this.groupBox26.Text = "Bollinger Scan 1 -Weekly";
+            // 
+            // buttonBolinger1Weekly
+            // 
+            this.buttonBolinger1Weekly.Location = new System.Drawing.Point(19, 154);
+            this.buttonBolinger1Weekly.Name = "buttonBolinger1Weekly";
+            this.buttonBolinger1Weekly.Size = new System.Drawing.Size(160, 23);
+            this.buttonBolinger1Weekly.TabIndex = 2;
+            this.buttonBolinger1Weekly.Text = "Run Bollinger Scan 1- Weekly";
+            this.buttonBolinger1Weekly.UseVisualStyleBackColor = true;
+            this.buttonBolinger1Weekly.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // numericUpDownBollinger1Weekly
+            // 
+            this.numericUpDownBollinger1Weekly.Location = new System.Drawing.Point(23, 99);
+            this.numericUpDownBollinger1Weekly.Name = "numericUpDownBollinger1Weekly";
+            this.numericUpDownBollinger1Weekly.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownBollinger1Weekly.TabIndex = 1;
+            this.numericUpDownBollinger1Weekly.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Within Last # of Weeks:";
             // 
             // buttonTop9
             // 
@@ -3647,9 +4525,9 @@ namespace zCharts
             this.panel11.BackColor = System.Drawing.Color.Silver;
             this.panel11.Controls.Add(this.buttonLeft9);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel11.Location = new System.Drawing.Point(985, 0);
+            this.panel11.Location = new System.Drawing.Point(1005, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(38, 436);
+            this.panel11.Size = new System.Drawing.Size(38, 373);
             this.panel11.TabIndex = 0;
             // 
             // buttonLeft9
@@ -3663,12 +4541,43 @@ namespace zCharts
             this.buttonLeft9.UseVisualStyleBackColor = true;
             this.buttonLeft9.Click += new System.EventHandler(this.buttonLeft9_Click);
             // 
+            // tabControlBollinger1
+            // 
+            this.tabControlBollinger1.Controls.Add(this.tabPageBoll1Daily);
+            this.tabControlBollinger1.Controls.Add(this.tabPageBoll1Weekly);
+            this.tabControlBollinger1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlBollinger1.Location = new System.Drawing.Point(0, 0);
+            this.tabControlBollinger1.Name = "tabControlBollinger1";
+            this.tabControlBollinger1.SelectedIndex = 0;
+            this.tabControlBollinger1.Size = new System.Drawing.Size(1043, 129);
+            this.tabControlBollinger1.TabIndex = 0;
+            // 
+            // tabPageBoll1Daily
+            // 
+            this.tabPageBoll1Daily.Location = new System.Drawing.Point(4, 22);
+            this.tabPageBoll1Daily.Name = "tabPageBoll1Daily";
+            this.tabPageBoll1Daily.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBoll1Daily.Size = new System.Drawing.Size(1035, 103);
+            this.tabPageBoll1Daily.TabIndex = 0;
+            this.tabPageBoll1Daily.Text = "Bollinger Daily Scan 1 Log";
+            this.tabPageBoll1Daily.UseVisualStyleBackColor = true;
+            // 
+            // tabPageBoll1Weekly
+            // 
+            this.tabPageBoll1Weekly.Location = new System.Drawing.Point(4, 22);
+            this.tabPageBoll1Weekly.Name = "tabPageBoll1Weekly";
+            this.tabPageBoll1Weekly.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBoll1Weekly.Size = new System.Drawing.Size(1035, 103);
+            this.tabPageBoll1Weekly.TabIndex = 1;
+            this.tabPageBoll1Weekly.Text = "Bollinger Weekly Scan 1 Log";
+            this.tabPageBoll1Weekly.UseVisualStyleBackColor = true;
+            // 
             // tabPageBoll2
             // 
             this.tabPageBoll2.Controls.Add(this.splitContainerBoll2);
             this.tabPageBoll2.Location = new System.Drawing.Point(4, 22);
             this.tabPageBoll2.Name = "tabPageBoll2";
-            this.tabPageBoll2.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageBoll2.Size = new System.Drawing.Size(1043, 506);
             this.tabPageBoll2.TabIndex = 10;
             this.tabPageBoll2.Text = "Bollinger Band Scan II";
             this.tabPageBoll2.UseVisualStyleBackColor = true;
@@ -3682,21 +4591,216 @@ namespace zCharts
             // 
             // splitContainerBoll2.Panel1
             // 
+            this.splitContainerBoll2.Panel1.Controls.Add(this.tableLayoutPanelBollinger2Main);
             this.splitContainerBoll2.Panel1.Controls.Add(this.SPanel10);
             this.splitContainerBoll2.Panel1.Controls.Add(this.panel12);
-            this.splitContainerBoll2.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerBoll2.SplitterDistance = 415;
+            // 
+            // splitContainerBoll2.Panel2
+            // 
+            this.splitContainerBoll2.Panel2.Controls.Add(this.tabControlBollinger2);
+            this.splitContainerBoll2.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerBoll2.SplitterDistance = 355;
             this.splitContainerBoll2.TabIndex = 0;
+            // 
+            // tableLayoutPanelBollinger2Main
+            // 
+            this.tableLayoutPanelBollinger2Main.BackColor = System.Drawing.Color.DarkGray;
+            this.tableLayoutPanelBollinger2Main.ColumnCount = 1;
+            this.tableLayoutPanelBollinger2Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelBollinger2Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBollinger2Main.Controls.Add(this.dataGridViewBollinger2Daily, 0, 0);
+            this.tableLayoutPanelBollinger2Main.Controls.Add(this.dataGridViewBollinger2Weekly, 0, 1);
+            this.tableLayoutPanelBollinger2Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelBollinger2Main.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelBollinger2Main.Name = "tableLayoutPanelBollinger2Main";
+            this.tableLayoutPanelBollinger2Main.RowCount = 2;
+            this.tableLayoutPanelBollinger2Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger2Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger2Main.Size = new System.Drawing.Size(811, 355);
+            this.tableLayoutPanelBollinger2Main.TabIndex = 2;
+            // 
+            // dataGridViewBollinger2Daily
+            // 
+            this.dataGridViewBollinger2Daily.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridViewBollinger2Daily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBollinger2Daily.ContextMenuStrip = this.contextMenuStripBollinger2Daily;
+            this.dataGridViewBollinger2Daily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewBollinger2Daily.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewBollinger2Daily.Name = "dataGridViewBollinger2Daily";
+            this.dataGridViewBollinger2Daily.Size = new System.Drawing.Size(805, 171);
+            this.dataGridViewBollinger2Daily.TabIndex = 0;
+            // 
+            // contextMenuStripBollinger2Daily
+            // 
+            this.contextMenuStripBollinger2Daily.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToCsvFileToolStripMenuItem2,
+            this.exportToPDFFileToolStripMenuItem2});
+            this.contextMenuStripBollinger2Daily.Name = "contextMenuStripBollinger2Daily";
+            this.contextMenuStripBollinger2Daily.Size = new System.Drawing.Size(168, 48);
+            // 
+            // exportToCsvFileToolStripMenuItem2
+            // 
+            this.exportToCsvFileToolStripMenuItem2.Name = "exportToCsvFileToolStripMenuItem2";
+            this.exportToCsvFileToolStripMenuItem2.Size = new System.Drawing.Size(167, 22);
+            this.exportToCsvFileToolStripMenuItem2.Text = "Export to csv File";
+            this.exportToCsvFileToolStripMenuItem2.Click += new System.EventHandler(this.exportToCsvFileToolStripMenuItem2_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem2
+            // 
+            this.exportToPDFFileToolStripMenuItem2.Name = "exportToPDFFileToolStripMenuItem2";
+            this.exportToPDFFileToolStripMenuItem2.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem2.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem2.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem2_Click);
+            // 
+            // dataGridViewBollinger2Weekly
+            // 
+            this.dataGridViewBollinger2Weekly.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridViewBollinger2Weekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBollinger2Weekly.ContextMenuStrip = this.contextMenuStripBollinger2Weekly;
+            this.dataGridViewBollinger2Weekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewBollinger2Weekly.Location = new System.Drawing.Point(3, 180);
+            this.dataGridViewBollinger2Weekly.Name = "dataGridViewBollinger2Weekly";
+            this.dataGridViewBollinger2Weekly.Size = new System.Drawing.Size(805, 172);
+            this.dataGridViewBollinger2Weekly.TabIndex = 1;
+            // 
+            // contextMenuStripBollinger2Weekly
+            // 
+            this.contextMenuStripBollinger2Weekly.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToCsvFileToolStripMenuItem3,
+            this.exportToPDFFileToolStripMenuItem3});
+            this.contextMenuStripBollinger2Weekly.Name = "contextMenuStripBollinger2Weekly";
+            this.contextMenuStripBollinger2Weekly.Size = new System.Drawing.Size(168, 48);
+            this.contextMenuStripBollinger2Weekly.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripBollinger2Weekly_Opening);
+            // 
+            // exportToCsvFileToolStripMenuItem3
+            // 
+            this.exportToCsvFileToolStripMenuItem3.Name = "exportToCsvFileToolStripMenuItem3";
+            this.exportToCsvFileToolStripMenuItem3.Size = new System.Drawing.Size(167, 22);
+            this.exportToCsvFileToolStripMenuItem3.Text = "Export to csv File";
+            this.exportToCsvFileToolStripMenuItem3.Click += new System.EventHandler(this.exportToCsvFileToolStripMenuItem3_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem3
+            // 
+            this.exportToPDFFileToolStripMenuItem3.Name = "exportToPDFFileToolStripMenuItem3";
+            this.exportToPDFFileToolStripMenuItem3.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem3.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem3.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem3_Click);
             // 
             // SPanel10
             // 
             this.SPanel10.BackColor = System.Drawing.Color.LightGray;
+            this.SPanel10.Controls.Add(this.tableLayoutPanelBollinger2Right);
             this.SPanel10.Controls.Add(this.buttonTop10);
             this.SPanel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel10.Location = new System.Drawing.Point(791, 0);
+            this.SPanel10.Location = new System.Drawing.Point(811, 0);
             this.SPanel10.Name = "SPanel10";
-            this.SPanel10.Size = new System.Drawing.Size(200, 415);
+            this.SPanel10.Size = new System.Drawing.Size(200, 355);
             this.SPanel10.TabIndex = 1;
+            // 
+            // tableLayoutPanelBollinger2Right
+            // 
+            this.tableLayoutPanelBollinger2Right.BackColor = System.Drawing.Color.Aquamarine;
+            this.tableLayoutPanelBollinger2Right.ColumnCount = 1;
+            this.tableLayoutPanelBollinger2Right.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelBollinger2Right.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBollinger2Right.Controls.Add(this.groupBox27, 0, 0);
+            this.tableLayoutPanelBollinger2Right.Controls.Add(this.groupBox28, 0, 1);
+            this.tableLayoutPanelBollinger2Right.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelBollinger2Right.Location = new System.Drawing.Point(0, 23);
+            this.tableLayoutPanelBollinger2Right.Name = "tableLayoutPanelBollinger2Right";
+            this.tableLayoutPanelBollinger2Right.RowCount = 2;
+            this.tableLayoutPanelBollinger2Right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger2Right.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelBollinger2Right.Size = new System.Drawing.Size(200, 332);
+            this.tableLayoutPanelBollinger2Right.TabIndex = 1;
+            // 
+            // groupBox27
+            // 
+            this.groupBox27.Controls.Add(this.buttonBollinger2Daily);
+            this.groupBox27.Controls.Add(this.numericUpDownBollinger2Daily);
+            this.groupBox27.Controls.Add(this.label3);
+            this.groupBox27.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox27.Location = new System.Drawing.Point(3, 3);
+            this.groupBox27.Name = "groupBox27";
+            this.groupBox27.Size = new System.Drawing.Size(194, 160);
+            this.groupBox27.TabIndex = 0;
+            this.groupBox27.TabStop = false;
+            this.groupBox27.Text = "Bollinger Scan 2- Daily";
+            // 
+            // buttonBollinger2Daily
+            // 
+            this.buttonBollinger2Daily.Location = new System.Drawing.Point(6, 113);
+            this.buttonBollinger2Daily.Name = "buttonBollinger2Daily";
+            this.buttonBollinger2Daily.Size = new System.Drawing.Size(166, 23);
+            this.buttonBollinger2Daily.TabIndex = 2;
+            this.buttonBollinger2Daily.Text = "Run Bollinger Scan 2 - Daily";
+            this.buttonBollinger2Daily.UseVisualStyleBackColor = true;
+            this.buttonBollinger2Daily.Click += new System.EventHandler(this.buttonBollinger2Daily_Click);
+            // 
+            // numericUpDownBollinger2Daily
+            // 
+            this.numericUpDownBollinger2Daily.Location = new System.Drawing.Point(6, 66);
+            this.numericUpDownBollinger2Daily.Name = "numericUpDownBollinger2Daily";
+            this.numericUpDownBollinger2Daily.Size = new System.Drawing.Size(166, 20);
+            this.numericUpDownBollinger2Daily.TabIndex = 1;
+            this.numericUpDownBollinger2Daily.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Within Last # of Days:";
+            // 
+            // groupBox28
+            // 
+            this.groupBox28.Controls.Add(this.buttonBollinger2Weekly);
+            this.groupBox28.Controls.Add(this.numericUpDownBollinger2Weekly);
+            this.groupBox28.Controls.Add(this.label4);
+            this.groupBox28.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox28.Location = new System.Drawing.Point(3, 169);
+            this.groupBox28.Name = "groupBox28";
+            this.groupBox28.Size = new System.Drawing.Size(194, 160);
+            this.groupBox28.TabIndex = 1;
+            this.groupBox28.TabStop = false;
+            this.groupBox28.Text = "Bollinger Scan 2 - Weekly";
+            // 
+            // buttonBollinger2Weekly
+            // 
+            this.buttonBollinger2Weekly.Location = new System.Drawing.Point(12, 140);
+            this.buttonBollinger2Weekly.Name = "buttonBollinger2Weekly";
+            this.buttonBollinger2Weekly.Size = new System.Drawing.Size(161, 23);
+            this.buttonBollinger2Weekly.TabIndex = 2;
+            this.buttonBollinger2Weekly.Text = "Run Bollinger Scan 2- Weekly";
+            this.buttonBollinger2Weekly.UseVisualStyleBackColor = true;
+            this.buttonBollinger2Weekly.Click += new System.EventHandler(this.buttonBollinger2Weekly_Click);
+            // 
+            // numericUpDownBollinger2Weekly
+            // 
+            this.numericUpDownBollinger2Weekly.Location = new System.Drawing.Point(12, 78);
+            this.numericUpDownBollinger2Weekly.Name = "numericUpDownBollinger2Weekly";
+            this.numericUpDownBollinger2Weekly.Size = new System.Drawing.Size(160, 20);
+            this.numericUpDownBollinger2Weekly.TabIndex = 1;
+            this.numericUpDownBollinger2Weekly.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(122, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Within Last # of Weeks:";
             // 
             // buttonTop10
             // 
@@ -3714,9 +4818,9 @@ namespace zCharts
             this.panel12.BackColor = System.Drawing.Color.Silver;
             this.panel12.Controls.Add(this.buttonLeft10);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel12.Location = new System.Drawing.Point(991, 0);
+            this.panel12.Location = new System.Drawing.Point(1011, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(32, 415);
+            this.panel12.Size = new System.Drawing.Size(32, 355);
             this.panel12.TabIndex = 0;
             // 
             // buttonLeft10
@@ -3730,12 +4834,672 @@ namespace zCharts
             this.buttonLeft10.UseVisualStyleBackColor = true;
             this.buttonLeft10.Click += new System.EventHandler(this.buttonLeft10_Click);
             // 
+            // tabControlBollinger2
+            // 
+            this.tabControlBollinger2.Controls.Add(this.tabPage25);
+            this.tabControlBollinger2.Controls.Add(this.tabPage26);
+            this.tabControlBollinger2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlBollinger2.Location = new System.Drawing.Point(0, 0);
+            this.tabControlBollinger2.Name = "tabControlBollinger2";
+            this.tabControlBollinger2.SelectedIndex = 0;
+            this.tabControlBollinger2.Size = new System.Drawing.Size(1043, 147);
+            this.tabControlBollinger2.TabIndex = 0;
+            // 
+            // tabPage25
+            // 
+            this.tabPage25.Location = new System.Drawing.Point(4, 22);
+            this.tabPage25.Name = "tabPage25";
+            this.tabPage25.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage25.Size = new System.Drawing.Size(1035, 121);
+            this.tabPage25.TabIndex = 0;
+            this.tabPage25.Text = "Bollinger Scan 2 - Daily";
+            this.tabPage25.UseVisualStyleBackColor = true;
+            // 
+            // tabPage26
+            // 
+            this.tabPage26.Location = new System.Drawing.Point(4, 22);
+            this.tabPage26.Name = "tabPage26";
+            this.tabPage26.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage26.Size = new System.Drawing.Size(1035, 121);
+            this.tabPage26.TabIndex = 1;
+            this.tabPage26.Text = "Bollinger Scan 2- Weekly";
+            this.tabPage26.UseVisualStyleBackColor = true;
+            // 
+            // tabPageMacd
+            // 
+            this.tabPageMacd.Controls.Add(this.splitContainerMACD);
+            this.tabPageMacd.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMacd.Name = "tabPageMacd";
+            this.tabPageMacd.Size = new System.Drawing.Size(1043, 506);
+            this.tabPageMacd.TabIndex = 4;
+            this.tabPageMacd.Text = "MACD Scann";
+            this.tabPageMacd.UseVisualStyleBackColor = true;
+            // 
+            // splitContainerMACD
+            // 
+            this.splitContainerMACD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerMACD.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerMACD.Name = "splitContainerMACD";
+            this.splitContainerMACD.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerMACD.Panel1
+            // 
+            this.splitContainerMACD.Panel1.Controls.Add(this.tableLayoutPanelMacdMain);
+            this.splitContainerMACD.Panel1.Controls.Add(this.SPanel8);
+            this.splitContainerMACD.Panel1.Controls.Add(this.panel10);
+            // 
+            // splitContainerMACD.Panel2
+            // 
+            this.splitContainerMACD.Panel2.Controls.Add(this.tabControlMacd);
+            this.splitContainerMACD.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerMACD.SplitterDistance = 366;
+            this.splitContainerMACD.TabIndex = 0;
+            // 
+            // tableLayoutPanelMacdMain
+            // 
+            this.tableLayoutPanelMacdMain.BackColor = System.Drawing.Color.LightGray;
+            this.tableLayoutPanelMacdMain.ColumnCount = 1;
+            this.tableLayoutPanelMacdMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelMacdMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelMacdMain.Controls.Add(this.groupBoxMcadDaily, 0, 0);
+            this.tableLayoutPanelMacdMain.Controls.Add(this.groupBoxMacdWeekly, 0, 1);
+            this.tableLayoutPanelMacdMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelMacdMain.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelMacdMain.Name = "tableLayoutPanelMacdMain";
+            this.tableLayoutPanelMacdMain.RowCount = 2;
+            this.tableLayoutPanelMacdMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMacdMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMacdMain.Size = new System.Drawing.Size(810, 366);
+            this.tableLayoutPanelMacdMain.TabIndex = 2;
+            // 
+            // groupBoxMcadDaily
+            // 
+            this.groupBoxMcadDaily.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxMcadDaily.Controls.Add(this.dataGridViewMacdDaily);
+            this.groupBoxMcadDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxMcadDaily.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxMcadDaily.Name = "groupBoxMcadDaily";
+            this.groupBoxMcadDaily.Size = new System.Drawing.Size(804, 177);
+            this.groupBoxMcadDaily.TabIndex = 0;
+            this.groupBoxMcadDaily.TabStop = false;
+            this.groupBoxMcadDaily.Text = "MACD Scan Daily";
+            // 
+            // dataGridViewMacdDaily
+            // 
+            this.dataGridViewMacdDaily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMacdDaily.ContextMenuStrip = this.contextMenuStripMacdDaily;
+            this.dataGridViewMacdDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewMacdDaily.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewMacdDaily.Name = "dataGridViewMacdDaily";
+            this.dataGridViewMacdDaily.Size = new System.Drawing.Size(798, 158);
+            this.dataGridViewMacdDaily.TabIndex = 0;
+            // 
+            // contextMenuStripMacdDaily
+            // 
+            this.contextMenuStripMacdDaily.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportCSVFileToolStripMenuItem,
+            this.exportToPDFFileToolStripMenuItem5});
+            this.contextMenuStripMacdDaily.Name = "contextMenuStripMacdDaily";
+            this.contextMenuStripMacdDaily.Size = new System.Drawing.Size(168, 48);
+            // 
+            // exportCSVFileToolStripMenuItem
+            // 
+            this.exportCSVFileToolStripMenuItem.Name = "exportCSVFileToolStripMenuItem";
+            this.exportCSVFileToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.exportCSVFileToolStripMenuItem.Text = "Export CSV File";
+            this.exportCSVFileToolStripMenuItem.Click += new System.EventHandler(this.exportCSVFileToolStripMenuItem_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem5
+            // 
+            this.exportToPDFFileToolStripMenuItem5.Name = "exportToPDFFileToolStripMenuItem5";
+            this.exportToPDFFileToolStripMenuItem5.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem5.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem5.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem5_Click);
+            // 
+            // groupBoxMacdWeekly
+            // 
+            this.groupBoxMacdWeekly.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxMacdWeekly.Controls.Add(this.dataGridViewMacdWeekly);
+            this.groupBoxMacdWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxMacdWeekly.Location = new System.Drawing.Point(3, 186);
+            this.groupBoxMacdWeekly.Name = "groupBoxMacdWeekly";
+            this.groupBoxMacdWeekly.Size = new System.Drawing.Size(804, 177);
+            this.groupBoxMacdWeekly.TabIndex = 1;
+            this.groupBoxMacdWeekly.TabStop = false;
+            this.groupBoxMacdWeekly.Text = "MACD Scan Weekly";
+            // 
+            // dataGridViewMacdWeekly
+            // 
+            this.dataGridViewMacdWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMacdWeekly.ContextMenuStrip = this.contextMenuStripMacdWeekly;
+            this.dataGridViewMacdWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewMacdWeekly.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewMacdWeekly.Name = "dataGridViewMacdWeekly";
+            this.dataGridViewMacdWeekly.Size = new System.Drawing.Size(798, 158);
+            this.dataGridViewMacdWeekly.TabIndex = 0;
+            // 
+            // contextMenuStripMacdWeekly
+            // 
+            this.contextMenuStripMacdWeekly.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportCSVFileToolStripMenuItem1,
+            this.exportToPDFFileToolStripMenuItem6});
+            this.contextMenuStripMacdWeekly.Name = "contextMenuStripMacdWeekly";
+            this.contextMenuStripMacdWeekly.Size = new System.Drawing.Size(168, 48);
+            this.contextMenuStripMacdWeekly.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripMacdWeekly_Opening);
+            // 
+            // exportCSVFileToolStripMenuItem1
+            // 
+            this.exportCSVFileToolStripMenuItem1.Name = "exportCSVFileToolStripMenuItem1";
+            this.exportCSVFileToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.exportCSVFileToolStripMenuItem1.Text = "Export CSV File";
+            this.exportCSVFileToolStripMenuItem1.Click += new System.EventHandler(this.exportCSVFileToolStripMenuItem1_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem6
+            // 
+            this.exportToPDFFileToolStripMenuItem6.Name = "exportToPDFFileToolStripMenuItem6";
+            this.exportToPDFFileToolStripMenuItem6.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem6.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem6.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem6_Click);
+            // 
+            // SPanel8
+            // 
+            this.SPanel8.BackColor = System.Drawing.Color.LightGray;
+            this.SPanel8.Controls.Add(this.tableLayoutPanelMacdRight);
+            this.SPanel8.Controls.Add(this.buttonTop8);
+            this.SPanel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SPanel8.Location = new System.Drawing.Point(810, 0);
+            this.SPanel8.Name = "SPanel8";
+            this.SPanel8.Size = new System.Drawing.Size(200, 366);
+            this.SPanel8.TabIndex = 1;
+            // 
+            // tableLayoutPanelMacdRight
+            // 
+            this.tableLayoutPanelMacdRight.ColumnCount = 1;
+            this.tableLayoutPanelMacdRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelMacdRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelMacdRight.Controls.Add(this.groupBox29, 0, 0);
+            this.tableLayoutPanelMacdRight.Controls.Add(this.groupBox30, 0, 1);
+            this.tableLayoutPanelMacdRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelMacdRight.Location = new System.Drawing.Point(0, 32);
+            this.tableLayoutPanelMacdRight.Name = "tableLayoutPanelMacdRight";
+            this.tableLayoutPanelMacdRight.RowCount = 2;
+            this.tableLayoutPanelMacdRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMacdRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMacdRight.Size = new System.Drawing.Size(200, 334);
+            this.tableLayoutPanelMacdRight.TabIndex = 1;
+            // 
+            // groupBox29
+            // 
+            this.groupBox29.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox29.Controls.Add(this.buttonMacdDaily);
+            this.groupBox29.Controls.Add(this.numericUpDownMacdDaily);
+            this.groupBox29.Controls.Add(this.label5);
+            this.groupBox29.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox29.Location = new System.Drawing.Point(3, 3);
+            this.groupBox29.Name = "groupBox29";
+            this.groupBox29.Size = new System.Drawing.Size(194, 161);
+            this.groupBox29.TabIndex = 0;
+            this.groupBox29.TabStop = false;
+            this.groupBox29.Text = "MACD Scan Daily";
+            // 
+            // buttonMacdDaily
+            // 
+            this.buttonMacdDaily.Location = new System.Drawing.Point(9, 104);
+            this.buttonMacdDaily.Name = "buttonMacdDaily";
+            this.buttonMacdDaily.Size = new System.Drawing.Size(149, 23);
+            this.buttonMacdDaily.TabIndex = 2;
+            this.buttonMacdDaily.Text = "Run MACD Daily Scan";
+            this.buttonMacdDaily.UseVisualStyleBackColor = true;
+            this.buttonMacdDaily.Click += new System.EventHandler(this.buttonMacdDaily_Click);
+            // 
+            // numericUpDownMacdDaily
+            // 
+            this.numericUpDownMacdDaily.Location = new System.Drawing.Point(9, 62);
+            this.numericUpDownMacdDaily.Name = "numericUpDownMacdDaily";
+            this.numericUpDownMacdDaily.Size = new System.Drawing.Size(149, 20);
+            this.numericUpDownMacdDaily.TabIndex = 1;
+            this.numericUpDownMacdDaily.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(109, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "within Last # of Days:";
+            // 
+            // groupBox30
+            // 
+            this.groupBox30.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox30.Controls.Add(this.buttonMacdWeekly);
+            this.groupBox30.Controls.Add(this.numericUpDownMacdWeekly);
+            this.groupBox30.Controls.Add(this.label6);
+            this.groupBox30.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox30.Location = new System.Drawing.Point(3, 170);
+            this.groupBox30.Name = "groupBox30";
+            this.groupBox30.Size = new System.Drawing.Size(194, 161);
+            this.groupBox30.TabIndex = 1;
+            this.groupBox30.TabStop = false;
+            this.groupBox30.Text = "MACD Scan Weekly";
+            // 
+            // buttonMacdWeekly
+            // 
+            this.buttonMacdWeekly.Location = new System.Drawing.Point(9, 101);
+            this.buttonMacdWeekly.Name = "buttonMacdWeekly";
+            this.buttonMacdWeekly.Size = new System.Drawing.Size(149, 23);
+            this.buttonMacdWeekly.TabIndex = 2;
+            this.buttonMacdWeekly.Text = "Run MACD Weekly Scan";
+            this.buttonMacdWeekly.UseVisualStyleBackColor = true;
+            this.buttonMacdWeekly.Click += new System.EventHandler(this.buttonMacdWeekly_Click);
+            // 
+            // numericUpDownMacdWeekly
+            // 
+            this.numericUpDownMacdWeekly.Location = new System.Drawing.Point(9, 60);
+            this.numericUpDownMacdWeekly.Name = "numericUpDownMacdWeekly";
+            this.numericUpDownMacdWeekly.Size = new System.Drawing.Size(133, 20);
+            this.numericUpDownMacdWeekly.TabIndex = 1;
+            this.numericUpDownMacdWeekly.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(122, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Within Last # of Weeks:";
+            // 
+            // buttonTop8
+            // 
+            this.buttonTop8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonTop8.Location = new System.Drawing.Point(0, 0);
+            this.buttonTop8.Name = "buttonTop8";
+            this.buttonTop8.Size = new System.Drawing.Size(200, 32);
+            this.buttonTop8.TabIndex = 0;
+            this.buttonTop8.Text = "MACD Scann";
+            this.buttonTop8.UseVisualStyleBackColor = true;
+            this.buttonTop8.Click += new System.EventHandler(this.buttonTop8_Click);
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.Silver;
+            this.panel10.Controls.Add(this.buttonLeft8);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel10.Location = new System.Drawing.Point(1010, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(33, 366);
+            this.panel10.TabIndex = 0;
+            // 
+            // buttonLeft8
+            // 
+            this.buttonLeft8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonLeft8.Location = new System.Drawing.Point(0, 0);
+            this.buttonLeft8.Name = "buttonLeft8";
+            this.buttonLeft8.Size = new System.Drawing.Size(33, 260);
+            this.buttonLeft8.TabIndex = 0;
+            this.buttonLeft8.Text = "M\r\nA\r\nC\r\nD\r\n\r\nS\r\nc\r\na\r\nn\r\nn";
+            this.buttonLeft8.UseVisualStyleBackColor = true;
+            this.buttonLeft8.Click += new System.EventHandler(this.buttonLeft8_Click);
+            // 
+            // tabControlMacd
+            // 
+            this.tabControlMacd.Controls.Add(this.tabPage29);
+            this.tabControlMacd.Controls.Add(this.tabPage30);
+            this.tabControlMacd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMacd.Location = new System.Drawing.Point(0, 0);
+            this.tabControlMacd.Name = "tabControlMacd";
+            this.tabControlMacd.SelectedIndex = 0;
+            this.tabControlMacd.Size = new System.Drawing.Size(1043, 136);
+            this.tabControlMacd.TabIndex = 0;
+            // 
+            // tabPage29
+            // 
+            this.tabPage29.Location = new System.Drawing.Point(4, 22);
+            this.tabPage29.Name = "tabPage29";
+            this.tabPage29.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage29.Size = new System.Drawing.Size(1035, 110);
+            this.tabPage29.TabIndex = 0;
+            this.tabPage29.Text = "MACD Daily Scan";
+            this.tabPage29.UseVisualStyleBackColor = true;
+            // 
+            // tabPage30
+            // 
+            this.tabPage30.Location = new System.Drawing.Point(4, 22);
+            this.tabPage30.Name = "tabPage30";
+            this.tabPage30.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage30.Size = new System.Drawing.Size(1035, 110);
+            this.tabPage30.TabIndex = 1;
+            this.tabPage30.Text = "MACD Weekly Scan";
+            this.tabPage30.UseVisualStyleBackColor = true;
+            // 
+            // tabPageCandle
+            // 
+            this.tabPageCandle.Controls.Add(this.splitContainerCandleStick);
+            this.tabPageCandle.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCandle.Name = "tabPageCandle";
+            this.tabPageCandle.Size = new System.Drawing.Size(1043, 506);
+            this.tabPageCandle.TabIndex = 15;
+            this.tabPageCandle.Text = "CandleStick Scan";
+            this.tabPageCandle.UseVisualStyleBackColor = true;
+            // 
+            // splitContainerCandleStick
+            // 
+            this.splitContainerCandleStick.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerCandleStick.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerCandleStick.Name = "splitContainerCandleStick";
+            this.splitContainerCandleStick.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerCandleStick.Panel1
+            // 
+            this.splitContainerCandleStick.Panel1.Controls.Add(this.tableLayoutPanelCandleMain);
+            this.splitContainerCandleStick.Panel1.Controls.Add(this.SPanel16);
+            this.splitContainerCandleStick.Panel1.Controls.Add(this.panel22);
+            // 
+            // splitContainerCandleStick.Panel2
+            // 
+            this.splitContainerCandleStick.Panel2.Controls.Add(this.tabControlCandleStick);
+            this.splitContainerCandleStick.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerCandleStick.SplitterDistance = 363;
+            this.splitContainerCandleStick.TabIndex = 0;
+            // 
+            // tableLayoutPanelCandleMain
+            // 
+            this.tableLayoutPanelCandleMain.BackColor = System.Drawing.Color.LightGray;
+            this.tableLayoutPanelCandleMain.ColumnCount = 1;
+            this.tableLayoutPanelCandleMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelCandleMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelCandleMain.Controls.Add(this.groupBoxCandleDaily, 0, 0);
+            this.tableLayoutPanelCandleMain.Controls.Add(this.groupBoxCandleWeekly, 0, 1);
+            this.tableLayoutPanelCandleMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelCandleMain.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelCandleMain.Name = "tableLayoutPanelCandleMain";
+            this.tableLayoutPanelCandleMain.RowCount = 2;
+            this.tableLayoutPanelCandleMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelCandleMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelCandleMain.Size = new System.Drawing.Size(803, 363);
+            this.tableLayoutPanelCandleMain.TabIndex = 2;
+            // 
+            // groupBoxCandleDaily
+            // 
+            this.groupBoxCandleDaily.Controls.Add(this.dataGridViewCandleDaily);
+            this.groupBoxCandleDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxCandleDaily.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxCandleDaily.Name = "groupBoxCandleDaily";
+            this.groupBoxCandleDaily.Size = new System.Drawing.Size(797, 175);
+            this.groupBoxCandleDaily.TabIndex = 2;
+            this.groupBoxCandleDaily.TabStop = false;
+            this.groupBoxCandleDaily.Text = "CandleStick Scan Daily";
+            // 
+            // dataGridViewCandleDaily
+            // 
+            this.dataGridViewCandleDaily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCandleDaily.ContextMenuStrip = this.contextMenuStripCandleDaily;
+            this.dataGridViewCandleDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewCandleDaily.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewCandleDaily.Name = "dataGridViewCandleDaily";
+            this.dataGridViewCandleDaily.Size = new System.Drawing.Size(791, 156);
+            this.dataGridViewCandleDaily.TabIndex = 0;
+            // 
+            // contextMenuStripCandleDaily
+            // 
+            this.contextMenuStripCandleDaily.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToCSVFileToolStripMenuItem4,
+            this.exportToPDFFileToolStripMenuItem4});
+            this.contextMenuStripCandleDaily.Name = "contextMenuStripCandleDaily";
+            this.contextMenuStripCandleDaily.Size = new System.Drawing.Size(168, 48);
+            // 
+            // exportToCSVFileToolStripMenuItem4
+            // 
+            this.exportToCSVFileToolStripMenuItem4.Name = "exportToCSVFileToolStripMenuItem4";
+            this.exportToCSVFileToolStripMenuItem4.Size = new System.Drawing.Size(167, 22);
+            this.exportToCSVFileToolStripMenuItem4.Text = "Export to CSV File";
+            this.exportToCSVFileToolStripMenuItem4.Click += new System.EventHandler(this.exportToCSVFileToolStripMenuItem4_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem4
+            // 
+            this.exportToPDFFileToolStripMenuItem4.Name = "exportToPDFFileToolStripMenuItem4";
+            this.exportToPDFFileToolStripMenuItem4.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem4.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem4.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem4_Click);
+            // 
+            // groupBoxCandleWeekly
+            // 
+            this.groupBoxCandleWeekly.Controls.Add(this.dataGridViewCandleWeekly);
+            this.groupBoxCandleWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxCandleWeekly.Location = new System.Drawing.Point(3, 184);
+            this.groupBoxCandleWeekly.Name = "groupBoxCandleWeekly";
+            this.groupBoxCandleWeekly.Size = new System.Drawing.Size(797, 176);
+            this.groupBoxCandleWeekly.TabIndex = 3;
+            this.groupBoxCandleWeekly.TabStop = false;
+            this.groupBoxCandleWeekly.Text = "CandleStick Scan Weekly";
+            // 
+            // dataGridViewCandleWeekly
+            // 
+            this.dataGridViewCandleWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCandleWeekly.ContextMenuStrip = this.contextMenuStripCandleWeekly;
+            this.dataGridViewCandleWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewCandleWeekly.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewCandleWeekly.Name = "dataGridViewCandleWeekly";
+            this.dataGridViewCandleWeekly.Size = new System.Drawing.Size(791, 157);
+            this.dataGridViewCandleWeekly.TabIndex = 1;
+            // 
+            // contextMenuStripCandleWeekly
+            // 
+            this.contextMenuStripCandleWeekly.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportCSVFileToolStripMenuItem2,
+            this.exportToPDFFileToolStripMenuItem7});
+            this.contextMenuStripCandleWeekly.Name = "contextMenuStripCandleWeekly";
+            this.contextMenuStripCandleWeekly.Size = new System.Drawing.Size(168, 48);
+            // 
+            // exportCSVFileToolStripMenuItem2
+            // 
+            this.exportCSVFileToolStripMenuItem2.Name = "exportCSVFileToolStripMenuItem2";
+            this.exportCSVFileToolStripMenuItem2.Size = new System.Drawing.Size(167, 22);
+            this.exportCSVFileToolStripMenuItem2.Text = "Export CSV File";
+            this.exportCSVFileToolStripMenuItem2.Click += new System.EventHandler(this.exportCSVFileToolStripMenuItem2_Click);
+            // 
+            // exportToPDFFileToolStripMenuItem7
+            // 
+            this.exportToPDFFileToolStripMenuItem7.Name = "exportToPDFFileToolStripMenuItem7";
+            this.exportToPDFFileToolStripMenuItem7.Size = new System.Drawing.Size(167, 22);
+            this.exportToPDFFileToolStripMenuItem7.Text = "Export to PDF File";
+            this.exportToPDFFileToolStripMenuItem7.Click += new System.EventHandler(this.exportToPDFFileToolStripMenuItem7_Click);
+            // 
+            // SPanel16
+            // 
+            this.SPanel16.BackColor = System.Drawing.Color.LightGray;
+            this.SPanel16.Controls.Add(this.tableLayoutPanelCandleRight);
+            this.SPanel16.Controls.Add(this.buttonTop16);
+            this.SPanel16.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SPanel16.Location = new System.Drawing.Point(803, 0);
+            this.SPanel16.Name = "SPanel16";
+            this.SPanel16.Size = new System.Drawing.Size(200, 363);
+            this.SPanel16.TabIndex = 1;
+            // 
+            // tableLayoutPanelCandleRight
+            // 
+            this.tableLayoutPanelCandleRight.ColumnCount = 1;
+            this.tableLayoutPanelCandleRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelCandleRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelCandleRight.Controls.Add(this.groupBox31, 0, 0);
+            this.tableLayoutPanelCandleRight.Controls.Add(this.groupBox32, 0, 1);
+            this.tableLayoutPanelCandleRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelCandleRight.Location = new System.Drawing.Point(0, 28);
+            this.tableLayoutPanelCandleRight.Name = "tableLayoutPanelCandleRight";
+            this.tableLayoutPanelCandleRight.RowCount = 2;
+            this.tableLayoutPanelCandleRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelCandleRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelCandleRight.Size = new System.Drawing.Size(200, 335);
+            this.tableLayoutPanelCandleRight.TabIndex = 1;
+            // 
+            // groupBox31
+            // 
+            this.groupBox31.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox31.Controls.Add(this.buttonCandleDaily);
+            this.groupBox31.Controls.Add(this.numericUpDownCandleDaily);
+            this.groupBox31.Controls.Add(this.label7);
+            this.groupBox31.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox31.Location = new System.Drawing.Point(3, 3);
+            this.groupBox31.Name = "groupBox31";
+            this.groupBox31.Size = new System.Drawing.Size(194, 161);
+            this.groupBox31.TabIndex = 0;
+            this.groupBox31.TabStop = false;
+            this.groupBox31.Text = "CandleStick Scan Daily";
+            // 
+            // buttonCandleDaily
+            // 
+            this.buttonCandleDaily.Location = new System.Drawing.Point(15, 109);
+            this.buttonCandleDaily.Name = "buttonCandleDaily";
+            this.buttonCandleDaily.Size = new System.Drawing.Size(156, 23);
+            this.buttonCandleDaily.TabIndex = 2;
+            this.buttonCandleDaily.Text = "Run CandleStick Daily Scan";
+            this.buttonCandleDaily.UseVisualStyleBackColor = true;
+            this.buttonCandleDaily.Click += new System.EventHandler(this.buttonCandleDaily_Click);
+            // 
+            // numericUpDownCandleDaily
+            // 
+            this.numericUpDownCandleDaily.Location = new System.Drawing.Point(15, 66);
+            this.numericUpDownCandleDaily.Name = "numericUpDownCandleDaily";
+            this.numericUpDownCandleDaily.Size = new System.Drawing.Size(156, 20);
+            this.numericUpDownCandleDaily.TabIndex = 1;
+            this.numericUpDownCandleDaily.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 35);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Within Last # of Days:";
+            // 
+            // groupBox32
+            // 
+            this.groupBox32.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox32.Controls.Add(this.buttonCandleWeekly);
+            this.groupBox32.Controls.Add(this.numericUpDownCandleWeekly);
+            this.groupBox32.Controls.Add(this.label8);
+            this.groupBox32.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox32.Location = new System.Drawing.Point(3, 170);
+            this.groupBox32.Name = "groupBox32";
+            this.groupBox32.Size = new System.Drawing.Size(194, 162);
+            this.groupBox32.TabIndex = 1;
+            this.groupBox32.TabStop = false;
+            this.groupBox32.Text = "CandleStick Scan Weekly";
+            // 
+            // buttonCandleWeekly
+            // 
+            this.buttonCandleWeekly.Location = new System.Drawing.Point(15, 113);
+            this.buttonCandleWeekly.Name = "buttonCandleWeekly";
+            this.buttonCandleWeekly.Size = new System.Drawing.Size(156, 23);
+            this.buttonCandleWeekly.TabIndex = 2;
+            this.buttonCandleWeekly.Text = "Run CandleStick Weekly Scan";
+            this.buttonCandleWeekly.UseVisualStyleBackColor = true;
+            this.buttonCandleWeekly.Click += new System.EventHandler(this.buttonCandleWeekly_Click);
+            // 
+            // numericUpDownCandleWeekly
+            // 
+            this.numericUpDownCandleWeekly.Location = new System.Drawing.Point(15, 75);
+            this.numericUpDownCandleWeekly.Name = "numericUpDownCandleWeekly";
+            this.numericUpDownCandleWeekly.Size = new System.Drawing.Size(156, 20);
+            this.numericUpDownCandleWeekly.TabIndex = 1;
+            this.numericUpDownCandleWeekly.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 39);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(122, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Within Last # of Weeks:";
+            // 
+            // buttonTop16
+            // 
+            this.buttonTop16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonTop16.Location = new System.Drawing.Point(0, 0);
+            this.buttonTop16.Name = "buttonTop16";
+            this.buttonTop16.Size = new System.Drawing.Size(200, 28);
+            this.buttonTop16.TabIndex = 0;
+            this.buttonTop16.Text = "CandleStick Scan";
+            this.buttonTop16.UseVisualStyleBackColor = true;
+            this.buttonTop16.Click += new System.EventHandler(this.buttonTop16_Click);
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.Silver;
+            this.panel22.Controls.Add(this.buttonLeft16);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel22.Location = new System.Drawing.Point(1003, 0);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(40, 363);
+            this.panel22.TabIndex = 0;
+            // 
+            // buttonLeft16
+            // 
+            this.buttonLeft16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonLeft16.Location = new System.Drawing.Point(0, 0);
+            this.buttonLeft16.Name = "buttonLeft16";
+            this.buttonLeft16.Size = new System.Drawing.Size(40, 233);
+            this.buttonLeft16.TabIndex = 0;
+            this.buttonLeft16.Text = "C\r\na\r\nn\r\nd\r\nl\r\ne\r\nS\r\nt\r\ni\r\nc\r\nk\r\n \r\nS\r\nc\r\na\r\nn";
+            this.buttonLeft16.UseVisualStyleBackColor = true;
+            this.buttonLeft16.Click += new System.EventHandler(this.buttonLeft16_Click);
+            // 
+            // tabControlCandleStick
+            // 
+            this.tabControlCandleStick.Controls.Add(this.tabPage27);
+            this.tabControlCandleStick.Controls.Add(this.tabPage28);
+            this.tabControlCandleStick.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlCandleStick.Location = new System.Drawing.Point(0, 0);
+            this.tabControlCandleStick.Name = "tabControlCandleStick";
+            this.tabControlCandleStick.SelectedIndex = 0;
+            this.tabControlCandleStick.Size = new System.Drawing.Size(1043, 139);
+            this.tabControlCandleStick.TabIndex = 0;
+            // 
+            // tabPage27
+            // 
+            this.tabPage27.Location = new System.Drawing.Point(4, 22);
+            this.tabPage27.Name = "tabPage27";
+            this.tabPage27.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage27.Size = new System.Drawing.Size(1035, 113);
+            this.tabPage27.TabIndex = 0;
+            this.tabPage27.Text = "CandleStick Scan - Daily";
+            this.tabPage27.UseVisualStyleBackColor = true;
+            // 
+            // tabPage28
+            // 
+            this.tabPage28.Location = new System.Drawing.Point(4, 22);
+            this.tabPage28.Name = "tabPage28";
+            this.tabPage28.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage28.Size = new System.Drawing.Size(1035, 113);
+            this.tabPage28.TabIndex = 1;
+            this.tabPage28.Text = "CandleStick Scan - Weekly";
+            this.tabPage28.UseVisualStyleBackColor = true;
+            // 
             // tabPageZScan
             // 
             this.tabPageZScan.Controls.Add(this.splitContainerZScann);
             this.tabPageZScan.Location = new System.Drawing.Point(4, 22);
             this.tabPageZScan.Name = "tabPageZScan";
-            this.tabPageZScan.Size = new System.Drawing.Size(1023, 590);
+            this.tabPageZScan.Size = new System.Drawing.Size(1043, 506);
             this.tabPageZScan.TabIndex = 7;
             this.tabPageZScan.Text = "zScann";
             this.tabPageZScan.UseVisualStyleBackColor = true;
@@ -3749,21 +5513,186 @@ namespace zCharts
             // 
             // splitContainerZScann.Panel1
             // 
+            this.splitContainerZScann.Panel1.Controls.Add(this.tableLayoutPanelZscanMain);
             this.splitContainerZScann.Panel1.Controls.Add(this.SPanel11);
             this.splitContainerZScann.Panel1.Controls.Add(this.panel13);
-            this.splitContainerZScann.Size = new System.Drawing.Size(1023, 590);
-            this.splitContainerZScann.SplitterDistance = 418;
+            this.splitContainerZScann.Size = new System.Drawing.Size(1043, 506);
+            this.splitContainerZScann.SplitterDistance = 357;
             this.splitContainerZScann.TabIndex = 0;
+            // 
+            // tableLayoutPanelZscanMain
+            // 
+            this.tableLayoutPanelZscanMain.BackColor = System.Drawing.Color.LightGray;
+            this.tableLayoutPanelZscanMain.ColumnCount = 1;
+            this.tableLayoutPanelZscanMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelZscanMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelZscanMain.Controls.Add(this.groupBoxZscanDaily, 0, 0);
+            this.tableLayoutPanelZscanMain.Controls.Add(this.groupBoxZscanWeekly, 0, 1);
+            this.tableLayoutPanelZscanMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelZscanMain.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelZscanMain.Name = "tableLayoutPanelZscanMain";
+            this.tableLayoutPanelZscanMain.RowCount = 2;
+            this.tableLayoutPanelZscanMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelZscanMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelZscanMain.Size = new System.Drawing.Size(808, 357);
+            this.tableLayoutPanelZscanMain.TabIndex = 2;
+            // 
+            // groupBoxZscanDaily
+            // 
+            this.groupBoxZscanDaily.Controls.Add(this.dataGridViewZscanDaily);
+            this.groupBoxZscanDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxZscanDaily.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxZscanDaily.Name = "groupBoxZscanDaily";
+            this.groupBoxZscanDaily.Size = new System.Drawing.Size(802, 172);
+            this.groupBoxZscanDaily.TabIndex = 0;
+            this.groupBoxZscanDaily.TabStop = false;
+            this.groupBoxZscanDaily.Text = "zScan Daily";
+            // 
+            // dataGridViewZscanDaily
+            // 
+            this.dataGridViewZscanDaily.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewZscanDaily.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewZscanDaily.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewZscanDaily.Name = "dataGridViewZscanDaily";
+            this.dataGridViewZscanDaily.Size = new System.Drawing.Size(796, 153);
+            this.dataGridViewZscanDaily.TabIndex = 0;
+            // 
+            // groupBoxZscanWeekly
+            // 
+            this.groupBoxZscanWeekly.Controls.Add(this.dataGridViewZscanWeekly);
+            this.groupBoxZscanWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxZscanWeekly.Location = new System.Drawing.Point(3, 181);
+            this.groupBoxZscanWeekly.Name = "groupBoxZscanWeekly";
+            this.groupBoxZscanWeekly.Size = new System.Drawing.Size(802, 173);
+            this.groupBoxZscanWeekly.TabIndex = 1;
+            this.groupBoxZscanWeekly.TabStop = false;
+            this.groupBoxZscanWeekly.Text = "zScan Weekly";
+            // 
+            // dataGridViewZscanWeekly
+            // 
+            this.dataGridViewZscanWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewZscanWeekly.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewZscanWeekly.Location = new System.Drawing.Point(3, 16);
+            this.dataGridViewZscanWeekly.Name = "dataGridViewZscanWeekly";
+            this.dataGridViewZscanWeekly.Size = new System.Drawing.Size(796, 154);
+            this.dataGridViewZscanWeekly.TabIndex = 0;
             // 
             // SPanel11
             // 
             this.SPanel11.BackColor = System.Drawing.Color.LightGray;
+            this.SPanel11.Controls.Add(this.tableLayoutPanelZscanRight);
             this.SPanel11.Controls.Add(this.buttonTop11);
             this.SPanel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SPanel11.Location = new System.Drawing.Point(788, 0);
+            this.SPanel11.Location = new System.Drawing.Point(808, 0);
             this.SPanel11.Name = "SPanel11";
-            this.SPanel11.Size = new System.Drawing.Size(200, 418);
+            this.SPanel11.Size = new System.Drawing.Size(200, 357);
             this.SPanel11.TabIndex = 1;
+            // 
+            // tableLayoutPanelZscanRight
+            // 
+            this.tableLayoutPanelZscanRight.ColumnCount = 1;
+            this.tableLayoutPanelZscanRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelZscanRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelZscanRight.Controls.Add(this.groupBox33, 0, 0);
+            this.tableLayoutPanelZscanRight.Controls.Add(this.groupBox34, 0, 1);
+            this.tableLayoutPanelZscanRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelZscanRight.Location = new System.Drawing.Point(0, 30);
+            this.tableLayoutPanelZscanRight.Name = "tableLayoutPanelZscanRight";
+            this.tableLayoutPanelZscanRight.RowCount = 2;
+            this.tableLayoutPanelZscanRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelZscanRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelZscanRight.Size = new System.Drawing.Size(200, 327);
+            this.tableLayoutPanelZscanRight.TabIndex = 1;
+            // 
+            // groupBox33
+            // 
+            this.groupBox33.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox33.Controls.Add(this.buttonZscanDaily);
+            this.groupBox33.Controls.Add(this.numericUpDownZScanDaily);
+            this.groupBox33.Controls.Add(this.label9);
+            this.groupBox33.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox33.Location = new System.Drawing.Point(3, 3);
+            this.groupBox33.Name = "groupBox33";
+            this.groupBox33.Size = new System.Drawing.Size(194, 157);
+            this.groupBox33.TabIndex = 0;
+            this.groupBox33.TabStop = false;
+            this.groupBox33.Text = "zScan Daily";
+            // 
+            // buttonZscanDaily
+            // 
+            this.buttonZscanDaily.Location = new System.Drawing.Point(20, 107);
+            this.buttonZscanDaily.Name = "buttonZscanDaily";
+            this.buttonZscanDaily.Size = new System.Drawing.Size(153, 23);
+            this.buttonZscanDaily.TabIndex = 2;
+            this.buttonZscanDaily.Text = "Run zScan Daily Scan";
+            this.buttonZscanDaily.UseVisualStyleBackColor = true;
+            this.buttonZscanDaily.Click += new System.EventHandler(this.buttonZscanDaily_Click);
+            // 
+            // numericUpDownZScanDaily
+            // 
+            this.numericUpDownZScanDaily.Location = new System.Drawing.Point(20, 70);
+            this.numericUpDownZScanDaily.Name = "numericUpDownZScanDaily";
+            this.numericUpDownZScanDaily.Size = new System.Drawing.Size(153, 20);
+            this.numericUpDownZScanDaily.TabIndex = 1;
+            this.numericUpDownZScanDaily.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(112, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Within Last # of Days:";
+            // 
+            // groupBox34
+            // 
+            this.groupBox34.BackColor = System.Drawing.Color.Aquamarine;
+            this.groupBox34.Controls.Add(this.buttonZscanWeekly);
+            this.groupBox34.Controls.Add(this.numericUpDownZscanWeekly);
+            this.groupBox34.Controls.Add(this.label10);
+            this.groupBox34.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox34.Location = new System.Drawing.Point(3, 166);
+            this.groupBox34.Name = "groupBox34";
+            this.groupBox34.Size = new System.Drawing.Size(194, 158);
+            this.groupBox34.TabIndex = 1;
+            this.groupBox34.TabStop = false;
+            this.groupBox34.Text = "zScan Weekly";
+            // 
+            // buttonZscanWeekly
+            // 
+            this.buttonZscanWeekly.Location = new System.Drawing.Point(19, 107);
+            this.buttonZscanWeekly.Name = "buttonZscanWeekly";
+            this.buttonZscanWeekly.Size = new System.Drawing.Size(155, 23);
+            this.buttonZscanWeekly.TabIndex = 2;
+            this.buttonZscanWeekly.Text = "Run zScan Weekly";
+            this.buttonZscanWeekly.UseVisualStyleBackColor = true;
+            this.buttonZscanWeekly.Click += new System.EventHandler(this.buttonZscanWeekly_Click);
+            // 
+            // numericUpDownZscanWeekly
+            // 
+            this.numericUpDownZscanWeekly.Location = new System.Drawing.Point(20, 69);
+            this.numericUpDownZscanWeekly.Name = "numericUpDownZscanWeekly";
+            this.numericUpDownZscanWeekly.Size = new System.Drawing.Size(154, 20);
+            this.numericUpDownZscanWeekly.TabIndex = 1;
+            this.numericUpDownZscanWeekly.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 37);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Within Last # of Weeks:";
             // 
             // buttonTop11
             // 
@@ -3781,9 +5710,9 @@ namespace zCharts
             this.panel13.BackColor = System.Drawing.Color.Silver;
             this.panel13.Controls.Add(this.buttonLeft11);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel13.Location = new System.Drawing.Point(988, 0);
+            this.panel13.Location = new System.Drawing.Point(1008, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(35, 418);
+            this.panel13.Size = new System.Drawing.Size(35, 357);
             this.panel13.TabIndex = 0;
             // 
             // buttonLeft11
@@ -3927,240 +5856,16 @@ namespace zCharts
             // 
             this.timerNasdaqMonthly.Tick += new System.EventHandler(this.timerNasdaqMonthly_Tick);
             // 
-            // priceComboBoxDailyPrice
+            // timerCandleStick
             // 
-            this.priceComboBoxDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxDailyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxDailyPrice.FormattingEnabled = true;
-            this.priceComboBoxDailyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxDailyPrice.Name = "priceComboBoxDailyPrice";
-            this.priceComboBoxDailyPrice.Size = new System.Drawing.Size(109, 21);
-            this.priceComboBoxDailyPrice.TabIndex = 0;
-            this.priceComboBoxDailyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDailyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxDailyIndicator
-            // 
-            this.indicatorComboBoxDailyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxDailyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxDailyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxDailyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxDailyIndicator.Name = "indicatorComboBoxDailyIndicator";
-            this.indicatorComboBoxDailyIndicator.Size = new System.Drawing.Size(109, 21);
-            this.indicatorComboBoxDailyIndicator.TabIndex = 0;
-            this.indicatorComboBoxDailyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDailyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxWeeklyPrice
-            // 
-            this.priceComboBoxWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxWeeklyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxWeeklyPrice.FormattingEnabled = true;
-            this.priceComboBoxWeeklyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxWeeklyPrice.Name = "priceComboBoxWeeklyPrice";
-            this.priceComboBoxWeeklyPrice.Size = new System.Drawing.Size(121, 21);
-            this.priceComboBoxWeeklyPrice.TabIndex = 0;
-            this.priceComboBoxWeeklyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxWeeklyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxWeeklyIndicator
-            // 
-            this.indicatorComboBoxWeeklyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxWeeklyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxWeeklyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxWeeklyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxWeeklyIndicator.Name = "indicatorComboBoxWeeklyIndicator";
-            this.indicatorComboBoxWeeklyIndicator.Size = new System.Drawing.Size(121, 21);
-            this.indicatorComboBoxWeeklyIndicator.TabIndex = 0;
-            this.indicatorComboBoxWeeklyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxWeeklyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxMonthlyPrice
-            // 
-            this.priceComboBoxMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxMonthlyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxMonthlyPrice.FormattingEnabled = true;
-            this.priceComboBoxMonthlyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxMonthlyPrice.Name = "priceComboBoxMonthlyPrice";
-            this.priceComboBoxMonthlyPrice.Size = new System.Drawing.Size(108, 21);
-            this.priceComboBoxMonthlyPrice.TabIndex = 0;
-            this.priceComboBoxMonthlyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxMonthlyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxMonthlyIndicator
-            // 
-            this.indicatorComboBoxMonthlyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxMonthlyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxMonthlyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxMonthlyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxMonthlyIndicator.Name = "indicatorComboBoxMonthlyIndicator";
-            this.indicatorComboBoxMonthlyIndicator.Size = new System.Drawing.Size(108, 21);
-            this.indicatorComboBoxMonthlyIndicator.TabIndex = 0;
-            this.indicatorComboBoxMonthlyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxMonthlyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxMinutePrice
-            // 
-            this.priceComboBoxMinutePrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxMinutePrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxMinutePrice.FormattingEnabled = true;
-            this.priceComboBoxMinutePrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxMinutePrice.Name = "priceComboBoxMinutePrice";
-            this.priceComboBoxMinutePrice.Size = new System.Drawing.Size(121, 21);
-            this.priceComboBoxMinutePrice.TabIndex = 0;
-            this.priceComboBoxMinutePrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxMinutePrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxMinuteIndicator
-            // 
-            this.indicatorComboBoxMinuteIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxMinuteIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxMinuteIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxMinuteIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxMinuteIndicator.Name = "indicatorComboBoxMinuteIndicator";
-            this.indicatorComboBoxMinuteIndicator.Size = new System.Drawing.Size(121, 21);
-            this.indicatorComboBoxMinuteIndicator.TabIndex = 0;
-            this.indicatorComboBoxMinuteIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxMinuteIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxDowDailyPrice
-            // 
-            this.priceComboBoxDowDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxDowDailyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxDowDailyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.priceComboBoxDowDailyPrice.FormattingEnabled = true;
-            this.priceComboBoxDowDailyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxDowDailyPrice.Name = "priceComboBoxDowDailyPrice";
-            this.priceComboBoxDowDailyPrice.Size = new System.Drawing.Size(123, 21);
-            this.priceComboBoxDowDailyPrice.TabIndex = 0;
-            this.priceComboBoxDowDailyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDowDailyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxDowDailyIndicator
-            // 
-            this.indicatorComboBoxDowDailyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxDowDailyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.indicatorComboBoxDowDailyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxDowDailyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxDowDailyIndicator.Name = "indicatorComboBoxDowDailyIndicator";
-            this.indicatorComboBoxDowDailyIndicator.Size = new System.Drawing.Size(123, 21);
-            this.indicatorComboBoxDowDailyIndicator.TabIndex = 0;
-            this.indicatorComboBoxDowDailyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDowDailyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxDowWeeklyPrice
-            // 
-            this.priceComboBoxDowWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxDowWeeklyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxDowWeeklyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.priceComboBoxDowWeeklyPrice.FormattingEnabled = true;
-            this.priceComboBoxDowWeeklyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxDowWeeklyPrice.Name = "priceComboBoxDowWeeklyPrice";
-            this.priceComboBoxDowWeeklyPrice.Size = new System.Drawing.Size(118, 21);
-            this.priceComboBoxDowWeeklyPrice.TabIndex = 1;
-            this.priceComboBoxDowWeeklyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDowWeeklyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxDowWeeklyIndicator
-            // 
-            this.indicatorComboBoxDowWeeklyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxDowWeeklyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.indicatorComboBoxDowWeeklyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxDowWeeklyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxDowWeeklyIndicator.Name = "indicatorComboBoxDowWeeklyIndicator";
-            this.indicatorComboBoxDowWeeklyIndicator.Size = new System.Drawing.Size(118, 21);
-            this.indicatorComboBoxDowWeeklyIndicator.TabIndex = 1;
-            this.indicatorComboBoxDowWeeklyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDowWeeklyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxDowMonthlyPrice
-            // 
-            this.priceComboBoxDowMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxDowMonthlyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxDowMonthlyPrice.FormattingEnabled = true;
-            this.priceComboBoxDowMonthlyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxDowMonthlyPrice.Name = "priceComboBoxDowMonthlyPrice";
-            this.priceComboBoxDowMonthlyPrice.Size = new System.Drawing.Size(108, 21);
-            this.priceComboBoxDowMonthlyPrice.TabIndex = 0;
-            this.priceComboBoxDowMonthlyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxDowMonthlyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxDowMonthlyIndicator
-            // 
-            this.indicatorComboBoxDowMonthlyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxDowMonthlyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.indicatorComboBoxDowMonthlyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxDowMonthlyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxDowMonthlyIndicator.Name = "indicatorComboBoxDowMonthlyIndicator";
-            this.indicatorComboBoxDowMonthlyIndicator.Size = new System.Drawing.Size(108, 21);
-            this.indicatorComboBoxDowMonthlyIndicator.TabIndex = 0;
-            this.indicatorComboBoxDowMonthlyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxDowMonthlyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxNasdaqDailyPrice
-            // 
-            this.priceComboBoxNasdaqDailyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxNasdaqDailyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxNasdaqDailyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.priceComboBoxNasdaqDailyPrice.FormattingEnabled = true;
-            this.priceComboBoxNasdaqDailyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxNasdaqDailyPrice.Name = "priceComboBoxNasdaqDailyPrice";
-            this.priceComboBoxNasdaqDailyPrice.Size = new System.Drawing.Size(118, 21);
-            this.priceComboBoxNasdaqDailyPrice.TabIndex = 0;
-            this.priceComboBoxNasdaqDailyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxNasdaqDailyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxNasdaqDailyIndicator
-            // 
-            this.indicatorComboBoxNasdaqDailyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxNasdaqDailyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxNasdaqDailyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.indicatorComboBoxNasdaqDailyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxNasdaqDailyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxNasdaqDailyIndicator.Name = "indicatorComboBoxNasdaqDailyIndicator";
-            this.indicatorComboBoxNasdaqDailyIndicator.Size = new System.Drawing.Size(118, 21);
-            this.indicatorComboBoxNasdaqDailyIndicator.TabIndex = 1;
-            this.indicatorComboBoxNasdaqDailyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxNasdaqDailyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxNasdaqWeeklyPrice
-            // 
-            this.priceComboBoxNasdaqWeeklyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxNasdaqWeeklyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxNasdaqWeeklyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.priceComboBoxNasdaqWeeklyPrice.FormattingEnabled = true;
-            this.priceComboBoxNasdaqWeeklyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxNasdaqWeeklyPrice.Name = "priceComboBoxNasdaqWeeklyPrice";
-            this.priceComboBoxNasdaqWeeklyPrice.Size = new System.Drawing.Size(110, 21);
-            this.priceComboBoxNasdaqWeeklyPrice.TabIndex = 2;
-            this.priceComboBoxNasdaqWeeklyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxNasdaqWeeklyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxNasdaqWeeklyIndicator
-            // 
-            this.indicatorComboBoxNasdaqWeeklyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxNasdaqWeeklyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxNasdaqWeeklyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.indicatorComboBoxNasdaqWeeklyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxNasdaqWeeklyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxNasdaqWeeklyIndicator.Name = "indicatorComboBoxNasdaqWeeklyIndicator";
-            this.indicatorComboBoxNasdaqWeeklyIndicator.Size = new System.Drawing.Size(110, 21);
-            this.indicatorComboBoxNasdaqWeeklyIndicator.TabIndex = 0;
-            this.indicatorComboBoxNasdaqWeeklyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxNasdaqWeeklyIndicator_SelectedIndexChanged);
-            // 
-            // priceComboBoxNasdaqMonthlyPrice
-            // 
-            this.priceComboBoxNasdaqMonthlyPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priceComboBoxNasdaqMonthlyPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.priceComboBoxNasdaqMonthlyPrice.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.priceComboBoxNasdaqMonthlyPrice.FormattingEnabled = true;
-            this.priceComboBoxNasdaqMonthlyPrice.Location = new System.Drawing.Point(5, 5);
-            this.priceComboBoxNasdaqMonthlyPrice.Name = "priceComboBoxNasdaqMonthlyPrice";
-            this.priceComboBoxNasdaqMonthlyPrice.Size = new System.Drawing.Size(108, 21);
-            this.priceComboBoxNasdaqMonthlyPrice.TabIndex = 0;
-            this.priceComboBoxNasdaqMonthlyPrice.SelectedIndexChanged += new System.EventHandler(this.priceComboBoxNasdaqMonthlyPrice_SelectedIndexChanged);
-            // 
-            // indicatorComboBoxNasdaqMonthlyIndicator
-            // 
-            this.indicatorComboBoxNasdaqMonthlyIndicator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorComboBoxNasdaqMonthlyIndicator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.indicatorComboBoxNasdaqMonthlyIndicator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.indicatorComboBoxNasdaqMonthlyIndicator.FormattingEnabled = true;
-            this.indicatorComboBoxNasdaqMonthlyIndicator.Location = new System.Drawing.Point(5, 5);
-            this.indicatorComboBoxNasdaqMonthlyIndicator.Name = "indicatorComboBoxNasdaqMonthlyIndicator";
-            this.indicatorComboBoxNasdaqMonthlyIndicator.Size = new System.Drawing.Size(108, 21);
-            this.indicatorComboBoxNasdaqMonthlyIndicator.TabIndex = 1;
-            this.indicatorComboBoxNasdaqMonthlyIndicator.SelectedIndexChanged += new System.EventHandler(this.indicatorComboBoxNasdaqMonthlyIndicator_SelectedIndexChanged);
+            this.timerCandleStick.Tick += new System.EventHandler(this.timerCandleStick_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1300, 687);
+            this.ClientSize = new System.Drawing.Size(1324, 603);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -4172,6 +5877,8 @@ namespace zCharts
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
@@ -4399,33 +6106,131 @@ namespace zCharts
             this.tabControlNasdaqMonthly.ResumeLayout(false);
             this.tabPageRSI.ResumeLayout(false);
             this.splitContainerRSI.Panel1.ResumeLayout(false);
+            this.splitContainerRSI.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRSI)).EndInit();
             this.splitContainerRSI.ResumeLayout(false);
+            this.tableLayoutPanelRSI.ResumeLayout(false);
+            this.groupBoxRSIDaily.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRSIDaily)).EndInit();
+            this.contextMenuStripRSIDaily.ResumeLayout(false);
+            this.groupBoxRSIWeekly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRSIWeekly)).EndInit();
+            this.contextMenuStripRSIWeekly.ResumeLayout(false);
             this.SPanel7.ResumeLayout(false);
+            this.tableLayoutPanelRSIRight.ResumeLayout(false);
+            this.groupBoxRSIRightTop.ResumeLayout(false);
+            this.groupBoxRSIRightTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRSIDaily)).EndInit();
+            this.groupBoxRSIRightBottom.ResumeLayout(false);
+            this.groupBoxRSIRightBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRSIWeekly)).EndInit();
             this.panel9.ResumeLayout(false);
-            this.tabPageMacd.ResumeLayout(false);
-            this.splitContainerMACD.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMACD)).EndInit();
-            this.splitContainerMACD.ResumeLayout(false);
-            this.SPanel8.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
+            this.tabControlRSIScan.ResumeLayout(false);
+            this.tabPage23.ResumeLayout(false);
+            this.tabPage23.PerformLayout();
+            this.tabPage24.ResumeLayout(false);
+            this.tabPage24.PerformLayout();
             this.tabPageBoll.ResumeLayout(false);
             this.splitContainerBoll.Panel1.ResumeLayout(false);
+            this.splitContainerBoll.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerBoll)).EndInit();
             this.splitContainerBoll.ResumeLayout(false);
+            this.tableLayoutPanelBollinger1Main.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger1Daily)).EndInit();
+            this.contextMenuStripBollinger1Daily.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger1Weekly)).EndInit();
+            this.contextMenuStripBollinger1Weekly.ResumeLayout(false);
             this.SPanel9.ResumeLayout(false);
+            this.tableLayoutPanelBollinger1Right.ResumeLayout(false);
+            this.groupBox25.ResumeLayout(false);
+            this.groupBox25.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger1Daily)).EndInit();
+            this.groupBox26.ResumeLayout(false);
+            this.groupBox26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger1Weekly)).EndInit();
             this.panel11.ResumeLayout(false);
+            this.tabControlBollinger1.ResumeLayout(false);
             this.tabPageBoll2.ResumeLayout(false);
             this.splitContainerBoll2.Panel1.ResumeLayout(false);
+            this.splitContainerBoll2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerBoll2)).EndInit();
             this.splitContainerBoll2.ResumeLayout(false);
+            this.tableLayoutPanelBollinger2Main.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger2Daily)).EndInit();
+            this.contextMenuStripBollinger2Daily.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBollinger2Weekly)).EndInit();
+            this.contextMenuStripBollinger2Weekly.ResumeLayout(false);
             this.SPanel10.ResumeLayout(false);
+            this.tableLayoutPanelBollinger2Right.ResumeLayout(false);
+            this.groupBox27.ResumeLayout(false);
+            this.groupBox27.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger2Daily)).EndInit();
+            this.groupBox28.ResumeLayout(false);
+            this.groupBox28.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBollinger2Weekly)).EndInit();
             this.panel12.ResumeLayout(false);
+            this.tabControlBollinger2.ResumeLayout(false);
+            this.tabPageMacd.ResumeLayout(false);
+            this.splitContainerMACD.Panel1.ResumeLayout(false);
+            this.splitContainerMACD.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMACD)).EndInit();
+            this.splitContainerMACD.ResumeLayout(false);
+            this.tableLayoutPanelMacdMain.ResumeLayout(false);
+            this.groupBoxMcadDaily.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMacdDaily)).EndInit();
+            this.contextMenuStripMacdDaily.ResumeLayout(false);
+            this.groupBoxMacdWeekly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMacdWeekly)).EndInit();
+            this.contextMenuStripMacdWeekly.ResumeLayout(false);
+            this.SPanel8.ResumeLayout(false);
+            this.tableLayoutPanelMacdRight.ResumeLayout(false);
+            this.groupBox29.ResumeLayout(false);
+            this.groupBox29.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMacdDaily)).EndInit();
+            this.groupBox30.ResumeLayout(false);
+            this.groupBox30.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMacdWeekly)).EndInit();
+            this.panel10.ResumeLayout(false);
+            this.tabControlMacd.ResumeLayout(false);
+            this.tabPageCandle.ResumeLayout(false);
+            this.splitContainerCandleStick.Panel1.ResumeLayout(false);
+            this.splitContainerCandleStick.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerCandleStick)).EndInit();
+            this.splitContainerCandleStick.ResumeLayout(false);
+            this.tableLayoutPanelCandleMain.ResumeLayout(false);
+            this.groupBoxCandleDaily.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCandleDaily)).EndInit();
+            this.contextMenuStripCandleDaily.ResumeLayout(false);
+            this.groupBoxCandleWeekly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCandleWeekly)).EndInit();
+            this.contextMenuStripCandleWeekly.ResumeLayout(false);
+            this.SPanel16.ResumeLayout(false);
+            this.tableLayoutPanelCandleRight.ResumeLayout(false);
+            this.groupBox31.ResumeLayout(false);
+            this.groupBox31.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCandleDaily)).EndInit();
+            this.groupBox32.ResumeLayout(false);
+            this.groupBox32.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCandleWeekly)).EndInit();
+            this.panel22.ResumeLayout(false);
+            this.tabControlCandleStick.ResumeLayout(false);
             this.tabPageZScan.ResumeLayout(false);
             this.splitContainerZScann.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerZScann)).EndInit();
             this.splitContainerZScann.ResumeLayout(false);
+            this.tableLayoutPanelZscanMain.ResumeLayout(false);
+            this.groupBoxZscanDaily.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewZscanDaily)).EndInit();
+            this.groupBoxZscanWeekly.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewZscanWeekly)).EndInit();
             this.SPanel11.ResumeLayout(false);
+            this.tableLayoutPanelZscanRight.ResumeLayout(false);
+            this.groupBox33.ResumeLayout(false);
+            this.groupBox33.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZScanDaily)).EndInit();
+            this.groupBox34.ResumeLayout(false);
+            this.groupBox34.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZscanWeekly)).EndInit();
             this.panel13.ResumeLayout(false);
             this.contextMenuStripTreeview.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -4733,14 +6538,153 @@ namespace zCharts
         private System.Windows.Forms.TabControl tabControlWeekly;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelWeeklyMain;
-        private ZedGraph.ZedGraphControl zedGraphControlWeeklyTop;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDailyMain;
-        private ZedGraph.ZedGraphControl zedGraphDailyTop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDowMonthlyMain;
         private ZedGraph.ZedGraphControl zedGraphControlDowMonthlyTop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDowWeeklyMain;
         private ZedGraph.ZedGraphControl zedGraphControlDowWeeklyTop;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelDailyMain;
+        private ZedGraph.ZedGraphControl zedGraphDailyTop;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelWeeklyMain;
+        private ZedGraph.ZedGraphControl zedGraphControlWeeklyTop;
+        private System.Windows.Forms.TabControl tabControlRSIScan;
+        private System.Windows.Forms.TabPage tabPage23;
+        private System.Windows.Forms.TextBox textBoxRSIDaily;
+        private System.Windows.Forms.TabPage tabPage24;
+        private System.Windows.Forms.TextBox textBoxRSIWeekly;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRSI;
+        private System.Windows.Forms.GroupBox groupBoxRSIDaily;
+        private System.Windows.Forms.DataGridView dataGridViewRSIDaily;
+        private System.Windows.Forms.GroupBox groupBoxRSIWeekly;
+        private System.Windows.Forms.DataGridView dataGridViewRSIWeekly;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRSIRight;
+        private System.Windows.Forms.GroupBox groupBoxRSIRightTop;
+        private System.Windows.Forms.GroupBox groupBoxRSIRightBottom;
+        private System.Windows.Forms.Button buttonRSIScanDaily;
+        private System.Windows.Forms.NumericUpDown numericUpDownRSIDaily;
+        private System.Windows.Forms.Label labelRSIDaily;
+        private System.Windows.Forms.Button buttonRSIWeekly;
+        private System.Windows.Forms.NumericUpDown numericUpDownRSIWeekly;
+        private System.Windows.Forms.Label labelRSIWeekly;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripRSIDaily;
+        private System.Windows.Forms.ToolStripMenuItem exportToAcsvFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToAPDFFileToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripRSIWeekly;
+        private System.Windows.Forms.ToolStripMenuItem exportToAcsvFileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exportToAPDFFileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.TabControl tabControlBollinger1;
+        private System.Windows.Forms.TabPage tabPageBoll1Daily;
+        private System.Windows.Forms.TabPage tabPageBoll1Weekly;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBollinger1Main;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBollinger1Right;
+        private System.Windows.Forms.GroupBox groupBox25;
+        private System.Windows.Forms.GroupBox groupBox26;
+        private System.Windows.Forms.NumericUpDown numericUpDownBollinger1Daily;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonBollinger1Daily;
+        private System.Windows.Forms.NumericUpDown numericUpDownBollinger1Weekly;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonBolinger1Weekly;
+        private System.Windows.Forms.DataGridView dataGridViewBollinger1Daily;
+        private System.Windows.Forms.DataGridView dataGridViewBollinger1Weekly;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripBollinger1Daily;
+        private System.Windows.Forms.ToolStripMenuItem exportToCsvFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripBollinger1Weekly;
+        private System.Windows.Forms.ToolStripMenuItem exportToCsvFileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem1;
+        private System.Windows.Forms.TabControl tabControlBollinger2;
+        private System.Windows.Forms.TabPage tabPage25;
+        private System.Windows.Forms.TabPage tabPage26;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBollinger2Main;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBollinger2Right;
+        private System.Windows.Forms.DataGridView dataGridViewBollinger2Daily;
+        private System.Windows.Forms.DataGridView dataGridViewBollinger2Weekly;
+        private System.Windows.Forms.GroupBox groupBox27;
+        private System.Windows.Forms.Button buttonBollinger2Daily;
+        private System.Windows.Forms.NumericUpDown numericUpDownBollinger2Daily;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox28;
+        private System.Windows.Forms.NumericUpDown numericUpDownBollinger2Weekly;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonBollinger2Weekly;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripBollinger2Daily;
+        private System.Windows.Forms.ToolStripMenuItem exportToCsvFileToolStripMenuItem2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripBollinger2Weekly;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem exportToCsvFileToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem3;
+        private System.Windows.Forms.TabPage tabPageCandle;
+        private System.Windows.Forms.SplitContainer splitContainerCandleStick;
+        private System.Windows.Forms.TabControl tabControlCandleStick;
+        private System.Windows.Forms.TabPage tabPage27;
+        private System.Windows.Forms.TabPage tabPage28;
+        private System.Windows.Forms.Panel SPanel16;
+        private System.Windows.Forms.Button buttonTop16;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Timer timerCandleStick;
+        private System.Windows.Forms.Button buttonLeft16;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMacdMain;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMacdRight;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCandleMain;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCandleRight;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelZscanMain;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelZscanRight;
+        private System.Windows.Forms.GroupBox groupBoxMcadDaily;
+        private System.Windows.Forms.GroupBox groupBoxMacdWeekly;
+        private System.Windows.Forms.DataGridView dataGridViewMacdDaily;
+        private System.Windows.Forms.DataGridView dataGridViewMacdWeekly;
+        private System.Windows.Forms.GroupBox groupBox29;
+        private System.Windows.Forms.GroupBox groupBox30;
+        private System.Windows.Forms.DataGridView dataGridViewCandleDaily;
+        private System.Windows.Forms.DataGridView dataGridViewCandleWeekly;
+        private System.Windows.Forms.GroupBox groupBoxCandleDaily;
+        private System.Windows.Forms.GroupBox groupBoxCandleWeekly;
+        private System.Windows.Forms.GroupBox groupBox31;
+        private System.Windows.Forms.GroupBox groupBox32;
+        private System.Windows.Forms.Button buttonMacdDaily;
+        private System.Windows.Forms.NumericUpDown numericUpDownMacdDaily;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonMacdWeekly;
+        private System.Windows.Forms.NumericUpDown numericUpDownMacdWeekly;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonCandleDaily;
+        private System.Windows.Forms.NumericUpDown numericUpDownCandleDaily;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonCandleWeekly;
+        private System.Windows.Forms.NumericUpDown numericUpDownCandleWeekly;
+        private System.Windows.Forms.GroupBox groupBoxZscanDaily;
+        private System.Windows.Forms.GroupBox groupBoxZscanWeekly;
+        private System.Windows.Forms.GroupBox groupBox33;
+        private System.Windows.Forms.GroupBox groupBox34;
+        private System.Windows.Forms.DataGridView dataGridViewZscanDaily;
+        private System.Windows.Forms.DataGridView dataGridViewZscanWeekly;
+        private System.Windows.Forms.Button buttonZscanDaily;
+        private System.Windows.Forms.NumericUpDown numericUpDownZScanDaily;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button buttonZscanWeekly;
+        private System.Windows.Forms.NumericUpDown numericUpDownZscanWeekly;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TabControl tabControlMacd;
+        private System.Windows.Forms.TabPage tabPage29;
+        private System.Windows.Forms.TabPage tabPage30;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripMacdDaily;
+        private System.Windows.Forms.ToolStripMenuItem exportCSVFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem5;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripCandleDaily;
+        private System.Windows.Forms.ToolStripMenuItem exportToCSVFileToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripMacdWeekly;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripCandleWeekly;
+        private System.Windows.Forms.ToolStripMenuItem exportCSVFileToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem exportCSVFileToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem exportToPDFFileToolStripMenuItem7;
     }
 }
 

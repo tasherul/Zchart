@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,20 @@ namespace zCharts
             {
                 return false;
             }
+        }
+        public List<string> nodes()
+        {
+            var _t = JsonConvert.DeserializeObject<List<treeview>>(view());
+            List<string> o = new List<string>();
+            foreach (treeview t in _t)
+            {
+                foreach (string s in t.node)
+                {
+                    o.Add(s);
+
+                }
+            }   
+            return o;
         }
         public bool save(string data,string path)
         {

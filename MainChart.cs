@@ -159,6 +159,7 @@ namespace zCharts
         public TableLayoutPanel Layout { get; set; }
         public string Overlay_key {get;set;}
         public string Indector_key { get; set; }
+        public string FirstOverlay { get; set; }
         #endregion
 
 
@@ -277,7 +278,7 @@ namespace zCharts
                     myPane.AddCurve(o.Name, o.pList, o.Color, o.Type);
 
             // Use DateAsOrdinal to skip weekend gaps
-            myPane.XAxis.Type = AxisType.DateAsOrdinal;
+            myPane.XAxis.Type = AxisType.Date;
 
             // pretty it up a little
             myPane.Chart.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0f);
@@ -320,7 +321,8 @@ namespace zCharts
             if (overlay)
                 foreach (Overlay o in Overlaylist())
                     myPane.AddCurve(o.Name, o.pList, o.Color, o.Type);
-
+            
+            zgc.GraphPane.XAxis.Type = AxisType.Date;
             zgc.IsZoomOnMouseCenter = true;
             zgc.AxisChange();
             zgc.Refresh();
@@ -359,7 +361,7 @@ namespace zCharts
                 foreach (Overlay o in Overlaylist())
                     myPane.AddCurve(o.Name, o.pList, o.Color, o.Type);
 
-            myPane.XAxis.Type = AxisType.DateAsOrdinal;
+            myPane.XAxis.Type = AxisType.Date;
             myPane.Chart.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0f);
             myPane.Fill = new Fill(Color.White, Color.FromArgb(220, 220, 255), 45.0f);
             zgc.IsZoomOnMouseCenter = true;
@@ -377,6 +379,9 @@ namespace zCharts
             if (priceName != "-None-")
                 main_overlay.AddRange(price.drop_overlay(priceName));
 
+            if (FirstOverlay != null)
+                main_overlay.AddRange(price.drop_overlay(FirstOverlay));
+
             foreach (Control p in this.Layout.Controls)
             {
                 if (p.Name.Contains(this.Overlay_key))
@@ -388,7 +393,67 @@ namespace zCharts
 
                 }
             }
+           
             return main_overlay;
         }
     }
+
+    #region Class
+    public class Overlay
+    {
+        public string Name { get; set; }
+        public PointPairList pList { get; set; }
+        public Color Color { get; set; }
+        public SymbolType Type { get; set; }
+    }
+
+    public class StockPrice
+    {
+        public string date { get; set; }
+        public string open { get; set; }
+        public string low { get; set; }
+        public string high { get; set; }
+        public string close { get; set; }
+        public string volume { get; set; }
+    }
+    public class Ascender : IComparer<PointPair>
+    {
+        public int Compare(PointPair x, PointPair y)
+        {
+            return x.X.CompareTo(y.X);
+        }
+    }
+
+    public class QuoteComparer : IComparer<Quote>
+    {
+        public int Compare(Quote x, Quote y)
+        {
+            return x.Date.CompareTo(y.Date);
+        }
+    }
+    public class StockComparer : IComparer<StockPrice>
+    {
+        public int Compare(StockPrice x, StockPrice y)
+        {
+            var _x = Convert.ToDateTime(x.date);
+            var _y = Convert.ToDateTime(y.date);
+            return _x.CompareTo(_y);
+        }
+    }
+    public class PointPairComparer : IComparer<PointPair>
+    {
+        public int Compare(PointPair x, PointPair y)
+        {
+            return x.X.CompareTo(y.X);
+        }
+    }
+
+    public class StockPtsComparer : IComparer<StockPt>
+    {
+        public int Compare(StockPt x, StockPt y)
+        {
+            return x.Date.CompareTo(y.Date);
+        }
+    }
+    #endregion
 }

@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="zCharts.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Data_location" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Tasherul Islam\Documents</Value>
-    </Setting>
     <Setting Name="API_key" Type="System.String" Scope="User">
       <Value Profile="(Default)">1efd693b1d9e8ecf96c8b6b5655e9aae</Value>
     </Setting>
@@ -13,6 +10,12 @@
     </Setting>
     <Setting Name="Database" Type="System.String" Scope="User">
       <Value Profile="(Default)">database.txt</Value>
+    </Setting>
+    <Setting Name="Data_location" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\PIASH\Documents\zLoader</Value>
+    </Setting>
+    <Setting Name="liteDB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\PIASH\Documents\zCharts\MyData</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -308,10 +308,12 @@ namespace zCharts
                
                 double x, y1 = 0, y2 = 0;
                 PointPairList list1 = new PointPairList();
-                PointPairList list2 = new PointPairList();
+                PointPairList up = new PointPairList();
+                PointPairList down = new PointPairList();
 
                 IEnumerable<Quote> quotes = Quotes;
                 IEnumerable<WilliamsResult> results = parameter != 0 ? quotes.GetWilliamsR(parameter) : quotes.GetWilliamsR();
+
                 foreach (WilliamsResult vr in results)
                 {
                     XDate xDate = new XDate(vr.Date);
@@ -320,15 +322,19 @@ namespace zCharts
                         y1 = (double)vr.WilliamsR;
 
                     //if (vr.Trix != null)
-                    //     y2 = (double)vr.Trix;
-
+                    //    y2 = (double)vr.Trix;
+                    up.Add(x, -80D);
+                    down.Add(x, -20D);
                     if (y1 != 0)
                         list1.Add(x, y1);
+
                     //   if (y2 != 0)
                     //    list2.Add(x, y2);
                 }
                 list1.Sort(new PointPairComparer());
                 li.Add(new Overlay { Name = "WilliamsR", Color = Color.Black, Type = SymbolType.None, pList = list1 });
+                li.Add(new Overlay { Name = "UP", Color = Color.Black, Type = SymbolType.None, pList = up });
+                li.Add(new Overlay { Name = "Down", Color = Color.Black, Type = SymbolType.None, pList = down });
             }
             return li;
         }
@@ -586,13 +592,16 @@ namespace zCharts
 
                     if (y2 != 0)
                         list2.Add(x, y2);
+
+
                 }
                 list1.Sort(new PointPairComparer());
                 list2.Sort(new PointPairComparer());
                 //list3.Sort(new PointPairComparer());
                 //list4.Sort(new PointPairComparer());
                 li.Add(new Overlay { Name = "Signal", Color = Color.Blue, Type = SymbolType.None, pList = list1 });
-                li.Add(new Overlay { Name = "StochRsi", Color = Color.Red, Type = SymbolType.None, pList = list2 });                
+                li.Add(new Overlay { Name = "StochRsi", Color = Color.Red, Type = SymbolType.None, pList = list2 });
+               
             }
             return li;
         }
@@ -605,6 +614,9 @@ namespace zCharts
                 double x, y1 = 0, y2 = 0;
                 PointPairList list1 = new PointPairList();
                 PointPairList list2 = new PointPairList();
+
+                PointPairList up = new PointPairList();
+                PointPairList down = new PointPairList();
 
                 IEnumerable<Quote> quotes = Quotes;
                 IEnumerable<StochResult> results = parameter1 != 0 && parameter2 != 0 && parameter3 != 0 ? quotes.GetStoch(parameter1, parameter2, parameter3) : quotes.GetStoch();
@@ -624,13 +636,18 @@ namespace zCharts
 
                     if (y2 != 0)
                         list2.Add(x, y2);
+
+                    up.Add(x, 80.0D);
+                    down.Add(x, 20.0D);
                 }
                 list1.Sort(new PointPairComparer());
                 list2.Sort(new PointPairComparer());
                 //list3.Sort(new PointPairComparer());
                 //list4.Sort(new PointPairComparer());
                 li.Add(new Overlay { Name = "K", Color = Color.Blue, Type = SymbolType.None, pList = list1 });
-                li.Add(new Overlay { Name = "D", Color = Color.Red, Type = SymbolType.None, pList = list2 });                
+                li.Add(new Overlay { Name = "D", Color = Color.Red, Type = SymbolType.None, pList = list2 });
+                li.Add(new Overlay { Name = "UP", Color = Color.Black, Type = SymbolType.None, pList = up });
+                li.Add(new Overlay { Name = "DOWN", Color = Color.Black, Type = SymbolType.None, pList = down });
             }
             return li;
         }
@@ -752,13 +769,14 @@ namespace zCharts
 
         private List<Overlay> Relative_Strength_Index(  int parameter = 0)
         {
-                        List<Overlay> li = new List<Overlay>();
+            List<Overlay> li = new List<Overlay>();
             if (Quotes.Count > 0)
             {
                 double x, y1 = 0, y2 = 0;
                 PointPairList list1 = new PointPairList();
                 PointPairList list2 = new PointPairList();
-
+                PointPairList UP = new PointPairList();
+                PointPairList DOWN = new PointPairList();
                 IEnumerable<Quote> quotes = Quotes;
                 IEnumerable<RsiResult> results = parameter != 0 ? quotes.GetRsi(parameter) : quotes.GetRsi();
                 foreach (RsiResult vr in results)
@@ -776,6 +794,8 @@ namespace zCharts
                         list1.Add(x, y1);
                     //if (y2 != 0)
                     //  list2.Add(x, y2);
+                    UP.Add(x, 70.0D);
+                    DOWN.Add(x, 30.0D);
                 }
                 list1.Sort(new PointPairComparer());
                 //list2.Sort(new PointPairComparer());
@@ -783,7 +803,8 @@ namespace zCharts
                 //list4.Sort(new PointPairComparer());
                 li.Add(new Overlay { Name = "Rsi", Color = Color.Red, Type = SymbolType.None, pList = list1 });
                 //LineItem myCurve2 = myPane.AddCurve(CurveName2,list2, Color.Blue, SymbolType.None);
-                
+                li.Add(new Overlay { Name = "UP", Color = Color.Black, Type = SymbolType.None, pList = UP });
+                li.Add(new Overlay { Name = "DOWN", Color = Color.Black, Type = SymbolType.None, pList = DOWN });
             }
             return li;
         }
@@ -1245,7 +1266,8 @@ namespace zCharts
             {
                 double x, y1 = 0, y2 = 0;
                 PointPairList list1 = new PointPairList();
-                PointPairList list2 = new PointPairList();
+                PointPairList UP = new PointPairList();
+                PointPairList DOWN = new PointPairList();
 
                 IEnumerable<Quote> quotes = Quotes;
                 IEnumerable<CciResult> results = parameter != 0 ? quotes.GetCci(parameter) : quotes.GetCci();
@@ -1262,13 +1284,16 @@ namespace zCharts
                     if (y1 != 0)
                         list1.Add(x, y1);
                     // list2.Add(x, y2);
+                    UP.Add(x, 100.0D);
+                    DOWN.Add(x, -100.0D);
                 }
                 list1.Sort(new PointPairComparer());
                 li.Add(new Overlay { Name = "Cci", Color = Color.Orange, Type = SymbolType.None, pList = list1 });
-
+                li.Add(new Overlay { Name = "UP", Color = Color.Black, Type = SymbolType.None, pList = UP });
+                li.Add(new Overlay { Name = "DOWN", Color = Color.Black, Type = SymbolType.None, pList = DOWN });
                 //LineItem myCurve2 = myPane.AddCurve(CurveName2,
                 //      list2, Color.Blue, SymbolType.None);
-                
+
             }
             return li;
         }
@@ -1399,9 +1424,9 @@ namespace zCharts
                         y2 = (double)vr.Width;
 
                     if (y1 != 0)
-                        list1.Add(x, y1);
+                        list1.Add(x>0.00001?x:0, y1);
                     if (y2 != 0)
-                        list2.Add(x, y2);
+                        list2.Add(x > 0.00001 ? x : 0, y2);
                 }
                 list1.Sort(new PointPairComparer());
                 list2.Sort(new PointPairComparer());
@@ -1409,8 +1434,8 @@ namespace zCharts
                 //list4.Sort(new PointPairComparer());
                 //LineItem myCurve = myPane.AddCurve(CurveName1,
                 //      list1, Color.Blue, SymbolType.None);
-                li.Add(new Overlay { Name = "PercentB", Color = Color.Red, Type = SymbolType.None, pList = list1 });
-                //li.Add(new Overlay { Name = "Width", Color = Color.Red, Type = SymbolType.None, pList = list2 });
+                //li.Add(new Overlay { Name = "PercentB", Color = Color.Red, Type = SymbolType.None, pList = list1 });
+                li.Add(new Overlay { Name = "Width", Color = Color.Red, Type = SymbolType.None, pList = list2 });
             }
             return li;
         }
@@ -1436,10 +1461,11 @@ namespace zCharts
                         y2 = (double)vr.Width;
 
                     if (y1 != 0)
-                        list1.Add(x, y1);
+                        list1.Add(x > 0.00001 ? x : 0, y1);
                     if (y2 != 0)
-                        list2.Add(x, y2);
+                        list2.Add(x > 0.00001 ? x : 0, y2);
                 }
+                
                 list1.Sort(new PointPairComparer());
                 list2.Sort(new PointPairComparer());
                 //list3.Sort(new PointPairComparer());

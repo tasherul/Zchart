@@ -6,23 +6,30 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
 using Skender.Stock.Indicators;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Document = iTextSharp.text.Document;
+using System.Text.RegularExpressions;
 
 namespace zCharts
 {
     public partial class MainForm : Form
     {
+        #region indicator chart height
+        public static int indicatorHeight = 0;
+        #endregion
 
+        #region Global Veriable and Right Panel setups
         loader lo = new loader();
+        liteDB db = new liteDB(Properties.Settings.Default["liteDB"].ToString());
+        string[] table = new string[] { "daily" };
 
         //these seqence# can be used to identify panel names for right expanding panels
         //for each tab
         //we  declare these variables and set these intial values
-
         //monthly panel setting -- sequence =1
         int PW1 = 0;
         bool Hided1 = false;
@@ -83,17 +90,15 @@ namespace zCharts
         int PW15 = 0;
         bool Hided15 = false;
 
+        //CandleStick Scan -- Sequence =16
+        int PW16 = 0;
+        bool Hided16 = false;
+
         //Business Logic
         string tree = "";
         string path { get; set; }
-        private static clsFileHandler oFH = new clsFileHandler();
-        string Delimiter = ",";
-        int DataRow1 = 1;
-        int HeaderRow = 0;
-        int MaxRows = 0;
-        List<StockPrice> _daily_stockprice = new List<StockPrice>();
+
         string Symbol { get; set; }
-        List<Quote> quote = new List<Quote>();
         List<Quote> quote_weekly = new List<Quote>();
         List<Quote> quote_monthly = new List<Quote>();
         List<Quote> quote_daily = new List<Quote>();
@@ -105,7 +110,18 @@ namespace zCharts
         List<Quote> quote_nasdaq_daily = new List<Quote>();
         List<Quote> quote_nasdaq_weekly = new List<Quote>();
         List<Quote> quote_nasdaq_monthly = new List<Quote>();
-        #region Main Functions
+
+        #endregion
+
+        #region Main Functions and GUI - All right Panel setups
+        private string __f_overlay(PriceComboBox price)
+        {
+            if (price.SelectedItem != null)
+            {
+                return price.SelectedItem.ToString();
+            }
+            return null;
+        }
         public void show_treeview()
         {
 
@@ -143,6 +159,8 @@ namespace zCharts
             string dx = Properties.Settings.Default["Data_location"].ToString();
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             this.path = dx.Length > 0 ? dx : path;
+            foreach(string t in table)
+                dataGridViewRSIDaily.DataSource = db.view(t);
 
             //Monthly panels
             PW1 = SPanel1.Width;
@@ -236,6 +254,12 @@ namespace zCharts
             buttonLeft15.Visible = false;
             buttonTop15.Visible = true;
 
+            //CandleStick Scan settings
+            PW16 = SPanel15.Width;
+            Hided16 = false;
+            buttonLeft16.Visible = false;
+            buttonTop16.Visible = true;
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -245,9 +269,139 @@ namespace zCharts
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //Get the height for indicator chart for each indicator
+            Graphics g = this.CreateGraphics();
+            try
+            {
+                //set 3 inches height
+                indicatorHeight = Convert.ToInt32( 3.0* g.DpiY);
+            }
+            finally
+            {
+                g.Dispose();
+            }
 
+            zedGraphDailyTop.GraphPane.XAxis.Type = AxisType.Date;
+            zedGraphControlWeeklyTop.GraphPane.XAxis.Type = AxisType.Date;
+            zedGraphControlMonthlyTop.GraphPane.XAxis.Type= AxisType.Date;
+            zedGraphControlMinuteTop.GraphPane.XAxis.Type = AxisType.Date;
+
+            zedGraphControlDowDailyTop.GraphPane.XAxis.Type = AxisType.Date;
+            zedGraphControlDowWeeklyTop.GraphPane.XAxis.Type = AxisType.Date;
+            zedGraphControlDowMonthlyTop.GraphPane.XAxis.Type = AxisType.Date;
+
+            zedGraphControlNasdaqDailyTop.GraphPane.XAxis.Type = AxisType.Date;
+            zedGraphControlNasdaqWeeklyTop.GraphPane.XAxis.Type = AxisType.Date;
+            zedGraphControlNasdaqMonthlyTop.GraphPane.XAxis.Type = AxisType.Date;
+
+            //Set default values for RSI Scan
+            numericUpDownRSIDaily.Value = 3;
+            numericUpDownRSIWeekly.Value = 3;
+
+            //clear up RSI Scan datagridviews
+            //for daily and weekly scan
+            dataGridViewRSIDaily.DataSource = null;
+            dataGridViewRSIWeekly.DataSource = null;
+
+            dataGridViewRSIDaily.ColumnCount = 11;
+            dataGridViewRSIDaily.Columns[0].Name = "ScanDate";
+            dataGridViewRSIDaily.Columns[1].Name = "SymbolName";
+            dataGridViewRSIDaily.Columns[2].Name = "ScanName";
+            dataGridViewRSIDaily.Columns[3].Name = "ScanValue";
+            dataGridViewRSIDaily.Columns[4].Name = "Signal";
+            dataGridViewRSIDaily.Columns[5].Name = "date";
+            dataGridViewRSIDaily.Columns[6].Name = "open";
+            dataGridViewRSIDaily.Columns[7].Name = "high";
+            dataGridViewRSIDaily.Columns[8].Name = "low";
+            dataGridViewRSIDaily.Columns[9].Name = "close";
+            dataGridViewRSIDaily.Columns[10].Name = "volume";
+
+            dataGridViewRSIWeekly.ColumnCount = 11;
+            dataGridViewRSIWeekly.Columns[0].Name = "ScanDate";
+            dataGridViewRSIWeekly.Columns[1].Name = "SymbolName";
+            dataGridViewRSIWeekly.Columns[2].Name = "ScanName";
+            dataGridViewRSIWeekly.Columns[3].Name = "ScanValue";
+            dataGridViewRSIWeekly.Columns[4].Name = "Signal";
+            dataGridViewRSIWeekly.Columns[5].Name = "date";
+            dataGridViewRSIWeekly.Columns[6].Name = "open";
+            dataGridViewRSIWeekly.Columns[7].Name = "high";
+            dataGridViewRSIWeekly.Columns[8].Name = "low";
+            dataGridViewRSIWeekly.Columns[9].Name = "close";
+            dataGridViewRSIWeekly.Columns[10].Name = "volume";
+
+            dataGridViewBollinger1Weekly.ColumnCount = 11;
+            dataGridViewBollinger1Weekly.Columns[0].Name = "ScanDate";
+            dataGridViewBollinger1Weekly.Columns[1].Name = "SymbolName";
+            dataGridViewBollinger1Weekly.Columns[2].Name = "ScanName";
+            dataGridViewBollinger1Weekly.Columns[3].Name = "ScanValue";
+            dataGridViewBollinger1Weekly.Columns[4].Name = "Signal";
+            dataGridViewBollinger1Weekly.Columns[5].Name = "date";
+            dataGridViewBollinger1Weekly.Columns[6].Name = "open";
+            dataGridViewBollinger1Weekly.Columns[7].Name = "high";
+            dataGridViewBollinger1Weekly.Columns[8].Name = "low";
+            dataGridViewBollinger1Weekly.Columns[9].Name = "close";
+            dataGridViewBollinger1Weekly.Columns[10].Name = "volume";
+
+            dataGridViewBollinger1Daily.ColumnCount = 11;
+            dataGridViewBollinger1Daily.Columns[0].Name = "ScanDate";
+            dataGridViewBollinger1Daily.Columns[1].Name = "SymbolName";
+            dataGridViewBollinger1Daily.Columns[2].Name = "ScanName";
+            dataGridViewBollinger1Daily.Columns[3].Name = "ScanValue";
+            dataGridViewBollinger1Daily.Columns[4].Name = "Signal";
+            dataGridViewBollinger1Daily.Columns[5].Name = "date";
+            dataGridViewBollinger1Daily.Columns[6].Name = "open";
+            dataGridViewBollinger1Daily.Columns[7].Name = "high";
+            dataGridViewBollinger1Daily.Columns[8].Name = "low";
+            dataGridViewBollinger1Daily.Columns[9].Name = "close";
+            dataGridViewBollinger1Daily.Columns[10].Name = "volume";
+
+            dataGridViewBollinger2Daily.ColumnCount = 11;
+            dataGridViewBollinger2Daily.Columns[0].Name = "ScanDate";
+            dataGridViewBollinger2Daily.Columns[1].Name = "SymbolName";
+            dataGridViewBollinger2Daily.Columns[2].Name = "ScanName";
+            dataGridViewBollinger2Daily.Columns[3].Name = "ScanValue";
+            dataGridViewBollinger2Daily.Columns[4].Name = "Signal";
+            dataGridViewBollinger2Daily.Columns[5].Name = "date";
+            dataGridViewBollinger2Daily.Columns[6].Name = "open";
+            dataGridViewBollinger2Daily.Columns[7].Name = "high";
+            dataGridViewBollinger2Daily.Columns[8].Name = "low";
+            dataGridViewBollinger2Daily.Columns[9].Name = "close";
+            dataGridViewBollinger2Daily.Columns[10].Name = "volume";
+
+            dataGridViewBollinger2Weekly.ColumnCount = 11;
+            dataGridViewBollinger2Weekly.Columns[0].Name = "ScanDate";
+            dataGridViewBollinger2Weekly.Columns[1].Name = "SymbolName";
+            dataGridViewBollinger2Weekly.Columns[2].Name = "ScanName";
+            dataGridViewBollinger2Weekly.Columns[3].Name = "ScanValue";
+            dataGridViewBollinger2Weekly.Columns[4].Name = "Signal";
+            dataGridViewBollinger2Weekly.Columns[5].Name = "date";
+            dataGridViewBollinger2Weekly.Columns[6].Name = "open";
+            dataGridViewBollinger2Weekly.Columns[7].Name = "high";
+            dataGridViewBollinger2Weekly.Columns[8].Name = "low";
+            dataGridViewBollinger2Weekly.Columns[9].Name = "close";
+            dataGridViewBollinger2Weekly.Columns[10].Name = "volume";
+
+            dataGrid(dataGridViewMacdDaily);
+            dataGrid(dataGridViewMacdWeekly);
+            dataGrid(dataGridViewCandleDaily);
+            dataGrid(dataGridViewCandleWeekly);
         }
 
+        private void dataGrid(DataGridView dt)
+        {
+            dt.ColumnCount = 11;
+            dt.Columns[0].Name = "ScanDate";
+            dt.Columns[1].Name = "SymbolName";
+            dt.Columns[2].Name = "ScanName";
+            dt.Columns[3].Name = "ScanValue";
+            dt.Columns[4].Name = "Signal";
+            dt.Columns[5].Name = "date";
+            dt.Columns[6].Name = "open";
+            dt.Columns[7].Name = "high";
+            dt.Columns[8].Name = "low";
+            dt.Columns[9].Name = "close";
+            dt.Columns[10].Name = "volume";
+        }
         //monthly panel settings
         private void buttonTop1_Click(object sender, EventArgs e)
         {
@@ -991,6 +1145,56 @@ namespace zCharts
                 }
             }
         }
+
+        //CandleStick Scan settings
+        private void timerCandleStick_Tick(object sender, EventArgs e)
+        {
+            if (Hided16)
+            {
+                SPanel16.Width = SPanel16.Width + 20;
+                if (SPanel16.Width >= PW11)
+                {
+                    timerCandleStick.Stop();
+                    Hided16 = false;
+                    this.Refresh();
+                }
+            }
+            else
+            {
+                SPanel16.Width = SPanel16.Width - 20;
+                if (SPanel16.Width <= 0)
+                {
+                    timerCandleStick.Stop();
+                    Hided16 = true;
+                    this.Refresh();
+                }
+            }
+        }
+
+        private void buttonLeft16_Click(object sender, EventArgs e)
+        {
+            if (Hided16)
+            {
+                buttonLeft16.Visible = false;
+                buttonTop16.Visible = true;
+                buttonTop16.Text = "CandleStick Settings";
+            }
+
+            timerCandleStick.Start();
+        }
+
+        private void buttonTop16_Click(object sender, EventArgs e)
+        {
+            if (!Hided16)
+            {
+                buttonLeft16.Text = "\nC\na\nn\nd\nl\ne\n \nS\ne\nt\nt\ni\nn\ng\ns";
+                buttonTop16.Visible = false;
+                buttonLeft16.Visible = true;
+            }
+
+            timerCandleStick.Start();
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -1187,147 +1391,78 @@ namespace zCharts
 
         #endregion
 
+        #region Main chart sequence controls
+        public static int Daily_Chart_Children_Index = 0;
+        public static int Weekly_Chart_Children_Index = 0;
+        public static int Monthly_Chart_Children_Index = 0;
+        public static int Minute_Chart_Children_Index = 0;
 
+        public static int Dow_Daily_Chart_Children_Index = 0;
+        public static int Dow_Weekly_Chart_Children_Index = 0;
+        public static int Dow_Monthly_Chart_Children_Index = 0;
 
-      
+        public static int Nasdaq_Daily_Chart_Children_Index = 0;
+        public static int Nasdaq_Weekly_Chart_Children_Index = 0;
+        public static int Nasdaq_Monthly_Chart_Children_Index = 0;
+        #endregion
 
         #region Daily Tab
-        private static int ddl_p = 0;
+        OnChangeHandeller daily_Hendal = new OnChangeHandeller();
         private void priceComboBoxDailyPrice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDailyPrice.ColumnCount + tableLayoutPanelDailyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_p < childIndex || ddl_p == 0)
-            {
-                ddl_p = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxDailyPrice.Size;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxDailyPrice_Click);
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.Name = "p_ddl_" + childIndex;
-
-                TextBox pText = new TextBox();
-                pText.Size = textBoxDailyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //add row style here
-                tableLayoutPanelDailyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDailyPrice.Controls.Add(pCombo);
-                tableLayoutPanelDailyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelDailyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelDailyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-                Daily_chart();
-            }
-            
+            daily_Hendal.Price_Name = "ddl_d_p_";
+            daily_Hendal.ComboBox = priceComboBoxDailyPrice;
+            daily_Hendal.OnChangeClick = priceComboBoxDailyPrice_Click;
+            daily_Hendal.OverlayLayout_Price = tableLayoutPanelDailyPrice;
+            daily_Hendal.Price_sender = sender;
+            daily_Hendal.Price_textBox = textBoxDailyPrice;
+            daily_Hendal.OnChange();
+            Daily_chart();
+  
         }
         private void priceComboBoxDailyPrice_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDailyPrice.ColumnCount + tableLayoutPanelDailyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_p < childIndex || ddl_p == 0)
-            {
-                ddl_p = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxDailyPrice.Size;
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxDailyPrice_Click);
-                pCombo.Name = "p_ddl_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Size = textBoxDailyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //add row style here
-                tableLayoutPanelDailyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDailyPrice.Controls.Add(pCombo);
-                tableLayoutPanelDailyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelDailyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelDailyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-
-                Daily_chart();
-            }
+            daily_Hendal.Price_Name = "ddl_d_p_";
+            daily_Hendal.ComboBox = priceComboBoxDailyPrice;
+            daily_Hendal.OnChangeClick = priceComboBoxDailyPrice_Click;
+            daily_Hendal.OverlayLayout_Price = tableLayoutPanelDailyPrice;
+            daily_Hendal.Price_sender = sender;
+            daily_Hendal.Price_textBox = textBoxDailyPrice;
+            daily_Hendal.OnChange();
+            Daily_chart();
         }
-        private static int ddl_c = 0;
+
+        //daily stock Tab
         private void indicatorComboBoxDailyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDailyIndicator.ColumnCount + tableLayoutPanelDailyIndicator.Controls.GetChildIndex((Control)sender);
-            ddl_c = childIndex;
-            IndicatorComboBox indBox = new IndicatorComboBox();
-            indBox.Size = indicatorComboBoxDailyIndicator.Size;
-            indBox.Dock = DockStyle.Fill;
-            indBox.Name = "ddl_" + ddl_c;
-            indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxDailyIndicator_Click);
-
-            TextBox pText = new TextBox();
-            pText.Dock = DockStyle.Fill;
-            pText.Size = textBoxDailyIndicator.Size;
-
-            //add row style here
-            tableLayoutPanelDailyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-            tableLayoutPanelDailyIndicator.Controls.Add(indBox);
-            tableLayoutPanelDailyIndicator.Controls.Add(pText);
-
-            //move to the right location
-            tableLayoutPanelDailyIndicator.Controls.SetChildIndex(indBox, childIndex);
-            tableLayoutPanelDailyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-            //add ZedGraph to match with the indicators from above
-
-            tableLayoutPanelDailyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            ZedGraphControl zChart = new ZedGraphControl();
-            zChart.Dock = DockStyle.Fill;
-            zChart.Size = new Size(tableLayoutPanelDailyMain.GetColumnWidths()[0], 200);
-            zChart.AutoSize = true;
-
-            indicator_daily(indicatorComboBoxDailyIndicator.SelectedItem.ToString(), zChart);
-
-            tableLayoutPanelDailyMain.Controls.Add(zChart, 0, tableLayoutPanelDailyMain.RowCount - 1);
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            daily_Hendal.IndectorLayout = tableLayoutPanelDailyIndicator;
+            daily_Hendal.Indector_Combobox = indicatorComboBoxDailyIndicator;
+            daily_Hendal.Indector_OnChangeClick = indicatorComboBoxDailyIndicator_Click;
+            daily_Hendal.Indector_Name = "ddl_d_p_";
+            daily_Hendal.Indector_sender = sender;
+            daily_Hendal.Indector_TextBox = textBoxDailyIndicator;
+            daily_Hendal.Indector_MainLayout = tableLayoutPanelDailyMain;
+            daily_Hendal.Quotes = quote_daily;
+            daily_Hendal.Selected = true;
+            daily_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            daily_Hendal.OnIndectorChange();
+            
         } 
         private void indicatorComboBoxDailyIndicator_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDailyIndicator.ColumnCount + tableLayoutPanelDailyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_c < childIndex || ddl_c == 0)
-            {
-                ddl_c = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxDailyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxDailyIndicator_Click);
-                indBox.Name = "ddl_" + ddl_c;
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxDailyIndicator.Size;
-
-
-                //add row style here
-                tableLayoutPanelDailyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDailyIndicator.Controls.Add(indBox);
-                tableLayoutPanelDailyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelDailyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelDailyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above    
-                tableLayoutPanelDailyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelDailyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-                TableLayoutControlCollection x = tableLayoutPanelDailyIndicator.Controls;
-                IndicatorComboBox _x = x.Find("ddl_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-                indicator_daily(_x.SelectedItem.ToString(), zChart);
-
-                tableLayoutPanelDailyMain.Controls.Add(zChart, 0, tableLayoutPanelDailyMain.RowCount - 1);
-            }
-          
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            daily_Hendal.IndectorLayout = tableLayoutPanelDailyIndicator;
+            daily_Hendal.Indector_Combobox = indicatorComboBoxDailyIndicator;
+            daily_Hendal.Indector_OnChangeClick = indicatorComboBoxDailyIndicator_Click;
+            daily_Hendal.Indector_Name = "ddl_d_p_";
+            daily_Hendal.Indector_sender = sender;
+            daily_Hendal.Indector_TextBox = textBoxDailyIndicator;
+            daily_Hendal.Indector_MainLayout = tableLayoutPanelDailyMain;
+            daily_Hendal.Quotes = quote_daily;
+            daily_Hendal.Selected = false;
+            daily_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            daily_Hendal.OnIndectorChange();
         }
         private void comboBoxDailyChart_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1345,7 +1480,8 @@ namespace zCharts
                     mi.Path = this.path;
                     mi.Symbol = this.Symbol;
                     mi.Layout = tableLayoutPanelDailyPrice;
-                    mi.Overlay_key = "p_ddl_";
+                    mi.Overlay_key = "ddl_d_p_";
+                    mi.FirstOverlay = __f_overlay(priceComboBoxDailyPrice);
                     string Selected = comboBoxDailyChart.SelectedItem.ToString();
                     quote_daily.Clear();
                     quote_daily.AddRange(mi.Quotes());
@@ -1359,188 +1495,64 @@ namespace zCharts
                 MessageBox.Show("Please Select Symbol.");
 
         }
-        private void indicator_daily(string indectorName, ZedGraphControl zgc)
-        {
-            IndectorPrice ip = new IndectorPrice(quote_daily);
-            List<Overlay> ov = ip.indicator_call(indectorName);
-
-            if (quote_daily.Count > 0)
-            {
-                GraphPane myPane = zgc.GraphPane;
-                myPane.Title.Text = indectorName;
-                myPane.XAxis.Title.Text = "X";
-                myPane.YAxis.Title.Text = "Y";
-
-                foreach (Overlay o in ov)
-                    myPane.AddCurve(o.Name, o.pList, o.Color, o.Type);
-
-                zgc.AxisChange();
-            }
-        }
         #endregion
 
         #region weekly Tab
-        private static int ddl_w_p = 0;
+        OnChangeHandeller weekly_Hendal = new OnChangeHandeller();
         private void priceComboBoxWeeklyPrice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelWeeklyPrice.ColumnCount + tableLayoutPanelWeeklyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_w_p < childIndex || ddl_w_p == 0)
-            {
-                ddl_w_p = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxWeeklyPrice.Size;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboWeeklyPrice_Click);
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.Name = "ddl_w_p_" + childIndex;
-
-                TextBox pText = new TextBox();
-                pText.Size = textBoxWeeklyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //add row style here
-                tableLayoutPanelWeeklyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelWeeklyPrice.Controls.Add(pCombo);
-                tableLayoutPanelWeeklyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelWeeklyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelWeeklyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //show comments for developer only
-                //MessageBox.Show("Add this price indicator into Left side -> Top Price Chart!");
-                WeeklyChart();
-            }
+            weekly_Hendal.Price_Name = "ddl_w_p_";
+            weekly_Hendal.ComboBox = priceComboBoxWeeklyPrice;
+            weekly_Hendal.OnChangeClick = priceComboWeeklyPrice_Click;
+            weekly_Hendal.OverlayLayout_Price = tableLayoutPanelWeeklyPrice;
+            weekly_Hendal.Price_sender = sender;
+            weekly_Hendal.Price_textBox = textBoxWeeklyPrice;
+            weekly_Hendal.OnChange();
+            WeeklyChart();
         }
         private void priceComboWeeklyPrice_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelWeeklyPrice.ColumnCount + tableLayoutPanelWeeklyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_w_p < childIndex || ddl_w_p == 0)
-            {
-                ddl_w_p = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxWeeklyPrice.Size;
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboWeeklyPrice_Click);
-                pCombo.Name = "ddl_w_p_" + childIndex;
-
-                TextBox pText = new TextBox();
-                pText.Size = textBoxWeeklyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //add row style here
-                tableLayoutPanelWeeklyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelWeeklyPrice.Controls.Add(pCombo);
-                tableLayoutPanelWeeklyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelWeeklyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelWeeklyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-
-                WeeklyChart();
-            }
+            weekly_Hendal.Price_Name = "ddl_w_p_";
+            weekly_Hendal.ComboBox = priceComboBoxWeeklyPrice;
+            weekly_Hendal.OnChangeClick = priceComboWeeklyPrice_Click;
+            weekly_Hendal.OverlayLayout_Price = tableLayoutPanelWeeklyPrice;
+            weekly_Hendal.Price_sender = sender;
+            weekly_Hendal.Price_textBox = textBoxWeeklyPrice;
+            weekly_Hendal.OnChange();
+            WeeklyChart();
         }
-        private static int ddl_w_i = 0;
+
+        //Weekly stock Tab
         private void indicatorComboBoxWeeklyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelWeeklyIndicator.ColumnCount + tableLayoutPanelWeeklyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_w_i < childIndex || ddl_w_i == 0)
-            {
-                ddl_w_i = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxWeeklyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.Name = "ddl_w_i_" + childIndex;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxWeeklyIndicator_Click);
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxWeeklyIndicator.Size;
-
-
-                tableLayoutPanelWeeklyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelWeeklyIndicator.Controls.Add(indBox);
-                tableLayoutPanelWeeklyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelWeeklyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelWeeklyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above
-                //
-                tableLayoutPanelWeeklyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelWeeklyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-                indicator_weekly(indicatorComboBoxWeeklyIndicator.SelectedItem.ToString(), zChart);
-
-                tableLayoutPanelWeeklyMain.Controls.Add(zChart, 0, tableLayoutPanelWeeklyMain.RowCount - 1);
-
-            }
-        }
-        private void indicator_weekly(string indectorName, ZedGraphControl zgc)
-        {
-            IndectorPrice ip = new IndectorPrice(quote_weekly);
-            List<Overlay> ov = ip.indicator_call(indectorName);
-
-            if (quote_weekly.Count > 0)
-            {
-                GraphPane myPane = zgc.GraphPane;
-                myPane.Title.Text = indectorName;
-                myPane.XAxis.Title.Text = "X";
-                myPane.YAxis.Title.Text = "Y";
-
-                foreach (Overlay o in ov)
-                    myPane.AddCurve(o.Name, o.pList, o.Color, o.Type);
-
-                zgc.AxisChange();
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            weekly_Hendal.IndectorLayout = tableLayoutPanelWeeklyIndicator;
+            weekly_Hendal.Indector_Combobox = indicatorComboBoxWeeklyIndicator;
+            weekly_Hendal.Indector_OnChangeClick = indicatorComboBoxWeeklyIndicator_Click;
+            weekly_Hendal.Indector_Name = "ddl_w_i_";
+            weekly_Hendal.Indector_sender = sender;
+            weekly_Hendal.Indector_TextBox = textBoxWeeklyIndicator;
+            weekly_Hendal.Indector_MainLayout = tableLayoutPanelWeeklyMain;
+            weekly_Hendal.Quotes = quote_weekly;
+            weekly_Hendal.Selected = true;
+            weekly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            weekly_Hendal.OnIndectorChange();
         }
         private void indicatorComboBoxWeeklyIndicator_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelWeeklyIndicator.ColumnCount + tableLayoutPanelWeeklyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_w_i < childIndex || ddl_w_i == 0)
-            {
-                ddl_w_i = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxWeeklyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxWeeklyIndicator_Click);
-                indBox.Name = "ddl_w_i_" + childIndex;
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxWeeklyIndicator.Size;
-
-                tableLayoutPanelWeeklyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelWeeklyIndicator.Controls.Add(indBox);
-                tableLayoutPanelWeeklyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelWeeklyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelWeeklyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above
-                //
-                tableLayoutPanelWeeklyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelWeeklyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-                TableLayoutControlCollection x = tableLayoutPanelWeeklyIndicator.Controls;
-                IndicatorComboBox _x = x.Find("ddl_w_i_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-                indicator_weekly(_x.SelectedItem.ToString(), zChart);
-
-                tableLayoutPanelWeeklyMain.Controls.Add(zChart, 0, tableLayoutPanelWeeklyMain.RowCount - 1);
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            weekly_Hendal.IndectorLayout = tableLayoutPanelWeeklyIndicator;
+            weekly_Hendal.Indector_Combobox = indicatorComboBoxWeeklyIndicator;
+            weekly_Hendal.Indector_OnChangeClick = indicatorComboBoxWeeklyIndicator_Click;
+            weekly_Hendal.Indector_Name = "ddl_w_i_";
+            weekly_Hendal.Indector_sender = sender;
+            weekly_Hendal.Indector_TextBox = textBoxWeeklyIndicator;
+            weekly_Hendal.Indector_MainLayout = tableLayoutPanelWeeklyMain;
+            weekly_Hendal.Quotes = quote_weekly;
+            weekly_Hendal.Selected = true;
+            weekly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            weekly_Hendal.OnIndectorChange();
         }
-
         private void comboBoxWeeklyChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             WeeklyChart();
@@ -1558,6 +1570,7 @@ namespace zCharts
                     mi.Symbol = this.Symbol;
                     mi.Layout = tableLayoutPanelWeeklyPrice;
                     mi.Overlay_key = "ddl_w_p_";
+                    mi.FirstOverlay = __f_overlay(priceComboBoxWeeklyPrice);
                     string WeekliChartSelected = comboBoxWeeklyChart.SelectedItem.ToString();
                     quote_weekly.Clear();
                     quote_weekly.AddRange(mi.Quotes());
@@ -1571,172 +1584,63 @@ namespace zCharts
         #endregion
 
         #region Monthly Tab
-        private static int ddl_m_p = 0;
+        OnChangeHandeller Monthly_Hendal = new OnChangeHandeller();
         private void priceComboBoxMonthlyPrice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int childIndex = tableLayoutPanelMonthlyPrice.ColumnCount + tableLayoutPanelMonthlyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_m_p < childIndex || ddl_m_p == 0)
-            {
-                ddl_m_p = childIndex;
-
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxMonthlyPrice.Size;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxMonthlyPrice_Click);
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.Name = "ddl_m_p_" + childIndex;
-
-                TextBox pText = new TextBox();
-                pText.Size = textBoxMonthlyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //
-                //add row style here
-                tableLayoutPanelMonthlyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMonthlyPrice.Controls.Add(pCombo);
-                tableLayoutPanelMonthlyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMonthlyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelMonthlyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-                MonthlyChart();
-                //show comments for developer only
-                //MessageBox.Show("Add this price indicator into Top Price Chart!");
-            }
+            Monthly_Hendal.Price_Name = "ddl_m_p_";
+            Monthly_Hendal.ComboBox = priceComboBoxMonthlyPrice;
+            Monthly_Hendal.OnChangeClick = priceComboBoxMonthlyPrice_Click;
+            Monthly_Hendal.OverlayLayout_Price = tableLayoutPanelMonthlyPrice;
+            Monthly_Hendal.Price_sender = sender;
+            Monthly_Hendal.Price_textBox = textBoxMonthlyPrice;
+            Monthly_Hendal.OnChange();
+            MonthlyChart();
+            
         }
         private void priceComboBoxMonthlyPrice_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelMonthlyPrice.ColumnCount + tableLayoutPanelMonthlyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_m_p < childIndex || ddl_m_p == 0)
-            {
-                ddl_m_p = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxMonthlyPrice.Size;
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxMonthlyPrice_Click);
-                pCombo.Name = "ddl_m_p_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Size = textBoxMonthlyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelMonthlyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMonthlyPrice.Controls.Add(pCombo);
-                tableLayoutPanelMonthlyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMonthlyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelMonthlyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-                MonthlyChart();
-                //show comments for developer only
-                // MessageBox.Show("Add this price indicator into Left side -> Top Chart!");
-            }
+            Monthly_Hendal.Price_Name = "ddl_m_p_";
+            Monthly_Hendal.ComboBox = priceComboBoxMonthlyPrice;
+            Monthly_Hendal.OnChangeClick = priceComboBoxMonthlyPrice_Click;
+            Monthly_Hendal.OverlayLayout_Price = tableLayoutPanelMonthlyPrice;
+            Monthly_Hendal.Price_sender = sender;
+            Monthly_Hendal.Price_textBox = textBoxMonthlyPrice;
+            Monthly_Hendal.OnChange();
+            MonthlyChart();
         }
-        private static int ddl_m_i = 0;
+
+        //Monthly stock Tab
         private void indicatorComboBoxMonthlyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelMonthlyIndicator.ColumnCount + tableLayoutPanelMonthlyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_m_i < childIndex || ddl_m_i == 0)
-            {
-                ddl_m_i = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxMonthlyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.Name = "ddl_m_i_" + childIndex;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxMonthlyIndicator_Click);
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxMonthlyIndicator.Size;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelMonthlyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMonthlyIndicator.Controls.Add(indBox);
-                tableLayoutPanelMonthlyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMonthlyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelMonthlyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above
-                //
-                tableLayoutPanelMonthlyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelMonthlyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-                indicator_monthly(indicatorComboBoxMonthlyIndicator.SelectedItem.ToString(), zChart);
-
-                tableLayoutPanelMonthlyMain.Controls.Add(zChart, 0, tableLayoutPanelMonthlyMain.RowCount - 1);
-            }
-        }
-        private void indicator_monthly(string indectorName, ZedGraphControl zgc)
-        {
-            IndectorPrice ip = new IndectorPrice(quote_monthly);
-            List<Overlay> ov = ip.indicator_call(indectorName);
-
-            if (quote_monthly.Count > 0)
-            {
-                GraphPane myPane = zgc.GraphPane;
-                myPane.Title.Text = indectorName;
-                myPane.XAxis.Title.Text = "X";
-                myPane.YAxis.Title.Text = "Y";
-
-                foreach (Overlay o in ov)
-                    myPane.AddCurve(o.Name, o.pList, o.Color, o.Type);
-
-                zgc.AxisChange();
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            Monthly_Hendal.IndectorLayout = tableLayoutPanelMonthlyIndicator;
+            Monthly_Hendal.Indector_Combobox = indicatorComboBoxMonthlyIndicator;
+            Monthly_Hendal.Indector_OnChangeClick = indicatorComboBoxMonthlyIndicator_Click;
+            Monthly_Hendal.Indector_Name = "ddl_m_i_";
+            Monthly_Hendal.Indector_sender = sender;
+            Monthly_Hendal.Indector_TextBox = textBoxMonthlyIndicator;
+            Monthly_Hendal.Indector_MainLayout = tableLayoutPanelMonthlyMain;
+            Monthly_Hendal.Quotes = quote_monthly;
+            Monthly_Hendal.Selected = true;
+            Monthly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            Monthly_Hendal.OnIndectorChange();
         }
         private void indicatorComboBoxMonthlyIndicator_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelMonthlyIndicator.ColumnCount + tableLayoutPanelMonthlyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_m_i < childIndex || ddl_m_i == 0)
-            {
-                ddl_m_i = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxMonthlyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.Name = "ddl_m_i_" + childIndex;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxMonthlyIndicator_Click);
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxMonthlyIndicator.Size;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelMonthlyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMonthlyIndicator.Controls.Add(indBox);
-                tableLayoutPanelMonthlyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMonthlyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelMonthlyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above    
-                tableLayoutPanelMonthlyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelMonthlyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-                TableLayoutControlCollection x = tableLayoutPanelMonthlyIndicator.Controls;
-                IndicatorComboBox _x = x.Find("ddl_m_i_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-                //MessageBox.Show(_x.SelectedItem.ToString());
-                indicator_monthly(_x.SelectedItem.ToString(), zChart);
-
-                tableLayoutPanelMonthlyMain.Controls.Add(zChart, 0, tableLayoutPanelMonthlyMain.RowCount - 1);
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            Monthly_Hendal.IndectorLayout = tableLayoutPanelMonthlyIndicator;
+            Monthly_Hendal.Indector_Combobox = indicatorComboBoxMonthlyIndicator;
+            Monthly_Hendal.Indector_OnChangeClick = indicatorComboBoxMonthlyIndicator_Click;
+            Monthly_Hendal.Indector_Name = "ddl_m_i_";
+            Monthly_Hendal.Indector_sender = sender;
+            Monthly_Hendal.Indector_TextBox = textBoxMonthlyIndicator;
+            Monthly_Hendal.Indector_MainLayout = tableLayoutPanelMonthlyMain;
+            Monthly_Hendal.Quotes = quote_monthly;
+            Monthly_Hendal.Selected = true;
+            Monthly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            Monthly_Hendal.OnIndectorChange();          
         }
+
         private void comboBoxMonthlyChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             MonthlyChart();
@@ -1754,6 +1658,7 @@ namespace zCharts
                     mi.Symbol = this.Symbol;
                     mi.Layout = tableLayoutPanelMonthlyPrice;
                     mi.Overlay_key = "ddl_m_p_";
+                    mi.FirstOverlay = __f_overlay(priceComboBoxMonthlyPrice);
                     string WeekliChartSelected = comboBoxMonthlyChart.SelectedItem.ToString();
                     quote_monthly.Clear();
                     quote_monthly.AddRange(mi.Quotes());
@@ -1766,151 +1671,65 @@ namespace zCharts
         #endregion
 
         #region Minute tab
-        private static int ddl_min_p_ = 0;
+        OnChangeHandeller Minute_Hendal = new OnChangeHandeller();
         private void priceComboBoxMinutePrice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelMinutePrice.ColumnCount + tableLayoutPanelMinutePrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_min_p_ < childIndex || ddl_min_p_ == 0)
-            {
-                ddl_min_p_ = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxMinutePrice.Size;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxMinutePrice_Click);
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.Name = "ddl_min_p_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Size = textBoxMinutePrice.Size;
-                pText.Dock = DockStyle.Fill;
+            Minute_Hendal.Price_Name = "ddl_min_p_";
+            Minute_Hendal.ComboBox = priceComboBoxMinutePrice;
+            Minute_Hendal.OnChangeClick = priceComboBoxMinutePrice_Click;
+            Minute_Hendal.OverlayLayout_Price = tableLayoutPanelMinutePrice;
+            Minute_Hendal.Price_sender = sender;
+            Minute_Hendal.Price_textBox = textBoxMinutePrice;
+            Minute_Hendal.OnChange();
+            MinuteChart();
 
-                //
-                //add row style here
-                //
-                tableLayoutPanelMinutePrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMinutePrice.Controls.Add(pCombo);
-                tableLayoutPanelMinutePrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMinutePrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelMinutePrice.Controls.SetChildIndex(pText, childIndex + 1);
-                MinuteChart();
-                //show comments for developer only
-                // MessageBox.Show("Add this price indicator into Left side->Top Price Chart!");
-            }
+            
         }
         private void priceComboBoxMinutePrice_Click(object sender, EventArgs e)
         {
             //this 2 is the column count
-            int childIndex = tableLayoutPanelMinutePrice.ColumnCount + tableLayoutPanelMinutePrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_min_p_ < childIndex || ddl_min_p_ == 0)
-            {
-                ddl_min_p_ = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxMinutePrice.Size;
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxMinutePrice_Click);
-                pCombo.Name = "ddl_min_p_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Size = textBoxMinutePrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelMinutePrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMinutePrice.Controls.Add(pCombo);
-                tableLayoutPanelMinutePrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMinutePrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelMinutePrice.Controls.SetChildIndex(pText, childIndex + 1);
-                MinuteChart();
-            }
+            Minute_Hendal.Price_Name = "ddl_min_p_";
+            Minute_Hendal.ComboBox = priceComboBoxMinutePrice;
+            Minute_Hendal.OnChangeClick = priceComboBoxMinutePrice_Click;
+            Minute_Hendal.OverlayLayout_Price = tableLayoutPanelMinutePrice;
+            Minute_Hendal.Price_sender = sender;
+            Minute_Hendal.Price_textBox = textBoxMinutePrice;
+            Minute_Hendal.OnChange();
+            MinuteChart();
             //show comments for developer only
             //MessageBox.Show("Add this price indicator into Left side -> Top Chart!");
         }
-        private static int ddl_min_i_ = 0;
+        //Minutes stock indicator Tab
         private void indicatorComboBoxMinuteIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelMinuteIndicator.ColumnCount + tableLayoutPanelMinuteIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_min_i_ < childIndex || ddl_min_i_ == 0)
-            {
-                ddl_min_i_ = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxMinuteIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.Name = "ddl_min_i_" + childIndex;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxMinuteIndicator_Click);
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxMinuteIndicator.Size;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelMinuteIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMinuteIndicator.Controls.Add(indBox);
-                tableLayoutPanelMinuteIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMinuteIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelMinuteIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above
-                //
-                tableLayoutPanelMinuteMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelDailyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-                indicator_min(indicatorComboBoxMinuteIndicator.SelectedItem.ToString(), zChart,quote_min);
-                tableLayoutPanelMinuteMain.Controls.Add(zChart, 0, tableLayoutPanelMinuteMain.RowCount - 1);
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            Minute_Hendal.IndectorLayout = tableLayoutPanelMinuteIndicator;
+            Minute_Hendal.Indector_Combobox = indicatorComboBoxMinuteIndicator;
+            Minute_Hendal.Indector_OnChangeClick = indicatorComboBoxMinuteIndicator_Click;
+            Minute_Hendal.Indector_Name = "ddl_min_i_";
+            Minute_Hendal.Indector_sender = sender;
+            Minute_Hendal.Indector_TextBox = textBoxMinuteIndicator;
+            Minute_Hendal.Indector_MainLayout = tableLayoutPanelMinuteMain;
+            Minute_Hendal.Quotes = quote_min;
+            Minute_Hendal.Selected = true;
+            Minute_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            Minute_Hendal.OnIndectorChange();
         }   
+
         private void indicatorComboBoxMinuteIndicator_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelMinuteIndicator.ColumnCount + tableLayoutPanelMinuteIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_min_i_ < childIndex || ddl_min_i_ == 0)
-            {
-                ddl_min_i_ = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxMinuteIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxMinuteIndicator_Click);
-                indBox.Name = "ddl_min_i_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxMinuteIndicator.Size;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelMinuteIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelMinuteIndicator.Controls.Add(indBox);
-                tableLayoutPanelMinuteIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelMinuteIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelMinuteIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above    
-                tableLayoutPanelMinuteMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelMinuteMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-
-                TableLayoutControlCollection x = tableLayoutPanelMinuteIndicator.Controls;
-                IndicatorComboBox _x = x.Find("ddl_min_i_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-                //MessageBox.Show(_x.SelectedItem.ToString());
-                indicator_min(_x.SelectedItem.ToString(), zChart,quote_min);
-
-                tableLayoutPanelMinuteMain.Controls.Add(zChart, 0, tableLayoutPanelMinuteMain.RowCount - 1);
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            Minute_Hendal.IndectorLayout = tableLayoutPanelMinuteIndicator;
+            Minute_Hendal.Indector_Combobox = indicatorComboBoxMinuteIndicator;
+            Minute_Hendal.Indector_OnChangeClick = indicatorComboBoxMinuteIndicator_Click;
+            Minute_Hendal.Indector_Name = "ddl_min_i_";
+            Minute_Hendal.Indector_sender = sender;
+            Minute_Hendal.Indector_TextBox = textBoxMinuteIndicator;
+            Minute_Hendal.Indector_MainLayout = tableLayoutPanelMinuteMain;
+            Minute_Hendal.Quotes = quote_min;
+            Minute_Hendal.Selected = true;
+            Minute_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            Minute_Hendal.OnIndectorChange();
         }
         private void comboBoxMinuteChart_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1929,6 +1748,7 @@ namespace zCharts
                     mi.Symbol = this.Symbol;
                     mi.Layout = tableLayoutPanelMinutePrice;
                     mi.Overlay_key = "ddl_min_p_";
+                    mi.FirstOverlay = __f_overlay(priceComboBoxMinutePrice);
                     string MinuteChartSelected = comboBoxMinuteChart.SelectedItem.ToString();
                     quote_min.Clear();
                     quote_min.AddRange(mi.Quotes());
@@ -1942,6 +1762,7 @@ namespace zCharts
 
 
         #region DowDaily
+ 
         OnChangeHandeller DowDaily_Hendal = new OnChangeHandeller();
         private void comboBoxDowDailyChart_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1951,6 +1772,7 @@ namespace zCharts
         {
             if (comboBoxDowDailyChart.SelectedItem != null)
             {
+
                 MainChart mi = new MainChart();
                 mi.FileName = "DOW_daily.csv";
                 mi.FolderName = "Index";
@@ -1958,21 +1780,12 @@ namespace zCharts
                 mi.Symbol = this.Symbol;
                 mi.Layout = tableLayoutPanelDowDailyPrice;
                 mi.Overlay_key = "ddl_dow_day_p_";
+                mi.FirstOverlay = __f_overlay(priceComboBoxDowDailyPrice);
                 string Selected = comboBoxDowDailyChart.SelectedItem.ToString();
                 quote_dow_daily.Clear();
                 quote_dow_daily.AddRange(mi.Quotes());
                 mi.Chart(Selected, zedGraphControlDowDailyTop, quote_dow_daily);
             }
-
-            //foreach (Control p in tableLayoutPanelDowDailyPrice.Controls)
-            //{
-            //    if (p.Name.Contains("ddl_dow_day_p_"))
-            //    {
-            //        TableLayoutControlCollection x = tableLayoutPanelDowDailyPrice.Controls;
-            //        PriceComboBox _x = x.Find(p.Name, false).FirstOrDefault() as PriceComboBox;
-            //        MessageBox.Show(_x.SelectedItem.ToString());
-            //    }
-            //}
         }
         private void priceComboBoxDowDailyPrice_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2003,6 +1816,7 @@ namespace zCharts
         //Dow Daily Indicator tab
         private void indicatorComboBoxDowDailyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             DowDaily_Hendal.IndectorLayout = tableLayoutPanelDowDailyIndicator;
             DowDaily_Hendal.Indector_Combobox = indicatorComboBoxDowDailyIndicator;
             DowDaily_Hendal.Indector_OnChangeClick = indicatorComboBoxDowDailyIndicator_Click;
@@ -2012,51 +1826,13 @@ namespace zCharts
             DowDaily_Hendal.Indector_MainLayout = tableLayoutPanelDowDailyMain;
             DowDaily_Hendal.Quotes = quote_dow_daily;
             DowDaily_Hendal.Selected = true;
-            DowDaily_Hendal.SelectedIteam = indicatorComboBoxDowDailyIndicator.SelectedItem.ToString();
+            DowDaily_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             DowDaily_Hendal.OnIndectorChange();
-
-
-
-            ////this 2 is the column count
-            //int childIndex = tableLayoutPanelDowDailyIndicator.ColumnCount + tableLayoutPanelDowDailyIndicator.Controls.GetChildIndex((Control)sender);
-            //if (ddl_min_i_ < childIndex || ddl_min_i_ == 0)
-            //{
-            //    ddl_min_i_ = childIndex;
-            //    IndicatorComboBox indBox = new IndicatorComboBox();
-            //    indBox.Size = indicatorComboBoxDowDailyIndicator.Size;
-            //    indBox.Dock = DockStyle.Fill;
-            //    indBox.Name = "ddl_min_i_" + childIndex;
-            //    indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxDowDailyIndicator_Click);
-
-            //    TextBox pText = new TextBox();
-            //    pText.Dock = DockStyle.Fill;
-            //    pText.Size = textBoxDowDailyIndicator.Size;
-
-            //    //
-            //    //add row style here
-            //    //
-            //    tableLayoutPanelDowDailyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-            //    tableLayoutPanelDowDailyIndicator.Controls.Add(indBox);
-            //    tableLayoutPanelDowDailyIndicator.Controls.Add(pText);
-
-            //    //move to the right location
-            //    tableLayoutPanelDowDailyIndicator.Controls.SetChildIndex(indBox, childIndex);
-            //    tableLayoutPanelDowDailyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-            //    //add ZedGraph to match with the indicators from above
-            //    //
-            //    tableLayoutPanelDowDailyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            //    ZedGraphControl zChart = new ZedGraphControl();
-            //    zChart.Dock = DockStyle.Fill;
-            //    zChart.Size = new Size(tableLayoutPanelDailyMain.GetColumnWidths()[0], 200);
-            //    zChart.AutoSize = true;
-            //    indicator_min(indicatorComboBoxDowDailyIndicator.SelectedItem.ToString(), zChart);
-            //    tableLayoutPanelDowDailyMain.Controls.Add(zChart, 0, tableLayoutPanelDowDailyMain.RowCount - 1);
-            //}
         }
 
         private void indicatorComboBoxDowDailyIndicator_Click(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             DowDaily_Hendal.IndectorLayout = tableLayoutPanelDowDailyIndicator;
             DowDaily_Hendal.Indector_Combobox = indicatorComboBoxDowDailyIndicator;
             DowDaily_Hendal.Indector_OnChangeClick = indicatorComboBoxDowDailyIndicator_Click;
@@ -2065,49 +1841,9 @@ namespace zCharts
             DowDaily_Hendal.Indector_TextBox = textBoxDowDailyIndicator;
             DowDaily_Hendal.Indector_MainLayout = tableLayoutPanelDowDailyMain;
             DowDaily_Hendal.Quotes = quote_dow_daily;
-            DowDaily_Hendal.Selected = false;
-            //DowDaily_Hendal.SelectedIteam = indicatorComboBoxDowDailyIndicator.SelectedItem.ToString();
+            DowDaily_Hendal.Selected = true;//double check?
+            DowDaily_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             DowDaily_Hendal.OnIndectorChange();
-            ////this 2 is the column count
-            //int childIndex = tableLayoutPanelDowDailyIndicator.ColumnCount + tableLayoutPanelDowDailyIndicator.Controls.GetChildIndex((Control)sender);
-            //if (ddl_min_i_ < childIndex || ddl_min_i_ == 0)
-            //{
-            //    ddl_min_i_ = childIndex;
-            //    IndicatorComboBox indBox = new IndicatorComboBox();
-            //    indBox.Size = indicatorComboBoxDowDailyIndicator.Size;
-            //    indBox.Dock = DockStyle.Fill;
-            //    indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxDowDailyIndicator_Click);
-            //    indBox.Name = "ddl_min_i_" + childIndex;
-            //    TextBox pText = new TextBox();
-            //    pText.Dock = DockStyle.Fill;
-            //    pText.Size = textBoxDowDailyIndicator.Size;
-
-            //    //
-            //    //add row style here
-            //    //
-            //    tableLayoutPanelDowDailyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-            //    tableLayoutPanelDowDailyIndicator.Controls.Add(indBox);
-            //    tableLayoutPanelDowDailyIndicator.Controls.Add(pText);
-
-            //    //move to the right location
-            //    tableLayoutPanelDowDailyIndicator.Controls.SetChildIndex(indBox, childIndex);
-            //    tableLayoutPanelDowDailyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-            //    //add ZedGraph to match with the indicators from above    
-            //    tableLayoutPanelDowDailyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            //    ZedGraphControl zChart = new ZedGraphControl();
-            //    zChart.Dock = DockStyle.Fill;
-            //    zChart.Size = new Size(tableLayoutPanelDowDailyMain.GetColumnWidths()[0], 200);
-            //    zChart.AutoSize = true;
-
-
-            //    TableLayoutControlCollection x = tableLayoutPanelDowDailyIndicator.Controls;
-            //    IndicatorComboBox _x = x.Find("ddl_min_i_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-            //    //MessageBox.Show(_x.SelectedItem.ToString());
-            //    indicator_min(_x.SelectedItem.ToString(), zChart);
-
-            //    tableLayoutPanelDowDailyMain.Controls.Add(zChart, 0, tableLayoutPanelDowDailyMain.RowCount - 1);
-            //}
         }
 
         #endregion
@@ -2130,6 +1866,7 @@ namespace zCharts
                 mi.Layout = tableLayoutPanelDowWeeklyPrice;
                 mi.Overlay_key = "ddl_dow_week_p_";
                 string Selected = comboBoxDowWeeklyChart.SelectedItem.ToString();
+                mi.FirstOverlay = __f_overlay(priceComboBoxDowWeeklyPrice);
                 quote_dow_weekly.Clear();
                 quote_dow_weekly.AddRange(mi.Quotes());
                 mi.Chart(Selected, zedGraphControlDowWeeklyTop, quote_dow_weekly);
@@ -2157,24 +1894,27 @@ namespace zCharts
             DowWeekly_Hendal.OnChange();
             DowWeeklyChart();
         }
+
         //Dow Weekly Indicator Tab
         private void indicatorComboBoxDowWeeklyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             DowWeekly_Hendal.IndectorLayout = tableLayoutPanelDowWeeklyIndicator;
             DowWeekly_Hendal.Indector_Combobox = indicatorComboBoxDowWeeklyIndicator;
             DowWeekly_Hendal.Indector_OnChangeClick = indicatorComboBoxDowWeeklyIndicator_Click;
-            DowWeekly_Hendal.Indector_Name = "ddl_dow_week_i_";
+            DowWeekly_Hendal.Indector_Name = "ddl_dow_week_i_" ;
             DowWeekly_Hendal.Indector_sender = sender;
             DowWeekly_Hendal.Indector_TextBox = textBoxDowWeeklyIndicator;
             DowWeekly_Hendal.Indector_MainLayout = tableLayoutPanelDowWeeklyMain;
             DowWeekly_Hendal.Quotes = quote_dow_weekly;
             DowWeekly_Hendal.Selected = true;
-            DowWeekly_Hendal.SelectedIteam = indicatorComboBoxDowWeeklyIndicator.SelectedItem.ToString();
+            DowWeekly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             DowWeekly_Hendal.OnIndectorChange();
 
         }
         private void indicatorComboBoxDowWeeklyIndicator_Click(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             DowWeekly_Hendal.IndectorLayout = tableLayoutPanelDowWeeklyIndicator;
             DowWeekly_Hendal.Indector_Combobox = indicatorComboBoxDowWeeklyIndicator;
             DowWeekly_Hendal.Indector_OnChangeClick = indicatorComboBoxDowWeeklyIndicator_Click;
@@ -2183,13 +1923,14 @@ namespace zCharts
             DowWeekly_Hendal.Indector_TextBox = textBoxDowWeeklyIndicator;
             DowWeekly_Hendal.Indector_MainLayout = tableLayoutPanelDowWeeklyMain;
             DowWeekly_Hendal.Quotes = quote_dow_weekly;
-            DowWeekly_Hendal.Selected = false;
-            DowWeekly_Hendal.SelectedIteam = indicatorComboBoxDowWeeklyIndicator.SelectedItem.ToString();
+            DowWeekly_Hendal.Selected = true; //overlay onto top price chart
+            DowWeekly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             DowWeekly_Hendal.OnIndectorChange();
         }
         #endregion
 
         #region DowMonthly
+        OnChangeHandeller DowMonthly_Hendal = new OnChangeHandeller();
         private void comboBoxDowMonthlyChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             DowMonthlyChat();
@@ -2207,6 +1948,7 @@ namespace zCharts
                 mi.Layout = tableLayoutPanelDowMonthlyPrice;
                 mi.Overlay_key = "ddl_dow_month_p_";
                 string Selected = comboBoxDowMonthlyChart.SelectedItem.ToString();
+                mi.FirstOverlay = __f_overlay(priceComboBoxDowMonthlyPrice);
                 quote_dow_monthly.Clear();
                 quote_dow_monthly.AddRange(mi.Quotes());
                 mi.Chart(Selected, zedGraphControlDowMonthlyTop, quote_dow_monthly);
@@ -2232,162 +1974,94 @@ namespace zCharts
             }
         }
 
-        int ddl_dow_month_p_ = 0;
-        //Dow Monthly tab
         private void priceComboBoxDowMonthlyPrice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDowMonthlyPrice.ColumnCount + tableLayoutPanelDowMonthlyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_dow_month_p_ < childIndex || ddl_dow_month_p_ == 0)
-            {
-                ddl_dow_month_p_ = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxDowMonthlyPrice.Size;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxDowMonthlyPrice_Click);
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.Name = "ddl_dow_month_p_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Size = textBoxDowMonthlyPrice.Size;
-                pText.Dock = DockStyle.Fill;
+            DowMonthly_Hendal.Price_Name = "ddl_dow_month_p_";
+            DowMonthly_Hendal.ComboBox = priceComboBoxDowMonthlyPrice;
+            DowMonthly_Hendal.OnChangeClick = priceComboBoxDowMonthlyPrice_Click;
+            DowMonthly_Hendal.OverlayLayout_Price = tableLayoutPanelDowMonthlyPrice;
+            DowMonthly_Hendal.Price_sender = sender;
+            DowMonthly_Hendal.Price_textBox = textBoxDowMonthlyPrice;
+            DowMonthly_Hendal.OnChange();
+            ////this 2 is the column count
+            //int childIndex = tableLayoutPanelDowMonthlyPrice.ColumnCount + tableLayoutPanelDowMonthlyPrice.Controls.GetChildIndex((Control)sender);
+            //if (ddl_dow_month_p_ < childIndex || ddl_dow_month_p_ == 0)
+            //{
+            //    ddl_dow_month_p_ = childIndex;
+            //    PriceComboBox pCombo = new PriceComboBox();
+            //    pCombo.Size = priceComboBoxDowMonthlyPrice.Size;
+            //    pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxDowMonthlyPrice_Click);
+            //    pCombo.Dock = DockStyle.Fill;
+            //    pCombo.Name = "ddl_dow_month_p_" + childIndex;
+            //    TextBox pText = new TextBox();
+            //    pText.Size = textBoxDowMonthlyPrice.Size;
+            //    pText.Dock = DockStyle.Fill;
 
-                //
-                //add row style here
-                //
-                tableLayoutPanelDowMonthlyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDowMonthlyPrice.Controls.Add(pCombo);
-                tableLayoutPanelDowMonthlyPrice.Controls.Add(pText);
+            //    //
+            //    //add row style here
+            //    //
+            //    tableLayoutPanelDowMonthlyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
+            //    tableLayoutPanelDowMonthlyPrice.Controls.Add(pCombo);
+            //    tableLayoutPanelDowMonthlyPrice.Controls.Add(pText);
 
-                //move to the right location
-                tableLayoutPanelDowMonthlyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelDowMonthlyPrice.Controls.SetChildIndex(pText, childIndex + 1);
+            //    //move to the right location
+            //    tableLayoutPanelDowMonthlyPrice.Controls.SetChildIndex(pCombo, childIndex);
+            //    tableLayoutPanelDowMonthlyPrice.Controls.SetChildIndex(pText, childIndex + 1);
 
-                //DowMonthlyChart();
-                //show comments for developer only
-                // MessageBox.Show("Add this price indicator into Left side->Top Price Chart!");
-            }
+            //    //DowMonthlyChart();
+            //    //show comments for developer only
+            //    // MessageBox.Show("Add this price indicator into Left side->Top Price Chart!");
+            //}
             DowMonthlyChat();
         }
 
         private void priceComboBoxDowMonthlyPrice_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDowMonthlyPrice.ColumnCount + tableLayoutPanelDowMonthlyPrice.Controls.GetChildIndex((Control)sender);
-            if (ddl_dow_month_p_ < childIndex || ddl_dow_month_p_ == 0)
-            {
-                ddl_min_p_ = childIndex;
-                PriceComboBox pCombo = new PriceComboBox();
-                pCombo.Size = priceComboBoxDowMonthlyPrice.Size;
-                pCombo.Dock = DockStyle.Fill;
-                pCombo.SelectedIndexChanged += new EventHandler(priceComboBoxDowMonthlyPrice_Click);
-                pCombo.Name = "ddl_dow_month_p_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Size = textBoxDowMonthlyPrice.Size;
-                pText.Dock = DockStyle.Fill;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelDowMonthlyPrice.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDowMonthlyPrice.Controls.Add(pCombo);
-                tableLayoutPanelDowMonthlyPrice.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelDowMonthlyPrice.Controls.SetChildIndex(pCombo, childIndex);
-                tableLayoutPanelDowMonthlyPrice.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //DowMonthlyChart();
-            }
+            DowMonthly_Hendal.Price_Name = "ddl_dow_month_p_";
+            DowMonthly_Hendal.ComboBox = priceComboBoxDowMonthlyPrice;
+            DowMonthly_Hendal.OnChangeClick = priceComboBoxDowMonthlyPrice_Click;
+            DowMonthly_Hendal.OverlayLayout_Price = tableLayoutPanelDowMonthlyPrice;
+            DowMonthly_Hendal.Price_sender = sender;
+            DowMonthly_Hendal.Price_textBox = textBoxDowMonthlyPrice;
+            DowMonthly_Hendal.OnChange();
             DowMonthlyChat();
             //show comments for developer only
             //MessageBox.Show("Add this price indicator into Left side -> Top Chart!");
         }
 
-        int ddl_dow_month_i_ = 0;
         //Dow Monthly Indicator Tab
         private void indicatorComboBoxDowMonthlyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDowMonthlyIndicator.ColumnCount + tableLayoutPanelDowMonthlyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_dow_month_i_ < childIndex || ddl_dow_month_i_ == 0)
-            {
-                ddl_dow_month_i_ = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxDowMonthlyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.Name = "ddl_dow_month_i_" + childIndex;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxDowMonthlyIndicator_Click);
-
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxDowMonthlyIndicator.Size;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelDowMonthlyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDowMonthlyIndicator.Controls.Add(indBox);
-                tableLayoutPanelDowMonthlyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelDowMonthlyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelDowMonthlyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above
-                tableLayoutPanelDowMonthlyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelDailyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-                indicator_min(indicatorComboBoxDowMonthlyIndicator.SelectedItem.ToString(), zChart, quote_dow_monthly);
-
-                tableLayoutPanelDowMonthlyMain.Controls.Add(zChart, 0, tableLayoutPanelDowMonthlyMain.RowCount - 1);
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            DowMonthly_Hendal.IndectorLayout = tableLayoutPanelDowMonthlyIndicator;
+            DowMonthly_Hendal.Indector_Combobox = indicatorComboBoxDowMonthlyIndicator;
+            DowMonthly_Hendal.Indector_OnChangeClick = indicatorComboBoxDowMonthlyIndicator_Click;
+            DowMonthly_Hendal.Indector_Name = "ddl_dow_month_i_";
+            DowMonthly_Hendal.Indector_sender = sender;
+            DowMonthly_Hendal.Indector_TextBox = textBoxDowMonthlyIndicator;
+            DowMonthly_Hendal.Indector_MainLayout = tableLayoutPanelDowMonthlyMain;
+            DowMonthly_Hendal.Quotes = quote_dow_monthly;
+            DowMonthly_Hendal.Selected = true;
+            DowMonthly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            DowMonthly_Hendal.OnIndectorChange();          
         }
 
         private void indicatorComboBoxDowMonthlyIndicator_Click(object sender, EventArgs e)
         {
-            //this 2 is the column count
-            int childIndex = tableLayoutPanelDowMonthlyIndicator.ColumnCount + tableLayoutPanelDowMonthlyIndicator.Controls.GetChildIndex((Control)sender);
-            if (ddl_dow_month_i_ < childIndex || ddl_dow_month_i_ == 0)
-            {
-                ddl_dow_month_i_ = childIndex;
-                IndicatorComboBox indBox = new IndicatorComboBox();
-                indBox.Size = indicatorComboBoxDowMonthlyIndicator.Size;
-                indBox.Dock = DockStyle.Fill;
-                indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxDowMonthlyIndicator_Click);
-                indBox.Name = "ddl_dow_month_i_" + childIndex;
-                TextBox pText = new TextBox();
-                pText.Dock = DockStyle.Fill;
-                pText.Size = textBoxDowMonthlyIndicator.Size;
-
-                //
-                //add row style here
-                //
-                tableLayoutPanelDowMonthlyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-                tableLayoutPanelDowMonthlyIndicator.Controls.Add(indBox);
-                tableLayoutPanelDowMonthlyIndicator.Controls.Add(pText);
-
-                //move to the right location
-                tableLayoutPanelDowMonthlyIndicator.Controls.SetChildIndex(indBox, childIndex);
-                tableLayoutPanelDowMonthlyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-                //add ZedGraph to match with the indicators from above    
-                tableLayoutPanelDowMonthlyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                ZedGraphControl zChart = new ZedGraphControl();
-                zChart.Dock = DockStyle.Fill;
-                zChart.Size = new Size(tableLayoutPanelDowMonthlyMain.GetColumnWidths()[0], 200);
-                zChart.AutoSize = true;
-
-
-                TableLayoutControlCollection x = tableLayoutPanelDowMonthlyIndicator.Controls;
-                IndicatorComboBox _x = x.Find("ddl_dow_month_i_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-
-                //MessageBox.Show(_x.SelectedItem.ToString());
-                indicator_min(_x.SelectedItem.ToString(), zChart,quote_dow_monthly);
-
-                tableLayoutPanelDowMonthlyMain.Controls.Add(zChart, 0, tableLayoutPanelDowMonthlyMain.RowCount - 1);
-            }
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
+            DowMonthly_Hendal.IndectorLayout = tableLayoutPanelDowMonthlyIndicator;
+            DowMonthly_Hendal.Indector_Combobox = indicatorComboBoxDowMonthlyIndicator;
+            DowMonthly_Hendal.Indector_OnChangeClick = indicatorComboBoxDowMonthlyIndicator_Click;
+            DowMonthly_Hendal.Indector_Name = "ddl_dow_month_i_";
+            DowMonthly_Hendal.Indector_sender = sender;
+            DowMonthly_Hendal.Indector_TextBox = textBoxDowMonthlyIndicator;
+            DowMonthly_Hendal.Indector_MainLayout = tableLayoutPanelDowMonthlyMain;
+            DowMonthly_Hendal.Quotes = quote_dow_monthly;
+            DowMonthly_Hendal.Selected = true;
+            DowMonthly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
+            DowMonthly_Hendal.OnIndectorChange();
         }
+        
         #endregion
 
 
@@ -2411,6 +2085,7 @@ namespace zCharts
                 mi.Layout = tableLayoutPanelNasdaqDailyPrice;
                 mi.Overlay_key = "ddl_nasdaq_day_p_";
                 string Selected = comboBoxNasdaqDailyChart.SelectedItem.ToString();
+                mi.FirstOverlay = __f_overlay(priceComboBoxNasdaqDailyPrice);
                 quote_nasdaq_daily.Clear();
                 quote_nasdaq_daily.AddRange(mi.Quotes());
                 mi.Chart(Selected, zedGraphControlNasdaqDailyTop, quote_nasdaq_daily);
@@ -2449,6 +2124,7 @@ namespace zCharts
         //Nasdaq Daily Indicator Tab
         private void indicatorComboBoxNasdaqDailyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             NasdaDaily_Hendal.IndectorLayout = tableLayoutPanelNasdaqDailyIndicator;
             NasdaDaily_Hendal.Indector_Combobox = indicatorComboBoxNasdaqDailyIndicator;
             NasdaDaily_Hendal.Indector_OnChangeClick = indicatorComboBoxNasdaqDailyIndicator_Click;
@@ -2458,15 +2134,13 @@ namespace zCharts
             NasdaDaily_Hendal.Indector_MainLayout = tableLayoutPanelNasdaqDailyMain;
             NasdaDaily_Hendal.Quotes = quote_nasdaq_daily;
             NasdaDaily_Hendal.Selected = true;
-            NasdaDaily_Hendal.SelectedIteam = indicatorComboBoxNasdaqDailyIndicator.SelectedItem.ToString();
+            NasdaDaily_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             NasdaDaily_Hendal.OnIndectorChange();
-
-
-
         }
 
         private void indicatorComboBoxNasdaqDailyIndicator_Click(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             NasdaDaily_Hendal.IndectorLayout = tableLayoutPanelNasdaqDailyIndicator;
             NasdaDaily_Hendal.Indector_Combobox = indicatorComboBoxNasdaqDailyIndicator;
             NasdaDaily_Hendal.Indector_OnChangeClick = indicatorComboBoxNasdaqDailyIndicator_Click;
@@ -2475,8 +2149,8 @@ namespace zCharts
             NasdaDaily_Hendal.Indector_TextBox = textBoxNasdaqDailyIndicator;
             NasdaDaily_Hendal.Indector_MainLayout = tableLayoutPanelNasdaqDailyMain;
             NasdaDaily_Hendal.Quotes = quote_nasdaq_daily;
-            NasdaDaily_Hendal.Selected = false;
-            NasdaDaily_Hendal.SelectedIteam = indicatorComboBoxNasdaqDailyIndicator.SelectedItem.ToString();
+            NasdaDaily_Hendal.Selected = true;
+            NasdaDaily_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             NasdaDaily_Hendal.OnIndectorChange();
         }
         #endregion
@@ -2499,6 +2173,7 @@ namespace zCharts
                 mi.Layout = tableLayoutPanelNasdaqWeeklyPrice;
                 mi.Overlay_key = "ddl_nasdaq_week_p_";
                 string Selected = comboBoxNasdaqWeeklyChart.SelectedItem.ToString();
+                mi.FirstOverlay = __f_overlay(priceComboBoxNasdaqWeeklyPrice);
                 quote_nasdaq_weekly.Clear();
                 quote_nasdaq_weekly.AddRange(mi.Quotes());
                 mi.Chart(Selected, zedGraphControlNasdaqWeeklyTop, quote_nasdaq_weekly);
@@ -2536,6 +2211,7 @@ namespace zCharts
         //Nasdaq Weekly Indicator Tab
         private void indicatorComboBoxNasdaqWeeklyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             NasdaqWeekly_Hendal.IndectorLayout = tableLayoutPanelNasdaqWeeklyIndicator;
             NasdaqWeekly_Hendal.Indector_Combobox = indicatorComboBoxNasdaqWeeklyIndicator;
             NasdaqWeekly_Hendal.Indector_OnChangeClick = indicatorComboBoxNasdaqWeeklyIndicator_Click;
@@ -2545,47 +2221,13 @@ namespace zCharts
             NasdaqWeekly_Hendal.Indector_MainLayout = tableLayoutPanelNasdaqWeeklyMain;
             NasdaqWeekly_Hendal.Quotes = quote_nasdaq_weekly;
             NasdaqWeekly_Hendal.Selected = true;
-            NasdaqWeekly_Hendal.SelectedIteam = indicatorComboBoxNasdaqWeeklyIndicator.SelectedItem.ToString();
+            NasdaqWeekly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             NasdaqWeekly_Hendal.OnIndectorChange();
-            ////this 2 is the column count
-            //int childIndex = tableLayoutPanelNasdaqWeeklyIndicator.ColumnCount + tableLayoutPanelNasdaqWeeklyIndicator.Controls.GetChildIndex((Control)sender);
-            //if (ddl_nasdaq_month_i_ < childIndex || ddl_nasdaq_month_i_ == 0)
-            //{
-            //    ddl_nasdaq_month_i_ = childIndex;
-            //    IndicatorComboBox indBox = new IndicatorComboBox();
-            //    indBox.Size = indicatorComboBoxNasdaqWeeklyIndicator.Size;
-            //    indBox.Dock = DockStyle.Fill;
-            //    indBox.Name = "ddl_nasdaq_month_i_" + childIndex;
-            //    indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxNasdaqWeeklyIndicator_Click);
-
-            //    TextBox pText = new TextBox();
-            //    pText.Dock = DockStyle.Fill;
-            //    pText.Size = textBoxNasdaqWeeklyIndicator.Size;
-
-            //    //
-            //    //add row style here
-            //    //
-            //    tableLayoutPanelNasdaqWeeklyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.Add(indBox);
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.Add(pText);
-
-            //    //move to the right location
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.SetChildIndex(indBox, childIndex);
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-            //    //add ZedGraph to match with the indicators from above
-            //    //
-            //    tableLayoutPanelNasdaqWeeklyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            //    ZedGraphControl zChart = new ZedGraphControl();
-            //    zChart.Dock = DockStyle.Fill;
-            //    zChart.Size = new Size(tableLayoutPanelNasdaqWeeklyMain.GetColumnWidths()[0], 200);
-            //    zChart.AutoSize = true;
-            //    indicator_min(indicatorComboBoxNasdaqWeeklyIndicator.SelectedItem.ToString(), zChart, quote_nasdaq_weekly);
-            //    tableLayoutPanelNasdaqWeeklyMain.Controls.Add(zChart, 0, tableLayoutPanelNasdaqWeeklyMain.RowCount - 1);
-            //}
+        
         }
         private void indicatorComboBoxNasdaqWeeklyIndicator_Click(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             NasdaqWeekly_Hendal.IndectorLayout = tableLayoutPanelNasdaqWeeklyIndicator;
             NasdaqWeekly_Hendal.Indector_Combobox = indicatorComboBoxNasdaqWeeklyIndicator;
             NasdaqWeekly_Hendal.Indector_OnChangeClick = indicatorComboBoxNasdaqWeeklyIndicator_Click;
@@ -2594,50 +2236,9 @@ namespace zCharts
             NasdaqWeekly_Hendal.Indector_TextBox = textBoxNasdaqWeeklyIndicator;
             NasdaqWeekly_Hendal.Indector_MainLayout = tableLayoutPanelNasdaqWeeklyMain;
             NasdaqWeekly_Hendal.Quotes = quote_nasdaq_weekly;
-            NasdaqWeekly_Hendal.Selected = false;
-            NasdaqWeekly_Hendal.SelectedIteam = indicatorComboBoxNasdaqWeeklyIndicator.SelectedItem.ToString();
+            NasdaqWeekly_Hendal.Selected = true;
+            NasdaqWeekly_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             NasdaqWeekly_Hendal.OnIndectorChange();
-            ////this 2 is the column count
-            //int childIndex = tableLayoutPanelNasdaqWeeklyIndicator.ColumnCount + tableLayoutPanelNasdaqWeeklyIndicator.Controls.GetChildIndex((Control)sender);
-            //if (ddl_nasdaq_month_i_ < childIndex || ddl_nasdaq_month_i_ == 0)
-            //{
-            //    ddl_nasdaq_month_i_ = childIndex;
-            //    IndicatorComboBox indBox = new IndicatorComboBox();
-            //    indBox.Size = indicatorComboBoxNasdaqWeeklyIndicator.Size;
-            //    indBox.Dock = DockStyle.Fill;
-            //    indBox.SelectedIndexChanged += new EventHandler(indicatorComboBoxNasdaqWeeklyIndicator_Click);
-            //    indBox.Name = "ddl_nasdaq_month_i_" + childIndex;
-            //    TextBox pText = new TextBox();
-            //    pText.Dock = DockStyle.Fill;
-            //    pText.Size = textBoxNasdaqWeeklyIndicator.Size;
-
-            //    //
-            //    //add row style here
-            //    //
-            //    tableLayoutPanelNasdaqWeeklyIndicator.RowStyles.Add(new RowStyle(SizeType.AutoSize, 30F));
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.Add(indBox);
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.Add(pText);
-
-            //    //move to the right location
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.SetChildIndex(indBox, childIndex);
-            //    tableLayoutPanelNasdaqWeeklyIndicator.Controls.SetChildIndex(pText, childIndex + 1);
-
-            //    //add ZedGraph to match with the indicators from above    
-            //    tableLayoutPanelNasdaqWeeklyMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            //    ZedGraphControl zChart = new ZedGraphControl();
-            //    zChart.Dock = DockStyle.Fill;
-            //    zChart.Size = new Size(tableLayoutPanelNasdaqWeeklyMain.GetColumnWidths()[0], 200);
-            //    zChart.AutoSize = true;
-
-
-            //    TableLayoutControlCollection x = tableLayoutPanelNasdaqWeeklyIndicator.Controls;
-            //    IndicatorComboBox _x = x.Find("ddl_nasdaq_month_i_" + (childIndex == 2 ? childIndex : (childIndex - 2)), false).FirstOrDefault() as IndicatorComboBox;
-
-            //    //MessageBox.Show(_x.SelectedItem.ToString());
-            //    indicator_min(_x.SelectedItem.ToString(), zChart, quote_nasdaq_weekly);
-
-            //    tableLayoutPanelNasdaqWeeklyMain.Controls.Add(zChart, 0, tableLayoutPanelNasdaqWeeklyMain.RowCount - 1);
-            //}
         }
         #endregion
 
@@ -2659,6 +2260,7 @@ namespace zCharts
                 mi.Layout = tableLayoutPanelNasdaqMonthlyPrice;
                 mi.Overlay_key = "ddl_nasdaq_month_p_";
                 string Selected = comboBoxNasdaqMonthlyChart.SelectedItem.ToString();
+                mi.FirstOverlay = __f_overlay(priceComboBoxNasdaqMonthlyPrice);
                 quote_nasdaq_monthly.Clear();
                 quote_nasdaq_monthly.AddRange(mi.Quotes());
                 mi.Chart(Selected, zedGraphControlNasdaqMonthlyTop, quote_nasdaq_monthly);
@@ -2693,6 +2295,7 @@ namespace zCharts
         //Nasdaq Monthly Indicator Tab
         private void indicatorComboBoxNasdaqMonthlyIndicator_SelectedIndexChanged(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             NasdaqMonth_Hendal.IndectorLayout = tableLayoutPanelNasdaqMonthlyIndicator;
             NasdaqMonth_Hendal.Indector_Combobox = indicatorComboBoxNasdaqMonthlyIndicator;
             NasdaqMonth_Hendal.Indector_OnChangeClick = indicatorComboBoxNasdaqMonthlyIndicator_Click;
@@ -2702,14 +2305,13 @@ namespace zCharts
             NasdaqMonth_Hendal.Indector_MainLayout = tableLayoutPanelNasdaqMonthlyMain;
             NasdaqMonth_Hendal.Quotes = quote_nasdaq_monthly;
             NasdaqMonth_Hendal.Selected = true;
-            NasdaqMonth_Hendal.SelectedIteam = indicatorComboBoxNasdaqMonthlyIndicator.SelectedItem.ToString();
+            NasdaqMonth_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             NasdaqMonth_Hendal.OnIndectorChange();
-
-
         }
 
         private void indicatorComboBoxNasdaqMonthlyIndicator_Click(object sender, EventArgs e)
         {
+            IndicatorComboBox currentIndicatorComboBox = (IndicatorComboBox)sender;
             NasdaqMonth_Hendal.IndectorLayout = tableLayoutPanelNasdaqMonthlyIndicator;
             NasdaqMonth_Hendal.Indector_Combobox = indicatorComboBoxNasdaqMonthlyIndicator;
             NasdaqMonth_Hendal.Indector_OnChangeClick = indicatorComboBoxNasdaqMonthlyIndicator_Click;
@@ -2718,73 +2320,1880 @@ namespace zCharts
             NasdaqMonth_Hendal.Indector_TextBox = textBoxNasdaqMonthlyIndicator;
             NasdaqMonth_Hendal.Indector_MainLayout = tableLayoutPanelNasdaqMonthlyMain;
             NasdaqMonth_Hendal.Quotes = quote_nasdaq_monthly;
-            NasdaqMonth_Hendal.Selected = false;
-            NasdaqMonth_Hendal.SelectedIteam = indicatorComboBoxNasdaqMonthlyIndicator.SelectedItem.ToString();
+            NasdaqMonth_Hendal.Selected = true;
+            NasdaqMonth_Hendal.SelectedIteam = currentIndicatorComboBox.SelectedItem.ToString();
             NasdaqMonth_Hendal.OnIndectorChange();
-
-
-
         }
         #endregion
+
+        private void buttonRSIScanDaily_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();            
+            int i = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownRSIDaily.Value);
+            List<Quote> q = new List<Quote>();
+            string table = "daily";
+            foreach (string s in lo.nodes())
+            {
+                i++;
+                mi.FolderName = "Daily";
+                mi.FileName = s + "_daily.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "RSI scan daily:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+                
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi();
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                int n = RsiResults.Count();
+                int m = CciResults.Count();
+                int o = StochResults.Count();
+
+                for (int j = 0; j <= lookbackwardPeriod-1; j++)
+                {
+                    if (n > 0 && n - 1 - j < 0) continue;
+
+                    if (  n > 0 && RsiResults[n -1 - j].Rsi < 31)
+                    {
+                        if (CciResults[m -1 - j].Cci < -95 && (StochResults[o -1- j].K < 20 || StochResults[o -1 - j].D < 20))
+                        {
+                            int q_index = q.Count - 1 - j;
+
+                            db.insert(new ScanResult() {
+                                SymbolName=s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open  = Convert.ToDouble(q[q_index].Open),
+                                date  = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low  = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = "OverSold",
+                                ScanName ="RSI Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = { 
+                                DateTime.Now.ToString(),
+                                s,
+                                "RSI Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            
+                            dataGridViewRSIDaily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if (n > 0 && RsiResults[n -1- j].Rsi > 65 )
+                    {
+                        if (CciResults[m -1 - j].Cci > 95 && (StochResults[o -1- j].K >= 80 || StochResults[o -1- j].D >= 80))
+                        {
+                            int q_index = q.Count - 1 - j;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = "OverBought",
+                                ScanName = "RSI Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "RSI Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewRSIDaily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            //dataGridViewRSIDaily.DataSource = db.view(table);
+
+            //MessageBox.Show("RSI Daily Scan is completed!");
+        }
+ 
+        private void buttonRSIWeekly_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int i = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownRSIDaily.Value);
+            List<Quote> q = new List<Quote>();
+            string table = "weekly";
+            foreach (string s in lo.nodes())
+            {
+                i++;
+                mi.FolderName = "Weekly";
+                mi.FileName = s + "_weekly.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "RSI Scan Weekly:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi();
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                int n = RsiResults.Count();
+                int m = CciResults.Count();
+                int o = StochResults.Count();
+
+                for (int j = 0; j <= lookbackwardPeriod-1; j++)
+                {
+                    if (n > 0 && n - 1 - j < 0) continue;
+
+                    if (n > 0 && RsiResults[n - 1 - j].Rsi < 31)
+                    {
+                        if (CciResults[m - 1 - j].Cci < -95 && (StochResults[o - 1 - j].K < 20 || StochResults[o - 1 - j].D < 20))
+                        {
+                            int q_index = q.Count - 1 - j;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = "RSI Scan Weekly",
+                                ScanName = "OverSold",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            //dataGridViewRSIDaily.DataSource = db.view("daily");
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "RSI Scan Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewRSIWeekly.Rows.Add(newRow);
+                            
+                        }
+                    }
+                    else if (n > 0 && RsiResults[n - 1 - j].Rsi > 65)
+                    {
+                        if (CciResults[m - 1 - j].Cci > 95 && (StochResults[o - 1 - j].K >= 80 || StochResults[o - 1 - j].D >= 80))
+                        {
+                            int q_index = q.Count - 1 - j;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[j].Close),
+                                open = Convert.ToDouble(q[j].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[j].High),
+                                low = Convert.ToDouble(q[j].Low),
+                                volume = Convert.ToDouble(q[j].Volume),
+                                Signal = "RSI Scan Weekly",
+                                ScanName = "OverBought",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "RSI Scan Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewRSIWeekly.Rows.Add(newRow);
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            //dataGridViewRSIWeekly.DataSource = db.view(table);
+            //MessageBox.Show("RSI Weekly Scan is completed!");
+            
+        }
+
+        private void contextMenuStripRSIDaily_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void exportToAcsvFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+        private string OpenSavefileDialog(string file = "")
+        {
+            string Filename = null;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "Excel|*.xls";
+            saveFileDialog.Filter = file!=""? "pdf File|*.pdf" : "csv File|*.csv";
+            saveFileDialog.Title = "Save Report";
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                Filename = saveFileDialog.FileName;
+
+            }
+
+            return Filename;
+        }
+        public static void ToCSV(DataTable dtDataTable, string strFilePath)
+        {
+            StreamWriter sw = new StreamWriter(strFilePath, false);
+            //headers    
+            for (int i = 0; i < dtDataTable.Columns.Count; i++)
+            {
+                sw.Write(dtDataTable.Columns[i]);
+                if (i < dtDataTable.Columns.Count - 1)
+                {
+                    sw.Write(",");
+                }
+            }
+            sw.Write(sw.NewLine);
+            foreach (DataRow dr in dtDataTable.Rows)
+            {
+                for (int i = 0; i < dtDataTable.Columns.Count; i++)
+                {
+                    if (!Convert.IsDBNull(dr[i]))
+                    {
+                        string value = dr[i].ToString();
+                        if (value.Contains(','))
+                        {
+                            value = String.Format("\"{0}\"", value);
+                            sw.Write(value);
+                        }
+                        else
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+                    }
+                    if (i < dtDataTable.Columns.Count - 1)
+                    {
+                        sw.Write(",");
+                    }
+                }
+                sw.Write(sw.NewLine);
+            }
+            sw.Close();
+        }
+        private void exportToAPDFFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+        private void exportToAcsvFileToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+        public void ExportToPdf(DataTable dt, string strFilePath)
+        {
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(strFilePath, FileMode.Create));
+            document.Open();
+            iTextSharp.text.Font font5 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 5);
+
+            PdfPTable table = new PdfPTable(dt.Columns.Count);
+            PdfPRow row = null;
+            float[] widths = new float[dt.Columns.Count];
+            for (int i = 0; i < dt.Columns.Count; i++)
+                widths[i] = 4f;
+
+            table.SetWidths(widths);
+
+            table.WidthPercentage = 100;
+            int iCol = 0;
+            string colname = "";
+            PdfPCell cell = new PdfPCell(new Phrase("Products"));
+
+            cell.Colspan = dt.Columns.Count;
+
+            foreach (DataColumn c in dt.Columns)
+            {
+                table.AddCell(new Phrase(c.ColumnName, font5));
+            }
+
+            foreach (DataRow r in dt.Rows)
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    for (int h = 0; h < dt.Columns.Count; h++)
+                    {
+                        table.AddCell(new Phrase(r[h].ToString(), font5));
+                    }
+                }
+            }
+            document.Add(table);
+            document.Close();
+        }
+        private void exportToAPDFFileToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+
+        private void contextMenuStripRSIWeekly_Opening(object sender, CancelEventArgs e)
+        {
+            //MessageBox.Show("Export to PDF File! 4532423423");
+        }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+           // MessageBox.Show("Export to PDF File! 123123455");
+        }
+
+        private void buttonBollinger1Daily_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownBollinger2Daily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "bollinger_daily";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Daily";
+                mi.FileName = s + "_daily.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "Bollinger scan daily:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                //IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                //StochResult[] StochResults = _StochResults.ToArray();
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+                    if (q[n - 1 - i].Low <= BBresults[n - 1 - i].LowerBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi < 35 && CciResults[n - 1 - i].Cci < -95)
+                        {
+                            string signal = "";
+                            if (Cmfresults[n - 1 - i].Cmf >= 0) signal = "Low+";
+                            if (Cmfresults[n - 1 - i].Cmf < 0) signal = "Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewBollinger1Daily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if (q[n - 1 - i].High >= BBresults[n - 1 - i].UpperBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi >= 60 && CciResults[n - 1 - i].Cci > 95)
+                        {
+                            string signal = "";
+                            if (Cmfresults[n - 1 - i].Cmf > 0) signal = "High";
+                            if (Cmfresults[n - 1 - i].Cmf <= 0) signal = "High+";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewBollinger1Daily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        //this is the Bollinger Scan 1 -weekly button click event
+        //sorry I did not update the button name timely
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownBollinger2Daily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "bollinger_Weekly";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Weekly";
+                mi.FileName = s + "_Weekly.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "Bollinger scan Weekly:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                //IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                //StochResult[] StochResults = _StochResults.ToArray();
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+                    if (q[n - 1 - i].Low <= BBresults[n - 1 - i].LowerBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi < 35 && CciResults[n - 1 - i].Cci < -95)
+                        {
+                            string signal = "";
+                            if (Cmfresults[n - 1 - i].Cmf >= 0) signal = "Low+";
+                            if (Cmfresults[n - 1 - i].Cmf < 0) signal = "Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Weekly",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewBollinger1Weekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if (q[n - 1 - i].High >= BBresults[n - 1 - i].UpperBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi >= 60 && CciResults[n - 1 - i].Cci > 95)
+                        {
+                            string signal = "";
+                            if (Cmfresults[n - 1 - i].Cmf > 0) signal = "High";
+                            if (Cmfresults[n - 1 - i].Cmf <= 0) signal = "High+";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewBollinger1Weekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            //dataGridViewRSIDaily.DataSource = db.view(table);
+
+            //MessageBox.Show("RSI Daily Scan is completed!");
+        }
+
+        private void contextMenuStripBollinger1Daily_Opening(object sender, CancelEventArgs e)
+        {
+            //MessageBox.Show("Export to PDF File! 2342342");
+        }
+
+        private void contextMenuStripBollinger1Weekly_Opening(object sender, CancelEventArgs e)
+        {
+            //MessageBox.Show("Export to PDF File! 234234");
+        }
+
+ 
+
+        private void buttonBollinger2Daily_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownBollinger2Daily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "bollinger_daily2";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Daily";
+                mi.FileName = s + "_daily.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "Bollinger scan daily 2:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+                    if (q[n - 1 - i].Low <= BBresults[n - 1 - i].LowerBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi < 35 && CciResults[n - 1 - i].Cci < -100 && (StochResults[n-1-i].K <20 || StochResults[n-1-i].D <20))
+                        {
+                            string signal = "Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Daily 2",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewBollinger2Daily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if (q[n - 1 - i].High >= BBresults[n - 1 - i].UpperBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi >= 60 && CciResults[n - 1 - i].Cci > 100 && (StochResults[n-1-i].K >= 80 || StochResults[n-1-i].D >= 80))
+                        {
+                            string signal = "High";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Daily 2",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Daily 2",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewBollinger2Daily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private void buttonBollinger2Weekly_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownBollinger2Daily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "bollinger_weekly2";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Weekly";
+                mi.FileName = s + "_weekly.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "Bollinger scan weekly 2:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+                    if (q[n - 1 - i].Low <= BBresults[n - 1 - i].LowerBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi < 35 && CciResults[n - 1 - i].Cci < -100 && (StochResults[n - 1 - i].K < 20 || StochResults[n - 1 - i].D < 20))
+                        {
+                            string signal = "Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Weekly",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Weekly 2",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewBollinger2Weekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if (q[n - 1 - i].High >= BBresults[n - 1 - i].UpperBand)
+                    {
+                        if (RsiResults[n - 1 - i].Rsi >= 60 && CciResults[n - 1 - i].Cci > 100 && (StochResults[n - 1 - i].K >= 80 || StochResults[n - 1 - i].D >= 80))
+                        {
+                            string signal = "High";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Bollinger Weekly 2",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Bollinger Weekly 2",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewBollinger2Weekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private void exportToCsvFileToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_daily2"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+
+        private void exportToPDFFileToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_daily2"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+
+        private void contextMenuStripBollinger2Weekly_Opening(object sender, CancelEventArgs e)
+        {
+            //no need
+            //MessageBox.Show("Export to PDF File 2342!");
+        }
+
+        private void exportToCsvFileToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_Weekly2"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+
+        private void exportToPDFFileToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_Weekly2"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+        private void exportToPDFFileToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_Weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+        private void exportToCsvFileToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_Weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+
+        private void exportToCsvFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+
+        private void exportToPDFFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("bollinger_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+
+        //MACD Scan
+        private void buttonMacdDaily_Click(object sender, EventArgs e)
+        {
+
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownMacdDaily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "macd_daily";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Daily";
+                mi.FileName = s + "_daily.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "MACD Scan Daily:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<MacdResult> _MacdResults = q.GetMacd();
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                MacdResult[] MacdResults = _MacdResults.ToArray();
+
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+
+             
+                    if ((RsiResults[n - 1 - i].Rsi < 35) && (CciResults[n - 1 - i].Cci < -95))
+                    {
+                        if (MacdResults[n - 1 - i].Histogram >= 0 && MacdResults[n - 2 - i].Histogram < 0)
+                        {
+                            string signal = "Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "MACD Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "MACD Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewMacdDaily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if ((RsiResults[n - 1 - i].Rsi >= 60) && (CciResults[n - 1 - i].Cci > 95))
+                    {
+                        if (MacdResults[n - 1 - i].Histogram <= 0 && MacdResults[n - 2 - i].Histogram > 0)
+                        {
+                            string signal = "High";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "MACD Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "MACD Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewMacdDaily.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+        }
+
+        private void buttonMacdWeekly_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownMacdDaily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "macd_weekly";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Weekly";
+                mi.FileName = s + "_weekly.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "MACD Scan Weekly:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<MacdResult> _MacdResults = q.GetMacd();
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                MacdResult[] MacdResults = _MacdResults.ToArray();
+
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+
+
+                    if ((RsiResults[n - 1 - i].Rsi < 35) && (CciResults[n - 1 - i].Cci < -95))
+                    {
+                        if (MacdResults[n - 1 - i].Histogram >= 0 && MacdResults[n - 2 - i].Histogram < 0)
+                        {
+                            string signal = "Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "MACD Weekly",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "MACD Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewMacdWeekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if ((RsiResults[n - 1 - i].Rsi >= 60) && (CciResults[n - 1 - i].Cci > 95))
+                    {
+                        if (MacdResults[n - 1 - i].Histogram <= 0 && MacdResults[n - 2 - i].Histogram > 0)
+                        {
+                            string signal = "High";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "MACD Weekly",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "MACD Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewMacdWeekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+        }
+
+        //CandleStick Scan
+        private void buttonCandleDaily_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownCandleDaily.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "candle_daily";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Daily";
+                mi.FileName = s + "_daily.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "Candle Scan Daily:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<MacdResult> _MacdResults = q.GetMacd();
+                IEnumerable<CandleResult> _CandleResult = q.GetDoji(0.5);
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<StochResult> _StochResult = q.GetStoch();
+
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                MacdResult[] MacdResults = _MacdResults.ToArray();
+                CandleResult[] CandleResult = _CandleResult.ToArray();
+                StochResult[] StochResult = _StochResult.ToArray();
+
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+                    if ((RsiResults[n - 1 - i].Rsi < 35) && (CciResults[n - 1 - i].Cci < -100) && (StochResult[n - 1].D < 20 && StochResult[n - 1].K < 20))
+                    {
+                        if (CandleResult[n - 1 - i].Signal == Signal.Neutral)
+                        {
+                            string signal = "Doji-Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Doji Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Doji Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewCandleWeekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if ((RsiResults[n - 1 - i].Rsi >= 60) && (CciResults[n - 1 - i].Cci > 100) && (StochResult[n - 1].K >80 && StochResult[n - 1].D > 80) )
+                    {
+                        if (CandleResult[n - 1 - i].Signal == Signal.Neutral)
+                        {
+                            string signal = "Doji-high";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Doji Daily",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Doji Daily",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewCandleWeekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+        }
+
+        private void buttonCandleWeekly_Click(object sender, EventArgs e)
+        {
+            MainChart mi = new MainChart();
+            int j = 0;
+            int lookbackwardPeriod = Convert.ToInt32(numericUpDownCandleWeekly.Value);
+            int standardDeviations = 2;
+            List<Quote> q = new List<Quote>();
+            string table = "candle_weekly";
+            foreach (string s in lo.nodes())
+            {
+                j++;
+                mi.FolderName = "Weekly";
+                mi.FileName = s + "_weekly.csv";
+                q.Clear();
+                q = mi.Quotes();
+
+                //display these info on status bar
+                toolStripStatusLabel1.Text = "Candle Scan Weekly:";
+                toolStripStatusLabel2.Text = "Symbol:" + s;
+                toolStripStatusLabel3.Text = "Data Record count:" + q.Count.ToString();
+
+                //if no data record for this symbol then continue
+                if (q.Count == 0) continue;
+
+                IEnumerable<RsiResult> _RsiResults = q.GetRsi(lookbackwardPeriod);
+                IEnumerable<MacdResult> _MacdResults = q.GetMacd();
+                IEnumerable<CandleResult> _CandleResult = q.GetDoji(0.5);
+                IEnumerable<BollingerBandsResult> _BBresults = q.GetBollingerBands(lookbackwardPeriod, standardDeviations);
+                IEnumerable<StochResult> _StochResult = q.GetStoch();
+
+                IEnumerable<CmfResult> _Cmfresults = q.GetCmf(lookbackwardPeriod);
+                IEnumerable<CciResult> _CciResults = q.GetCci();
+                IEnumerable<StochResult> _StochResults = q.GetStoch();
+                RsiResult[] RsiResults = _RsiResults.ToArray();
+                CciResult[] CciResults = _CciResults.ToArray();
+                BollingerBandsResult[] BBresults = _BBresults.ToArray();
+                CmfResult[] Cmfresults = _Cmfresults.ToArray();
+                StochResult[] StochResults = _StochResults.ToArray();
+                MacdResult[] MacdResults = _MacdResults.ToArray();
+                CandleResult[] CandleResult = _CandleResult.ToArray();
+                StochResult[] StochResult = _StochResult.ToArray();
+
+                int n = q.Count();
+                //int m = CciResults.Count();
+                //int o = StochResults.Count();
+
+                for (int i = 0; i <= lookbackwardPeriod - 1; i++)
+                {
+                    if ((RsiResults[n - 1 - i].Rsi < 35) && (CciResults[n - 1 - i].Cci < -100) && (StochResult[n - 1].D < 20 && StochResult[n - 1].K < 20))
+                    {
+                        if (CandleResult[n - 1 - i].Signal == Signal.Neutral)
+                        {
+                            string signal = "Doji-Low";
+                            int q_index = q.Count - 1 - i;
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[q_index].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Doji Weekly",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+
+                            //add new row logic below:
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Doji Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverSold",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+
+                            dataGridViewCandleWeekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else if ((RsiResults[n - 1 - i].Rsi >= 60) && (CciResults[n - 1 - i].Cci > 100) && (StochResult[n - 1].K > 80 && StochResult[n - 1].D > 80))
+                    {
+                        if (CandleResult[n - 1 - i].Signal == Signal.Neutral)
+                        {
+                            string signal = "Doji-high";
+                            int q_index = q.Count - 1 - i;
+
+                            db.insert(new ScanResult()
+                            {
+                                SymbolName = s,
+                                close = Convert.ToDouble(q[q_index].Close),
+                                open = Convert.ToDouble(q[q_index].Open),
+                                date = q[j].Date,
+                                ScanDate = DateTime.Now,
+                                high = Convert.ToDouble(q[q_index].High),
+                                low = Convert.ToDouble(q[q_index].Low),
+                                volume = Convert.ToDouble(q[q_index].Volume),
+                                Signal = signal,
+                                ScanName = "Doji Weekly",
+                                ScanValue = (double)RsiResults[n - 1 - j].Rsi,
+                            }, table);
+                            string[] newRow = {
+                                DateTime.Now.ToString(),
+                                s,
+                                "Doji Weekly",
+                                RsiResults[n - 1 - j].Rsi.ToString(),
+                                "OverBought",
+                                q[q_index].Date.ToString(),
+                                q[q_index].Open.ToString(),
+                                q[q_index].High.ToString(),
+                                q[q_index].Low.ToString(),
+                                q[q_index].Close.ToString(),
+                                q[q_index].Volume.ToString()};
+                            dataGridViewCandleWeekly.Rows.Add(newRow);
+
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        //zScan Scan
+        private void buttonZscanDaily_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonZscanWeekly_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportCSVFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("macd_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+
+        }
+
+        private void exportToPDFFileToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("macd_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+
+        private void contextMenuStripMacdWeekly_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void exportCSVFileToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("candle_weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+
+
+        }
+
+        private void exportToPDFFileToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("macd_weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
+
+        private void exportToCSVFileToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            //daily
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("candle_weekly"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+
+        private void exportToPDFFileToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            //daily 
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("candle_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+
+        }
+
+        private void exportCSVFileToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("candle_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ToCSV(table, OpenSavefileDialog());
+        }
+
+        private void exportToPDFFileToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("ScanDate", typeof(DateTime));
+            table.Columns.Add("SymbolName", typeof(string));
+            table.Columns.Add("ScanName", typeof(string));
+            table.Columns.Add("ScanValue", typeof(string));
+            table.Columns.Add("Signal", typeof(string));
+            table.Columns.Add("date", typeof(string));
+            table.Columns.Add("open", typeof(string));
+            table.Columns.Add("high", typeof(string));
+            table.Columns.Add("low", typeof(string));
+            table.Columns.Add("close", typeof(string));
+            table.Columns.Add("volume", typeof(string));
+
+            foreach (ScanResult s in db.view("candle_daily"))
+                table.Rows.Add(s.Id, s.ScanDate, s.SymbolName, s.ScanName, s.ScanValue, s.Signal, s.date, s.open, s.high, s.low, s.close, s.volume);
+
+            ExportToPdf(table, OpenSavefileDialog("pdf"));
+        }
     }
 
-    #region Class
-    public class Overlay
-    {
-        public string Name { get; set; }
-        public PointPairList pList { get; set; }
-        public Color Color { get; set; }
-        public SymbolType Type { get; set; }
-    }
-
-    public class StockPrice
-    {
-        public string date { get; set; }
-        public string open { get; set; }
-        public string low { get; set; }
-        public string high { get; set; }
-        public string close { get; set; }
-        public string volume { get; set; }
-    }
-    public class Ascender : IComparer<PointPair>
-    {
-        public int Compare(PointPair x, PointPair y)
-        {
-            return x.X.CompareTo(y.X);
-        }
-    }
-
-    public class QuoteComparer : IComparer<Quote>
-    {
-        public int Compare(Quote x, Quote y)
-        {
-            return x.Date.CompareTo(y.Date);
-        }
-    }
-    public class StockComparer : IComparer<StockPrice>
-    {
-        public int Compare(StockPrice x, StockPrice y)
-        {
-            var _x = Convert.ToDateTime(x.date);
-            var _y = Convert.ToDateTime(y.date);
-            return _x.CompareTo(_y);
-        }
-    }
-    public class PointPairComparer : IComparer<PointPair>
-    {
-        public int Compare(PointPair x, PointPair y)
-        {
-            return x.X.CompareTo(y.X);
-        }
-    }
-
-    public class StockPtsComparer : IComparer<StockPt>
-    {
-        public int Compare(StockPt x, StockPt y)
-        {
-            return x.Date.CompareTo(y.Date);
-        }
-    }
-    #endregion
+   
 
 }
